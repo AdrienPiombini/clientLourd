@@ -3,8 +3,8 @@ package controleur;
 public class Admin extends Users {
     private String prenom;
     
-    public Admin(String email, String mdp, String nom, String datemdp, String prenom){
-        super(email, mdp, nom, "admin", datemdp);
+    public Admin(String email, String mdp, String nom, String prenom){
+        super(email, mdp, nom, "admin");
         this.prenom = prenom;
     }
 
