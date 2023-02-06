@@ -25,6 +25,8 @@ public class VueAdmin {
 		System.out.println("Email admin " + unAdmin.getEmail());
 		System.out.println("Mdp admin " + unAdmin.getMdp());
 		System.out.println("Nom admin " + unAdmin.getNom());
+		System.out.println("Nom Particulier " + unAdmin.getRoles());
+		System.out.println("date  mdp " + unAdmin.getDatemdp());
 		System.out.println("Prenom admin " + unAdmin.getPrenom());
 	}
 
@@ -42,6 +44,14 @@ public class VueAdmin {
 		System.out.println("Ancien nom : " + unAdmin.getNom());
 		System.out.println("Donnez le nouveau nom ");
 		unAdmin.setNom(sc.next());
+
+		System.out.println("Ancien roles : " + unAdmin.getRoles());
+		System.out.println("Donnez le nouveau roles ");
+		unAdmin.setRoles(sc.next());
+
+		System.out.println("Ancien roles : " + unAdmin.getDatemdp());
+		System.out.println("Donnez la nouvelle datemdp  ");
+		unAdmin.setDatemdp(sc.next());
 
 		System.out.println("Ancien prenom : " + unAdmin.getPrenom());
 		System.out.println("Donnez le nouveau prenom  ");
