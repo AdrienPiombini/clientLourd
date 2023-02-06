@@ -10,7 +10,7 @@ public class ModeleAdmin {
 
     public static void insertAdmin(Admin unAdmin) {
 		String requete = "insert into admin values (null, '" + unAdmin.getEmail() + "','" + unAdmin.getMdp() + "','"
-				+ unAdmin.getNom() + "','" + unAdmin.getRoles() + ", curdate()," + unAdmin.getPrenom() + ");";
+				+ unAdmin.getNom() + "','" + unAdmin.getRoles() +"','" + unAdmin.getDatemdp() + unAdmin.getPrenom() + ");";
 		try {
 			uneBdd.seConnecter();
 			Statement unStat = uneBdd.getMaConnexion().createStatement();
@@ -63,7 +63,7 @@ public class ModeleAdmin {
 			while (desResultats.next()) {
 				Admin unAdmin = new Admin(desResultats.getInt("iduser"), desResultats.getString("email"),
 						desResultats.getString("mdp"), desResultats.getString("nom"),
-						desResultats.getString("roles"), desResultats.getString("datemdp") );
+						desResultats.getString("roles"), desResultats.getString("datemdp"), desResultats.getString("prenom")  );
 				// on ajoute le client dans l'ArrayList
 				lesAdmins.add(unAdmin);
 			}
@@ -85,9 +85,9 @@ public class ModeleAdmin {
 			ResultSet unResultat = unStat.executeQuery(requete);
 			// on teste si on a un seul résultat
 			if (unResultat.next()) {
-				Admin unAdmin = new Admin(desResultats.getInt("iduser"), desResultats.getString("email"),
-						desResultats.getString("mdp"), desResultats.getString("nom"),
-						desResultats.getString("roles"), desResultats.getString("datemdp") );
+				Admin unAdmin = new Admin(unResultat.getInt("iduser"), unResultat.getString("email"),
+						unResultat.getString("mdp"), unResultat.getString("nom"),
+						unResultat.getString("roles"), unResultat.getString("datemdp"), unResultat.getString("prenom")  );
 			}
 			unStat.close();
 			uneBdd.seDeConnecter();

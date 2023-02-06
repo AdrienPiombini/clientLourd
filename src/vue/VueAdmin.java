@@ -28,25 +28,26 @@ public class VueAdmin {
 		System.out.println("Prenom admin " + unAdmin.getPrenom());
 	}
 
-	public static Client modifierClient(Client unClient) {
+	public static Admin modifierClient(Admin unAdmin) {
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Ancien nom   : " + unClient.getNom());
-		System.out.println("Donnez le new nom ");
-		unClient.setNom(sc.next());
 
-		System.out.println("Ancien prenom   : " + unClient.getPrenom());
-		System.out.println("Donnez le new prenom ");
-		unClient.setPrenom(sc.next());
+		System.out.println("Ancien email   : " + unAdmin.getEmail());
+		System.out.println("Donnez le nouvel email ");
+		unAdmin.setEmail(sc.next());
 
-		System.out.println("Ancien adresse client   : " + unClient.getAdresse());
-		System.out.println("Donnez la new adresse ");
-		unClient.setAdresse(sc.next());
+		System.out.println("Ancien mdp : " + unAdmin.getMdp());
+		System.out.println("Donnez le nouveau mdp ");
+		unAdmin.setMdp(sc.next());
 
-		System.out.println("Ancien email client   : " + unClient.getEmail());
-		System.out.println("Donnez le new email ");
-		unClient.setEmail(sc.next());
+		System.out.println("Ancien nom : " + unAdmin.getNom());
+		System.out.println("Donnez le nouveau nom ");
+		unAdmin.setNom(sc.next());
 
-		return unClient;
+		System.out.println("Ancien prenom : " + unAdmin.getPrenom());
+		System.out.println("Donnez le nouveau prenom  ");
+		unAdmin.setPrenom(sc.next());
+
+		return unAdmin;
 	}
 
 }
