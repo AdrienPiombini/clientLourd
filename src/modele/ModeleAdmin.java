@@ -77,7 +77,7 @@ public class ModeleAdmin {
 
 	public static Admin selectWhereAdmin(String email) {
 		String requete = " select * from admin where email= " + email + ";";
-		Client unClient = null;
+		Admin unAdmin  = null;
 		try {
 			uneBdd.seConnecter();
 			Statement unStat = uneBdd.getMaConnexion().createStatement();
@@ -85,7 +85,7 @@ public class ModeleAdmin {
 			ResultSet unResultat = unStat.executeQuery(requete);
 			// on teste si on a un seul résultat
 			if (unResultat.next()) {
-				Admin unAdmin = new Admin(unResultat.getInt("iduser"), unResultat.getString("email"),
+				 unAdmin = new Admin(unResultat.getInt("iduser"), unResultat.getString("email"),
 						unResultat.getString("mdp"), unResultat.getString("nom"),
 						unResultat.getString("roles"), unResultat.getString("datemdp"), unResultat.getString("prenom")  );
 			}

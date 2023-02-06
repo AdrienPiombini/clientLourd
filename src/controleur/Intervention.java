@@ -5,7 +5,18 @@ public class Intervention {
     private String libelle, dateintervention, statut;
     private float prixHT, prixTTC;
 
-    public Intervention(String libelle, String dateintervention, String statut, float prixHT, float prixTTC, int iduser, int idtechnicien){
+    public Intervention(int idintervention, String libelle, String dateintervention, String statut, float prixHT, float prixTTC, int iduser, int idtechnicien){
+        this.idintervention = idintervention;
+        this.libelle  = libelle ;
+        this.dateintervention = dateintervention; 
+        this.statut = statut;
+        this.prixHT = prixHT;
+        this.prixTTC = prixTTC;
+        this.iduser = iduser;
+        this.idtechnicien = idtechnicien;
+    }
+
+    public Intervention( String libelle, String dateintervention, String statut, float prixHT, float prixTTC, int iduser, int idtechnicien){
         this.idintervention = 0;
         this.libelle  = libelle ;
         this.dateintervention = dateintervention; 
@@ -14,6 +25,17 @@ public class Intervention {
         this.prixTTC = prixTTC;
         this.iduser = iduser;
         this.idtechnicien = idtechnicien;
+    }
+
+    public Intervention(){
+        this.idintervention = 0;
+        this.libelle  = "" ;
+        this.dateintervention = ""; 
+        this.statut = "";
+        this.prixHT = 0;
+        this.prixTTC = 0;
+        this.iduser = 0;
+        this.idtechnicien = 0;
     }
 
     public int getIdintervention() {
