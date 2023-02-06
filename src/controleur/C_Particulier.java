@@ -1,9 +1,15 @@
 package controleur;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import modele.ModeleParticulier;
+import vue.VueParticulier;
+
 public class C_Particulier {
     public static void insertParticulier() {
 		// instacier la classe Client
-		Particulier unParticulier = new Particulier();
+		Particulier unParticulier = new Particulier(String email, String mdp, String nom, String adresse, String ville, String cp, int telephone, String prenom);
 		// saisir les donnes du client
 		unParticulier = VueParticulier.saisirParticulier();
 		// insérer le client dans la BDD
