@@ -76,7 +76,7 @@ public class ModeleUsers {
 	}
 
 	public static Users selectWhereUser(String email) {
-		String requete = " select * from User where email= " + email + ";";
+		String requete = " select * from Users where email= '" + email + "';";
 		Users unUser  = null;
 		try {
 			uneBdd.seConnecter();

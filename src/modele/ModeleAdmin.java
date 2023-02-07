@@ -11,7 +11,10 @@ public class ModeleAdmin {
 
     public static void insertAdmin(Admin unAdmin) {
 		String requete = "insert into admin values (null, '" + unAdmin.getEmail() + "','" + unAdmin.getMdp() + "','"
-				+ unAdmin.getNom() + "','" + unAdmin.getRoles() +"','" + unAdmin.getDatemdp() + "','" +unAdmin.getPrenom() + "');";
+				+ unAdmin.getNom()
+				+ "','" + unAdmin.getRoles()
+				+"','" + unAdmin.getDatemdp() 
+				+ "','" +unAdmin.getPrenom() + "');";
 		try {
 			uneBdd.seConnecter();
 			Statement unStat = uneBdd.getMaConnexion().createStatement();
@@ -24,7 +27,7 @@ public class ModeleAdmin {
 	}
 
 	public static void deleteAdmin(String email) {
-		String requete = "delete from admin where email=" + email + ";";
+		String requete = "delete from admin where email='" + email + "';";
 		try {
 			uneBdd.seConnecter();
 			Statement unStat = uneBdd.getMaConnexion().createStatement();
@@ -77,7 +80,7 @@ public class ModeleAdmin {
 	}
 
 	public static Admin selectWhereAdmin(String email) {
-		String requete = " select * from admin where email= " + email + ";";
+		String requete = " select * from admin where email= '" + email + "';";
 		Admin unAdmin  = null;
 		try {
 			uneBdd.seConnecter();

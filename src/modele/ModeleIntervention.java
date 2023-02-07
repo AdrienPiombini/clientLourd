@@ -42,7 +42,7 @@ public class ModeleIntervention {
 		String requete = "update intervention set libelle= '" + uneIntervention.getLibelle() + "',dateintervention='"
 				+ uneIntervention.getDateintervention() + "',statut='" + uneIntervention.getStatut() + "',prixHT='"
 				+ uneIntervention.getPrixHT() + "',prixTTC='" + uneIntervention.getPrixTTC() + "',iduser='" 
-				+ uneIntervention.getIduser() + "',idtechnicien='"+ uneIntervention.getIdtechnicien() + "' where idintervention ='"+ uneIntervention.getIdintervention()+"');";
+				+ uneIntervention.getIduser() + "',idtechnicien='"+ uneIntervention.getIdtechnicien() + "' where idintervention ="+ uneIntervention.getIdintervention()+";";
 		try {
 			uneBdd.seConnecter();
 			Statement unStat = uneBdd.getMaConnexion().createStatement();

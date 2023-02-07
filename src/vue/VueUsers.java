@@ -32,20 +32,17 @@ public class VueUsers {
 
     public static Users modifierUser(Users unUser) {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Ancien id User : " + unUser.getIduser());
-        System.out.println("Donner le nouveau libelle ");
-        unUser.setIduser(sc.nextInt());
 
         System.out.println("Ancien  email : " + unUser.getEmail());
         System.out.println("Donner le nouvel email  ");
         unUser.setEmail(sc.next());
 
-        System.out.println("Ancien statut mdp : " + unUser.getMdp());
-        System.out.println("Donner la nouvelle date ");
+        System.out.println("Ancien  mdp : " + unUser.getMdp());
+        System.out.println("Donner le nouveau mdp ");
         unUser.setMdp(sc.next());
 
         System.out.println("Ancien nom  : " + unUser.getNom());
-        System.out.println("Donner le nouveau prix HT");
+        System.out.println("Donner le nouveau nom");
         unUser.setNom(sc.next());
 
         System.out.println("Ancien roles : " + unUser.getRoles());
