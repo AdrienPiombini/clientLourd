@@ -11,7 +11,7 @@ public class ModeleAdmin {
 
     public static void insertAdmin(Admin unAdmin) {
 		String requete = "insert into admin values (null, '" + unAdmin.getEmail() + "','" + unAdmin.getMdp() + "','"
-				+ unAdmin.getNom() + "','" + unAdmin.getRoles() +"','" + unAdmin.getDatemdp() + unAdmin.getPrenom() + ");";
+				+ unAdmin.getNom() + "','" + unAdmin.getRoles() +"','" + unAdmin.getDatemdp() + "','" +unAdmin.getPrenom() + "');";
 		try {
 			uneBdd.seConnecter();
 			Statement unStat = uneBdd.getMaConnexion().createStatement();
@@ -38,8 +38,8 @@ public class ModeleAdmin {
 
 	public static void updateAdmin(Admin unAdmin) {
 		String requete = "update admin set email='" + unAdmin.getEmail() + "', mdp ='" + unAdmin.getMdp()
-				+ "', nom='" + unAdmin.getNom() + "', datemdp='" + unAdmin.getDatemdp() + "', prenom='"+ unAdmin.getPrenom() + "' where email ="
-				+ unAdmin.getEmail() + ";";
+				+ "', nom='" + unAdmin.getNom() + "', datemdp='" + unAdmin.getDatemdp() + "', prenom='"+ unAdmin.getPrenom() + "' where email ='"
+				+ unAdmin.getEmail() + "';";
 		try {
 			uneBdd.seConnecter();
 			Statement unStat = uneBdd.getMaConnexion().createStatement();

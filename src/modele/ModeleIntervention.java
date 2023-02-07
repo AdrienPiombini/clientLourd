@@ -42,7 +42,7 @@ public class ModeleIntervention {
 		String requete = "update intervention set libelle= '" + uneIntervention.getLibelle() + "',dateintervention='"
 				+ uneIntervention.getDateintervention() + "',statut='" + uneIntervention.getStatut() + "',prixHT='"
 				+ uneIntervention.getPrixHT() + "',prixTTC='" + uneIntervention.getPrixTTC() + "',iduser='" 
-				+ uneIntervention.getIduser() + "',idtechnicien='"+ uneIntervention.getIdtechnicien() + "');";
+				+ uneIntervention.getIduser() + "',idtechnicien='"+ uneIntervention.getIdtechnicien() + "' where idintervention ='"+ uneIntervention.getIdintervention()+"');";
 		try {
 			uneBdd.seConnecter();
 			Statement unStat = uneBdd.getMaConnexion().createStatement();
@@ -55,7 +55,7 @@ public class ModeleIntervention {
 	}
 
 	public static ArrayList<Intervention> selectAllIntervention() {
-		String requete = " select * from intervention ;";
+		String requete = "select * from intervention ;";
 		ArrayList<Intervention> lesInterventions = new ArrayList<Intervention>();
 		try {
 			uneBdd.seConnecter();
@@ -66,11 +66,12 @@ public class ModeleIntervention {
 			// ajoute
 			// dans l'ArrayList
 			while (desResultats.next()) {
-				Intervention uneIntervention = new Intervention(desResultats.getInt("idinter"),
+				Intervention uneIntervention = new Intervention(desResultats.getInt("idintervention"),
 						desResultats.getString("libelle"), desResultats.getString("dateintervention"),
 						desResultats.getString("statut"), desResultats.getFloat("prixHT"), 
-						desResultats.getFloat("prixTTC"), desResultats.getInt("idclient"),
-						desResultats.getInt("idtechnicien"));
+						desResultats.getFloat("prixTTC"), desResultats.getInt("iduser"),
+						desResultats.getInt("idtechnicien")
+						);
 				// on ajoute le Intervention dans l'ArrayList
 				lesInterventions.add(uneIntervention);
 			}
@@ -83,7 +84,7 @@ public class ModeleIntervention {
 	}
 
 	public static Intervention selectWhereIntervention(int idintervention) {
-		String requete = " select * from intervention where idintervention= " + idintervention + ";";
+		String requete = " select * from intervention where idintervention = " + idintervention + ";";
 		Intervention uneIntervention = null;
 		try {
 			uneBdd.seConnecter();
@@ -92,10 +93,10 @@ public class ModeleIntervention {
 			ResultSet unResultat = unStat.executeQuery(requete);
 			// on teste si on a un seul résultat
 			if (unResultat.next()) {
-				 uneIntervention = new Intervention(unResultat.getInt("idinter"),
+				 uneIntervention = new Intervention(unResultat.getInt("idintervention"),
 						unResultat.getString("libelle"), unResultat.getString("dateintervention"),
 						unResultat.getString("statut"), unResultat.getFloat("prixHT"), 
-						unResultat.getFloat("prixTTC"), unResultat.getInt("idclient"),
+						unResultat.getFloat("prixTTC"), unResultat.getInt("iduser"),
 						unResultat.getInt("idtechnicien"));
 			}
 			unStat.close();

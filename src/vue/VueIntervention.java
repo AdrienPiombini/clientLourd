@@ -47,7 +47,7 @@ public class VueIntervention {
 		uneIntervention.setDateintervention(sc.next());
 
 		System.out.println("Ancien statut intervention : " + uneIntervention.getStatut());
-		System.out.println("Donner la nouvelle date ");
+		System.out.println("Donner le nouveau statut  ");
 		uneIntervention.setStatut(sc.next());
 
 		System.out.println("Ancien prix HT : " + uneIntervention.getPrixHT());

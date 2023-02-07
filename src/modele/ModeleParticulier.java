@@ -4,6 +4,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import controleur.Particulier;
+
 public class ModeleParticulier {
     private static Bdd uneBdd = new Bdd("Localhost:8889", "dsa", "root", "root");
 
@@ -65,7 +67,7 @@ public class ModeleParticulier {
 						desResultats.getString("roles"), desResultats.getString("datemdp"), 
                         desResultats.getString("typeclient") , desResultats.getString("adresse"),
                         desResultats.getString("ville") , desResultats.getString("cp"),
-                        desResultats.getString("telephone"), desResultats.getString("prenom") );
+                        desResultats.getInt("telephone"), desResultats.getString("prenom") );
 				// on ajoute le client dans l'ArrayList
 				lesParticuliers.add(unParticulier);
 			}
@@ -79,7 +81,7 @@ public class ModeleParticulier {
 
 	public static Particulier selectWhereParticulier(String email) {
 		String requete = " select * from Particulier where email= " + email + ";";
-		Client unClient = null;
+		Particulier unParticulier  = null;
 		try {
 			uneBdd.seConnecter();
 			Statement unStat = uneBdd.getMaConnexion().createStatement();
@@ -87,12 +89,12 @@ public class ModeleParticulier {
 			ResultSet unResultat = unStat.executeQuery(requete);
 			// on teste si on a un seul résultat
 			if (unResultat.next()) {
-				Particulier unParticulier = new Particulier(unResultat.getInt("iduser"), unResultat.getString("email"),
+				 unParticulier = new Particulier(unResultat.getInt("iduser"), unResultat.getString("email"),
 						unResultat.getString("mdp"), unResultat.getString("nom"),
 						unResultat.getString("roles"), unResultat.getString("datemdp"), 
                         unResultat.getString("typeclient") , unResultat.getString("adresse"),
                         unResultat.getString("ville") , unResultat.getString("cp"),
-                        unResultat.getString("telephone"), unResultat.getString("prenom") );
+                        unResultat.getInt("telephone"), unResultat.getString("prenom") );
 			}
 			unStat.close();
 			uneBdd.seDeConnecter();

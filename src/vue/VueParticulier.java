@@ -13,6 +13,12 @@ public class VueParticulier {
 		String mdp = sc.next();
 		System.out.println("Donner le nom de Particulier");
 		String nom = sc.next();
+		System.out.println("Donner le roles de Particulier");
+		String roles = sc.next();
+		System.out.println("Donner la datemdp de Particulier");
+		String datemdp = sc.next();
+		System.out.println("Donner le typeclient du Particulier");
+		String typeclient = sc.next();
         System.out.println("Donner l'adrese du Particulier");
 		String adresse = sc.next();
         System.out.println("Donner la ville du Particulier");
@@ -24,11 +30,11 @@ public class VueParticulier {
 		System.out.println("Donner le prenom du Particulier");
 		String prenom = sc.next();
 
-		Particulier unParticulier = new Particulier(email, mdp, nom, adresse, ville, cp, telephone, prenom);
+		Particulier unParticulier = new Particulier(email, mdp, nom, roles, datemdp, typeclient, adresse, ville, cp, telephone, prenom);
 		return unParticulier;
 	}
 
-	public static void afficherClient(Particulier unParticulier) {
+	public static void afficherParticulier(Particulier unParticulier) {
 		System.out.println("Email Particulier " + unParticulier.getEmail());
 		System.out.println("Mdp Particulier " + unParticulier.getMdp());
 		System.out.println("Nom Particulier " + unParticulier.getNom());
@@ -42,7 +48,7 @@ public class VueParticulier {
 		System.out.println("Prenom Particulier " + unParticulier.getPrenom());
 	}
 
-	public static Particulier modifierClient(Particulier unParticulier) {
+	public static Particulier modifierParticulier(Particulier unParticulier) {
 		Scanner sc = new Scanner(System.in);
 
 		System.out.println("Ancien email   : " + unParticulier.getEmail());

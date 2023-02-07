@@ -29,7 +29,7 @@ public class VueAdmin {
 		System.out.println("Email admin " + unAdmin.getEmail());
 		System.out.println("Mdp admin " + unAdmin.getMdp());
 		System.out.println("Nom admin " + unAdmin.getNom());
-		System.out.println("Nom Particulier " + unAdmin.getRoles());
+		System.out.println("Roles  " + unAdmin.getRoles());
 		System.out.println("date  mdp " + unAdmin.getDatemdp());
 		System.out.println("Prenom admin " + unAdmin.getPrenom());
 	}

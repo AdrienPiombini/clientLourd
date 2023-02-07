@@ -9,7 +9,7 @@ import vue.VueParticulier;
 public class C_Particulier {
     public static void insertParticulier() {
 		// instacier la classe Client
-		Particulier unParticulier = new Particulier(String email, String mdp, String nom, String adresse, String ville, String cp, int telephone, String prenom);
+		Particulier unParticulier = new Particulier();
 		// saisir les donnes du client
 		unParticulier = VueParticulier.saisirParticulier();
 		// insérer le client dans la BDD
@@ -45,7 +45,7 @@ public class C_Particulier {
 
 	public static void selectAllParticulier() {
 		ArrayList<Particulier> lesParticuliers;
-		System.out.println("________LISTE DES PARTICULIERS");
+		System.out.println("________LISTE DES PARTICULIERS_________");
 		// on récupère les clients
 		lesParticuliers = ModeleParticulier.selectAllParticulier();
 		// on parcours l'ArrayList
@@ -61,7 +61,7 @@ public class C_Particulier {
 		int choix = 0;
 		Scanner sc = new Scanner(System.in);
 		do {
-			System.out.println("___ MENU Particulier");
+			System.out.println("___ MENU Particulier_______");
 			System.out.println("1- Insérer un Particulier");
 			System.out.println("2- Lister les Particulier");
 			System.out.println("3- Supprimer un Particulier");

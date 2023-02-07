@@ -2,6 +2,7 @@
     "java.project.sourcePaths": ["src"],
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
-        "lib/**/*.jar"
+        "lib/**/*.jar",
+        "/Users/piombini/Desktop/mysql-connector-java-5.1.40/mysql-connector-java-5.1.40-bin.jar"
     ]
 }

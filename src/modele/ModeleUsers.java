@@ -9,8 +9,8 @@ public class ModeleUsers {
     private static Bdd uneBdd = new Bdd("Localhost:8889", "dsa", "root", "root");
 
     public static void insertUser(Users unUser) {
-		String requete = "insert into User values (null, '" + unUser.getEmail() + "','" + unUser.getMdp() + "','"
-				+ unUser.getNom() + "','" + unUser.getRoles() +"','" + unUser.getDatemdp() + ");";
+		String requete = "insert into users values (null, '" + unUser.getEmail() + "','" + unUser.getMdp() + "','"
+				+ unUser.getNom() + "','" + unUser.getRoles() +"','" + unUser.getDatemdp() + "');";
 		try {
 			uneBdd.seConnecter();
 			Statement unStat = uneBdd.getMaConnexion().createStatement();
@@ -23,7 +23,7 @@ public class ModeleUsers {
 	}
 
 	public static void deleteUser(String email) {
-		String requete = "delete from Users where email=" + email + ";";
+		String requete = "delete from users where email=" + email + ";";
 		try {
 			uneBdd.seConnecter();
 			Statement unStat = uneBdd.getMaConnexion().createStatement();
@@ -36,9 +36,9 @@ public class ModeleUsers {
 	}
 
 	public static void updateUser(Users unUser) {
-		String requete = "update User set email='" + unUser.getEmail() + "', mdp ='" + unUser.getMdp()
-				+ "', nom='" + unUser.getNom() + "', datemdp='" + unUser.getDatemdp() + "' where email ="
-				+ unUser.getEmail() + ";";
+		String requete = "update users set email='" + unUser.getEmail() + "', mdp ='" + unUser.getMdp()
+				+ "', nom='" + unUser.getNom() + "', datemdp='" + unUser.getDatemdp() + "' where email ='"
+				+ unUser.getEmail() + "';";
 		try {
 			uneBdd.seConnecter();
 			Statement unStat = uneBdd.getMaConnexion().createStatement();
@@ -51,7 +51,7 @@ public class ModeleUsers {
 	}
 
 	public static ArrayList<Users> selectAllUser() {
-		String requete = " select * from User ;";
+		String requete = " select * from users ;";
 		ArrayList<Users> lesUsers = new ArrayList<Users>();
 		try {
 			uneBdd.seConnecter();

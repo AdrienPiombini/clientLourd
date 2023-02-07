@@ -23,7 +23,7 @@ public class VueUsers {
 
     public static void afficherUser(Users unUser) {
         System.out.println("ld User  : " + unUser.getIduser());
-        System.out.println("email ntervention  : " + unUser.getEmail());
+        System.out.println("email user  : " + unUser.getEmail());
         System.out.println("mdp User : " + unUser.getMdp());
         System.out.println("nom  : " + unUser.getNom());
         System.out.println("roles  : " + unUser.getRoles());
