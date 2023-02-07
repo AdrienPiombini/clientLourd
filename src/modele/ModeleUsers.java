@@ -37,8 +37,8 @@ public class ModeleUsers {
 
 	public static void updateUser(Users unUser) {
 		String requete = "update users set email='" + unUser.getEmail() + "', mdp ='" + unUser.getMdp()
-				+ "', nom='" + unUser.getNom() + "', datemdp='" + unUser.getDatemdp() + "' where email ='"
-				+ unUser.getEmail() + "';";
+				+ "', nom='" + unUser.getNom() + "', datemdp='" + unUser.getDatemdp() 
+				+ "' where iduser ='"+ unUser.getIduser() + "';";
 		try {
 			uneBdd.seConnecter();
 			Statement unStat = uneBdd.getMaConnexion().createStatement();

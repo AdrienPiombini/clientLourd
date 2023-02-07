@@ -38,8 +38,10 @@ public class ModeleParticulier {
 
 	public static void updateParticulier(Particulier unParticulier) {
 		String requete = "update Particulier set email='" + unParticulier.getEmail() + "', mdp ='" + unParticulier.getMdp()
-				+ "', nom='" + unParticulier.getNom() + "', datemdp='" + unParticulier.getDatemdp() + "', typeclient='" + unParticulier.getTypeclient() + "', adresse='" + unParticulier.getAdresse() + "', ville='" + unParticulier.getVille() + "', cp='" + unParticulier.getCp() + "', telephone='" + unParticulier.getTelephone() + "', prenom='"+ unParticulier.getPrenom() + "' where email ="
-				+ unParticulier.getEmail() + ";";
+				+ "', nom='" + unParticulier.getNom() + "', datemdp='" + unParticulier.getDatemdp() + "', typeclient='" 
+				+ unParticulier.getTypeclient() + "', adresse='" + unParticulier.getAdresse() + "', ville='" + unParticulier.getVille()
+				+ "', cp='" + unParticulier.getCp() + "', telephone='" + unParticulier.getTelephone() + "', prenom='"+ unParticulier.getPrenom()
+				+ "' where iduser ="+ unParticulier.getIduser() + ";";
 		try {
 			uneBdd.seConnecter();
 			Statement unStat = uneBdd.getMaConnexion().createStatement();

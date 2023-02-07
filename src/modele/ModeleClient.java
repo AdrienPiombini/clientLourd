@@ -50,8 +50,7 @@ public class ModeleClient {
                 + "', typeclient='"+ unClient.getTypeclient() + "', adresse='" + unClient.getAdresse() 
                 + "', ville='" + unClient.getVille() + "', cp='" + unClient.getCp()
                 + "', telephone='" + unClient.getTelephone() 
-                + "' where email ='"
-				+ unClient.getEmail() + "';";
+                + "' where iduser ='"+ unClient.getIduser() + "';";
 		try {
 			uneBdd.seConnecter();
 			Statement unStat = uneBdd.getMaConnexion().createStatement();

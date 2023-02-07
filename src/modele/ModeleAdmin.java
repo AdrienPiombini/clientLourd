@@ -41,8 +41,8 @@ public class ModeleAdmin {
 
 	public static void updateAdmin(Admin unAdmin) {
 		String requete = "update admin set email='" + unAdmin.getEmail() + "', mdp ='" + unAdmin.getMdp()
-				+ "', nom='" + unAdmin.getNom() + "', datemdp='" + unAdmin.getDatemdp() + "', prenom='"+ unAdmin.getPrenom() + "' where email ='"
-				+ unAdmin.getEmail() + "';";
+				+ "', nom='" + unAdmin.getNom() + "', datemdp='" + unAdmin.getDatemdp() + "', prenom='"+ unAdmin.getPrenom() + "' where iduser ='"
+				+ unAdmin.getIduser() + "';";
 		try {
 			uneBdd.seConnecter();
 			Statement unStat = uneBdd.getMaConnexion().createStatement();
