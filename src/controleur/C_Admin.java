@@ -1,7 +1,11 @@
 package controleur;
+import java.util.ArrayList;
 import java.util.Scanner;
 
-public class C_admin {
+import modele.ModeleAdmin;
+import vue.VueAdmin;
+
+public class C_Admin {
     public static void insertAdmin() {
 		// instacier la classe Client
 		Admin unAdmin = new Admin();

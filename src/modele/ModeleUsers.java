@@ -3,15 +3,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import controleur.Admin;
+import controleur.Users;
 
-
-public class ModeleAdmin {
+public class ModeleUsers {
     private static Bdd uneBdd = new Bdd("Localhost:8889", "dsa", "root", "root");
 
-    public static void insertAdmin(Admin unAdmin) {
-		String requete = "insert into admin values (null, '" + unAdmin.getEmail() + "','" + unAdmin.getMdp() + "','"
-				+ unAdmin.getNom() + "','" + unAdmin.getRoles() +"','" + unAdmin.getDatemdp() + unAdmin.getPrenom() + ");";
+    public static void insertUser(Users unUser) {
+		String requete = "insert into User values (null, '" + unUser.getEmail() + "','" + unUser.getMdp() + "','"
+				+ unUser.getNom() + "','" + unUser.getRoles() +"','" + unUser.getDatemdp() + ");";
 		try {
 			uneBdd.seConnecter();
 			Statement unStat = uneBdd.getMaConnexion().createStatement();
@@ -23,8 +22,8 @@ public class ModeleAdmin {
 		}
 	}
 
-	public static void deleteAdmin(String email) {
-		String requete = "delete from admin where email=" + email + ";";
+	public static void deleteUser(String email) {
+		String requete = "delete from Users where email=" + email + ";";
 		try {
 			uneBdd.seConnecter();
 			Statement unStat = uneBdd.getMaConnexion().createStatement();
@@ -36,10 +35,10 @@ public class ModeleAdmin {
 		}
 	}
 
-	public static void updateAdmin(Admin unAdmin) {
-		String requete = "update admin set email='" + unAdmin.getEmail() + "', mdp ='" + unAdmin.getMdp()
-				+ "', nom='" + unAdmin.getNom() + "', datemdp='" + unAdmin.getDatemdp() + "', prenom='"+ unAdmin.getPrenom() + "' where email ="
-				+ unAdmin.getEmail() + ";";
+	public static void updateUser(Users unUser) {
+		String requete = "update User set email='" + unUser.getEmail() + "', mdp ='" + unUser.getMdp()
+				+ "', nom='" + unUser.getNom() + "', datemdp='" + unUser.getDatemdp() + "' where email ="
+				+ unUser.getEmail() + ";";
 		try {
 			uneBdd.seConnecter();
 			Statement unStat = uneBdd.getMaConnexion().createStatement();
@@ -51,9 +50,9 @@ public class ModeleAdmin {
 		}
 	}
 
-	public static ArrayList<Admin> selectAllAdmin() {
-		String requete = " select * from admin ;";
-		ArrayList<Admin> lesAdmins = new ArrayList<Admin>();
+	public static ArrayList<Users> selectAllUser() {
+		String requete = " select * from User ;";
+		ArrayList<Users> lesUsers = new ArrayList<Users>();
 		try {
 			uneBdd.seConnecter();
 			Statement unStat = uneBdd.getMaConnexion().createStatement();
@@ -62,23 +61,23 @@ public class ModeleAdmin {
 			// on parcours les resultats et on instancie les clients et enfin on les ajoute
 			// dans l'ArrayList
 			while (desResultats.next()) {
-				Admin unAdmin = new Admin(desResultats.getInt("iduser"), desResultats.getString("email"),
+				Users unUser = new Users(desResultats.getInt("iduser"), desResultats.getString("email"),
 						desResultats.getString("mdp"), desResultats.getString("nom"),
-						desResultats.getString("roles"), desResultats.getString("datemdp"), desResultats.getString("prenom")  );
+						desResultats.getString("roles"), desResultats.getString("datemdp"));
 				// on ajoute le client dans l'ArrayList
-				lesAdmins.add(unAdmin);
+				lesUsers.add(unUser);
 			}
 			unStat.close();
 			uneBdd.seDeConnecter();
 		} catch (SQLException exp) {
 			System.out.println("Erreur d'execution : " + requete);
 		}
-		return lesAdmins;
+		return lesUsers;
 	}
 
-	public static Admin selectWhereAdmin(String email) {
-		String requete = " select * from admin where email= " + email + ";";
-		Admin unAdmin  = null;
+	public static Users selectWhereUser(String email) {
+		String requete = " select * from User where email= " + email + ";";
+		Users unUser  = null;
 		try {
 			uneBdd.seConnecter();
 			Statement unStat = uneBdd.getMaConnexion().createStatement();
@@ -86,15 +85,15 @@ public class ModeleAdmin {
 			ResultSet unResultat = unStat.executeQuery(requete);
 			// on teste si on a un seul résultat
 			if (unResultat.next()) {
-				 unAdmin = new Admin(unResultat.getInt("iduser"), unResultat.getString("email"),
+				 unUser = new Users(unResultat.getInt("iduser"), unResultat.getString("email"),
 						unResultat.getString("mdp"), unResultat.getString("nom"),
-						unResultat.getString("roles"), unResultat.getString("datemdp"), unResultat.getString("prenom")  );
+						unResultat.getString("roles"), unResultat.getString("datemdp"));
 			}
 			unStat.close();
 			uneBdd.seDeConnecter();
 		} catch (SQLException exp) {
 			System.out.println("Erreur d'execution : " + requete);
 		}
-		return unAdmin;
+		return unUser;
 	}
 }
