@@ -21,7 +21,7 @@ public class C_Users {
 		// saisir un idclient
 		Scanner sc = new Scanner(System.in);
 		String email;
-		System.out.println("Donner l'id a supprimer");
+		System.out.println("Donner l'email a supprimer");
 		email = sc.next();
 		// supprimer le cliend dans la bdd
 		ModeleUsers.deleteUser(email);

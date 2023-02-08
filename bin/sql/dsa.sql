@@ -142,8 +142,8 @@ email varchar(100) not null,
 constraint pk_idmdpoublie primary key (idmdpoublie)
 );
 
-alter table intervention 
-add reglement enum ("en attente de paiement", "payé partiellement", "payé") default "en attente de paiement";
+/*alter table intervention 
+add reglement enum ("en attente de paiement", "payé partiellement", "payé") default "en attente de paiement"; */
 
 create table archive_commande as
     select users.*, idcommande, sum(quantiteproduit) as "nbArticle", statut , totalHT, totalTTC, datecommande

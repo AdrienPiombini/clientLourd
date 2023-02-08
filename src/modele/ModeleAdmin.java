@@ -10,8 +10,9 @@ public class ModeleAdmin {
     private static Bdd uneBdd = new Bdd("Localhost:8889", "dsa", "root", "root");
 
     public static void insertAdmin(Admin unAdmin) {
-		String requete = "insert into admin values (null, '" + unAdmin.getEmail() + "','" + unAdmin.getMdp() + "','"
-				+ unAdmin.getNom()
+		String requete = "insert into admin values (null, '" + unAdmin.getEmail() 
+				+ "','"+ unAdmin.getMdp() 
+				+ "','"+ unAdmin.getNom()
 				+ "','" + unAdmin.getRoles()
 				+"','" + unAdmin.getDatemdp() 
 				+ "','" +unAdmin.getPrenom() + "');";
@@ -40,9 +41,13 @@ public class ModeleAdmin {
 	}
 
 	public static void updateAdmin(Admin unAdmin) {
-		String requete = "update admin set email='" + unAdmin.getEmail() + "', mdp ='" + unAdmin.getMdp()
-				+ "', nom='" + unAdmin.getNom() + "', datemdp='" + unAdmin.getDatemdp() + "', prenom='"+ unAdmin.getPrenom() + "' where iduser ='"
-				+ unAdmin.getIduser() + "';";
+		String requete = "update admin set email='"
+		+ unAdmin.getEmail()+ "', mdp ='"
+		+ unAdmin.getMdp()+ "', nom='" 
+		+ unAdmin.getNom()+ "', datemdp='"
+		+ unAdmin.getDatemdp() + "', prenom='"
+		+ unAdmin.getPrenom() + "' where iduser = "
+		+ unAdmin.getIduser() + ";";
 		try {
 			uneBdd.seConnecter();
 			Statement unStat = uneBdd.getMaConnexion().createStatement();

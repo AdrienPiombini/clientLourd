@@ -11,9 +11,10 @@ public class ModeleIntervention {
 
 	public static void insertIntervention(Intervention uneIntervention) {
 		String requete = "insert into intervention values (null, '" + uneIntervention.getLibelle() + "','"
-				+ uneIntervention.getDateintervention() + "','" + uneIntervention.getStatut() + "','"
-				+ uneIntervention.getPrixHT() + "','" + uneIntervention.getPrixTTC() + "','" + uneIntervention.getIduser() + "','"
-				+ uneIntervention.getIdtechnicien() + "');";
+				+ uneIntervention.getDateintervention() + "','" + uneIntervention.getStatut()
+				+ "',"+ uneIntervention.getPrixHT() + "," + uneIntervention.getPrixTTC()
+				+ "," + uneIntervention.getIduser()
+				+ ","+ uneIntervention.getIdtechnicien() + ");";
 		try {
 			uneBdd.seConnecter();
 			Statement unStat = uneBdd.getMaConnexion().createStatement();

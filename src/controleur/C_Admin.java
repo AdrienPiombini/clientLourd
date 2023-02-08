@@ -20,7 +20,7 @@ public class C_Admin {
 		// saisir un idclient
 		Scanner sc = new Scanner(System.in);
 		String email;
-		System.out.println("Donner l'id a supprimer");
+		System.out.println("Donner l'email de l'admin a supprimer");
 		email = sc.next();
 		// supprimer le cliend dans la bdd
 		ModeleAdmin.deleteAdmin(email);
@@ -39,7 +39,7 @@ public class C_Admin {
 		// actualiser les infos dans la bdd
 		ModeleAdmin.updateAdmin(unAdmin);
 
-		System.out.println("Modificiation du client réussie.");
+		System.out.println("Modificiation de l'admin réussie.");
 	}
 
 	public static void selectAllAdmin() {

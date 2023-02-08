@@ -11,7 +11,9 @@ public class ModeleParticulier {
 
     public static void insertParticulier(Particulier unParticulier) {
 		String requete = "insert into Particulier values (null, '" + unParticulier.getEmail() + "','" + unParticulier.getMdp() + "','"
-				+ unParticulier.getNom() + "','" + unParticulier.getRoles() + "','" + unParticulier.getDatemdp() + "','" + unParticulier.getTypeclient() +"','" + unParticulier.getAdresse() +"','" + unParticulier.getVille() +"','" + unParticulier.getCp() +"','" + unParticulier.getTelephone() + unParticulier.getPrenom() + ");";
+				+ unParticulier.getNom() + "','" + unParticulier.getRoles() + "','" + unParticulier.getDatemdp()
+				+ "','" + unParticulier.getTypeclient() +"','" + unParticulier.getAdresse() +"','" + unParticulier.getVille()
+				+"','" + unParticulier.getCp() +"','" + unParticulier.getTelephone() + "','" +  unParticulier.getPrenom() + "');";
 		try {
 			uneBdd.seConnecter();
 			Statement unStat = uneBdd.getMaConnexion().createStatement();
@@ -24,7 +26,7 @@ public class ModeleParticulier {
 	}
 
 	public static void deleteParticulier(String email) {
-		String requete = "delete from Particulier where email=" + email + ";";
+		String requete = "delete from Particulier where email='" + email + "';";
 		try {
 			uneBdd.seConnecter();
 			Statement unStat = uneBdd.getMaConnexion().createStatement();
@@ -38,9 +40,11 @@ public class ModeleParticulier {
 
 	public static void updateParticulier(Particulier unParticulier) {
 		String requete = "update Particulier set email='" + unParticulier.getEmail() + "', mdp ='" + unParticulier.getMdp()
-				+ "', nom='" + unParticulier.getNom() + "', datemdp='" + unParticulier.getDatemdp() + "', typeclient='" 
-				+ unParticulier.getTypeclient() + "', adresse='" + unParticulier.getAdresse() + "', ville='" + unParticulier.getVille()
-				+ "', cp='" + unParticulier.getCp() + "', telephone='" + unParticulier.getTelephone() + "', prenom='"+ unParticulier.getPrenom()
+				+ "', nom='" + unParticulier.getNom() + "', roles='" + unParticulier.getRoles()
+				+ "', datemdp='" + unParticulier.getDatemdp() 
+				+ "', typeclient='" + unParticulier.getTypeclient() + "', adresse='" + unParticulier.getAdresse() 
+				+ "', ville='" + unParticulier.getVille() + "', cp='" + unParticulier.getCp() + "', telephone=" + unParticulier.getTelephone() 
+				+ ", prenom='"+ unParticulier.getPrenom()
 				+ "' where iduser ="+ unParticulier.getIduser() + ";";
 		try {
 			uneBdd.seConnecter();
@@ -82,7 +86,7 @@ public class ModeleParticulier {
 	}
 
 	public static Particulier selectWhereParticulier(String email) {
-		String requete = " select * from Particulier where email= " + email + ";";
+		String requete = " select * from Particulier where email= '" + email + "';";
 		Particulier unParticulier  = null;
 		try {
 			uneBdd.seConnecter();

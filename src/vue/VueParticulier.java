@@ -88,7 +88,7 @@ public class VueParticulier {
 		unParticulier.setCp(sc.next());
 
         System.out.println("Ancien telephone : " + unParticulier.getTelephone());
-		System.out.println("Donnez le nouveau prenom  ");
+		System.out.println("Donnez le nouveau telephone");
 		unParticulier.setTelephone(sc.nextInt());
 
 		System.out.println("Ancien prenom : " + unParticulier.getPrenom());
