@@ -5,6 +5,17 @@ import modele.ModeleCommande;
 import vue.VueCommande;
 public class C_Commande {
 
+
+    public static void insertCommande() {
+		// instacier la classe Intervention
+		Commande uneCommande = new Commande();
+		// saisir les donnes du Intervention
+		uneCommande = VueCommande.saisirCommande();
+		// insérer le Intervention dans la BDD
+		ModeleCommande.insertCommande(uneCommande);
+		System.out.println("Insertion réussie du Intervention.");
+	}
+
 	public static void deleteCommande() {
 		// saisir un idCommande
 		Scanner sc = new Scanner(System.in);
@@ -50,6 +61,7 @@ public class C_Commande {
 		Scanner sc = new Scanner(System.in);
 		do {
 			System.out.println("___ MENU Commande___");
+			System.out.println("1- Insérer une Commande");
 			System.out.println("2- Lister les Commande");
 			System.out.println("3- Supprimer un Commande");
 			System.out.println("4- Modifier un Commande");
@@ -57,6 +69,9 @@ public class C_Commande {
 			System.out.println("Votre choix : ");
 			choix = sc.nextInt();
 			switch (choix) {
+                case 1:
+				insertCommande();
+				break;
 			case 2:
 				selectAllCommandes();
 				break;

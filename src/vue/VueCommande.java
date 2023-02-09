@@ -43,10 +43,6 @@ public class VueCommande {
 
 	public static Commande modifierCommande(Commande uneCommande) {
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Ancien id Commande : " + uneCommande.getIdcommande());
-		System.out.println("Donner le nouveau idcommande ");
-		uneCommande.setIdcommande(sc.nextInt());
-
 		System.out.println("Ancien  dateCommande : " + uneCommande.getDateCommande());
 		System.out.println("Donner la nouvelle dateCommande  ");
 		uneCommande.setDateCommande(sc.next());

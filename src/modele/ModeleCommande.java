@@ -9,11 +9,11 @@ public class ModeleCommande {
     private static Bdd uneBdd = new Bdd("localhost:8889", "dsa", "root", "root");
 
 	public static void insertCommande(Commande uneCommande) {
-		String requete = "insert into Commande values (null, '"
-				+ uneCommande.getIdproduit() + "','" + uneCommande.getIduser() + "','" + uneCommande.getQuantite()
-				+ "',"+ uneCommande.getTotalHT() + "," + uneCommande.getTotalTTC()
-				+ "," + uneCommande.getStatut()
-				+ ","+ uneCommande.getDateCommande() + ");";
+		String requete = "insert into Commande values ("+ uneCommande.getIdcommande() + ","
+				+ uneCommande.getIduser() + "," + uneCommande.getIdproduit() + "," + uneCommande.getQuantite()
+                + ",'" + uneCommande.getStatut() + "','"+ uneCommande.getDateCommande()
+				+ "'," + uneCommande.getTvaCommande() + "," 
+                + uneCommande.getTotalHT() + "," + uneCommande.getTotalTTC()+ ");";
 		try {
 			uneBdd.seConnecter();
 			Statement unStat = uneBdd.getMaConnexion().createStatement();
@@ -42,9 +42,8 @@ public class ModeleCommande {
 		String requete = "update Commande set dateCommande='"
 				+ uneCommande.getDateCommande() + "',statut='" + uneCommande.getStatut() + "',totalHT='"+ uneCommande.getTotalHT()
                 + "',totalTTC='" + uneCommande.getTotalTTC() 
-                + "',idcommande='" + uneCommande.getIdcommande() 
                 + "',idproduit='" + uneCommande.getIdproduit()
-                + "',quantite='" + uneCommande.getQuantite()
+                + "',quantiteproduit='" + uneCommande.getQuantite()
                 + "',iduser='" + uneCommande.getIduser()  + "' where idCommande ="+ uneCommande.getIdcommande()+";";
 		try {
 			uneBdd.seConnecter();
@@ -69,12 +68,12 @@ public class ModeleCommande {
 			// ajoute
 			// dans l'ArrayList
 			while (desResultats.next()) {
-				Commande uneCommande = new Commande(desResultats.getInt("idCommande"),
+				Commande uneCommande = new Commande(desResultats.getInt("idcommande"),
 						desResultats.getInt("iduser"), desResultats.getInt("idproduit"),
-						desResultats.getInt("quantite"), desResultats.getFloat("totalHT"), 
-						desResultats.getFloat("totalTTC"), desResultats.getFloat("tvacommande"),
+						desResultats.getInt("quantiteproduit"), desResultats.getFloat("totalHT"), 
+						desResultats.getFloat("totalTTC"), desResultats.getFloat("tvaCommande"),
 						desResultats.getString("statut"),
-						desResultats.getString("datecommande")
+						desResultats.getString("dateCommande")
 						);
 				// on ajoute le Commande dans l'ArrayList
 				lesCommandes.add(uneCommande);
@@ -97,12 +96,12 @@ public class ModeleCommande {
 			ResultSet unResultat = unStat.executeQuery(requete);
 			// on teste si on a un seul résultat
 			if (unResultat.next()) {
-                 uneCommande = new Commande(unResultat.getInt("idCommande"),
+                 uneCommande = new Commande(unResultat.getInt("idcommande"),
                 unResultat.getInt("iduser"), unResultat.getInt("idproduit"),
-                unResultat.getInt("quantite"), unResultat.getFloat("totalHT"), 
-                unResultat.getFloat("totalTTC"), unResultat.getFloat("tvacommande"),
+                unResultat.getInt("quantiteproduit"), unResultat.getFloat("totalHT"), 
+                unResultat.getFloat("totalTTC"), unResultat.getFloat("tvaCommande"),
                 unResultat.getString("statut"),
-                unResultat.getString("datecommande")
+                unResultat.getString("dateCommande")
                 );
 			}
 			unStat.close();
