@@ -17,6 +17,7 @@ public class Filelec {
 			System.out.println("6- Gestion des admins");
 			System.out.println("7- Gestion des interventions");
 			System.out.println("8- Gestion des Clients");
+			System.out.println("9- Gestion des commandes");
 			System.out.println("0- Quitter");
 			System.out.println("Votre choix : ");
 			choix = sc.nextInt();
@@ -29,6 +30,8 @@ public class Filelec {
 			case 6: C_Admin.menuAdmin();break;
 			case 7:C_Intervention.menuIntervention();break;
 			case 8:C_Client.menuClient();break;
+			case 9:C_Commande.menuCommande();break;
+
 
 			}
 		} while (choix != 0);
