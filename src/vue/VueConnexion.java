@@ -11,9 +11,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.JTextField; 
+import javax.swing.JTextField;
+
+
+import controleur.C_Users;
+import controleur.Users; 
 
 public class VueConnexion extends JFrame implements ActionListener, KeyListener {
 
@@ -63,28 +68,40 @@ public class VueConnexion extends JFrame implements ActionListener, KeyListener 
     }
 
 
-    
+
     @Override
     public void keyTyped(KeyEvent e) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'keyTyped'");
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'keyPressed'");
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'keyReleased'");
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
+        if(e.getSource()==this.btAnnuler){
+            this.txtEmail.setText("");
+            this.txtMdp.setText("");
+        }else if(e.getSource()==this.btConnexion){
+            this.traitement();
+        }
+    }
+
+    public void traitement(){
+        String email = this.txtEmail.getText();
+        String mdp = new String(this.txtMdp.getPassword());
+        Users unUser = C_Users.connexion(email, mdp);
+        if(unUser == null){
+            JOptionPane.showMessageDialog(this, "Veuillez vérifier vos identifiants");
+        }else{
+            JOptionPane.showMessageDialog(this,"Bienvenue " + unUser.getNom());
+        }
     }
 }

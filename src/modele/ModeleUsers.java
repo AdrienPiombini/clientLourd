@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import controleur.Users;
 
 public class ModeleUsers {
-    private static Bdd uneBdd = new Bdd("Localhost:8889", "dsa", "root", "root");
+    private static Bdd uneBdd = new Bdd("Localhost:3306", "dsa", "adrien", "adrien");
 
     public static void insertUser(Users unUser) {
 		String requete = "insert into users values (null, '" + unUser.getEmail() + "','" + unUser.getMdp() + "','"
@@ -77,6 +77,28 @@ public class ModeleUsers {
 
 	public static Users selectWhereUser(String email) {
 		String requete = " select * from Users where email= '" + email + "';";
+		Users unUser  = null;
+		try {
+			uneBdd.seConnecter();
+			Statement unStat = uneBdd.getMaConnexion().createStatement();
+			// recuperation un seul client resultat
+			ResultSet unResultat = unStat.executeQuery(requete);
+			// on teste si on a un seul résultat
+			if (unResultat.next()) {
+				 unUser = new Users(unResultat.getInt("iduser"), unResultat.getString("email"),
+						unResultat.getString("mdp"), unResultat.getString("nom"),
+						unResultat.getString("roles"), unResultat.getString("datemdp"));
+			}
+			unStat.close();
+			uneBdd.seDeConnecter();
+		} catch (SQLException exp) {
+			System.out.println("Erreur d'execution : " + requete);
+		}
+		return unUser;
+	}
+
+	public static Users connexion(String email, String mdp) {
+		String requete = "call connexion('" + email + "','" + mdp + "');";
 		Users unUser  = null;
 		try {
 			uneBdd.seConnecter();

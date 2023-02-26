@@ -56,6 +56,10 @@ public class C_Users {
 
 	}
 
+	public static Users connexion(String email, String mdp) {
+        return ModeleUsers.connexion(email, mdp);
+    }
+
 	public static void menuUser() {
 
 		int choix = 0;
@@ -85,4 +89,6 @@ public class C_Users {
 			}
 		} while (choix != 0);
 	}
+
+
 }

@@ -219,6 +219,18 @@ create or replace view vue_commande_validee as (
 
 /*-------------------PROCEDURE --------------------*/
 
+drop procedure if exists connexion;
+delimiter //
+create procedure connexion(mail varchar(100), password varchar(100))
+begin 
+    declare grain varchar(100);
+    declare motdepasse varchar(100);
+    select salt into grain from grainSel;
+    set motdepasse = sha1(concat(password, grain));
+    select  *  from users where email = mail and mdp = motdepasse;
+end //
+delimiter ;
+
 drop procedure if exists gestion_panier;
 delimiter  //
 create procedure gestion_panier (idpan int, idu int, idprod varchar(25), qtprod int)
