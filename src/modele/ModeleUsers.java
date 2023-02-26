@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import controleur.Users;
 
 public class ModeleUsers {
-    private static Bdd uneBdd = new Bdd("Localhost:3306", "dsa", "adrien", "adrien");
+    private static Bdd uneBdd = new Bdd("Localhost:8889", "dsa", "root", "root");
 
     public static void insertUser(Users unUser) {
 		String requete = "insert into users values (null, '" + unUser.getEmail() + "','" + unUser.getMdp() + "','"
