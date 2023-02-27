@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 
 
 import controleur.C_Users;
+import controleur.Filelec2;
 import controleur.Users; 
 
 public class VueConnexion extends JFrame implements ActionListener, KeyListener {
@@ -67,8 +68,6 @@ public class VueConnexion extends JFrame implements ActionListener, KeyListener 
         this.setVisible(true);
     }
 
-
-
     @Override
     public void keyTyped(KeyEvent e) {
         // TODO Auto-generated method stub
@@ -76,12 +75,14 @@ public class VueConnexion extends JFrame implements ActionListener, KeyListener 
 
     @Override
     public void keyPressed(KeyEvent e) {
-        // TODO Auto-generated method stub
+        if(e.getKeyCode()==KeyEvent.VK_ENTER){
+            this.traitement();
+        }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        // TODO Auto-generated method stub
+        
     }
 
     @Override
@@ -102,6 +103,8 @@ public class VueConnexion extends JFrame implements ActionListener, KeyListener 
             JOptionPane.showMessageDialog(this, "Veuillez vérifier vos identifiants");
         }else{
             JOptionPane.showMessageDialog(this,"Bienvenue " + unUser.getNom());
+            Filelec2.rendreVisibleVueConnexion(false);
+            Filelec2.rendreVisibleVueGenerale(true);
         }
     }
 }
