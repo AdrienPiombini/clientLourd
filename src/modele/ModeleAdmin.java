@@ -7,15 +7,14 @@ import controleur.Admin;
 
 
 public class ModeleAdmin {
-    private static Bdd uneBdd = new Bdd("Localhost:8889", "dsa", "root", "root");
+    private static Bdd uneBdd = new Bdd("Localhost:3306", "dsa", "adrien", "adrien");
 
     public static void insertAdmin(Admin unAdmin) {
 		String requete = "insert into admin values (null, '" + unAdmin.getEmail() 
 				+ "','"+ unAdmin.getMdp() 
 				+ "','"+ unAdmin.getNom()
-				+ "','" + unAdmin.getRoles()
-				+"','" + unAdmin.getDatemdp() 
-				+ "','" +unAdmin.getPrenom() + "');";
+				+ "','admin', curdate(),'"
+				+ unAdmin.getPrenom() + "');";
 		try {
 			uneBdd.seConnecter();
 			Statement unStat = uneBdd.getMaConnexion().createStatement();

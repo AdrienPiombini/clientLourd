@@ -22,6 +22,15 @@ public class Client extends Users {
         this.telephone = telephone; 
     }
 
+    public Client(String email, String mdp, String nom, String adresse, String ville, String cp, int telephone){
+        super(email, mdp, nom);
+        this.typeclient="";
+        this.adresse = adresse;
+        this.ville = ville; 
+        this.cp = cp;
+        this.telephone = telephone; 
+    }
+
     public Client(){
         super( );
         this.typeclient = "";

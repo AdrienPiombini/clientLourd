@@ -13,6 +13,11 @@ public class Particulier  extends Client{
         this.prenom = prenom; 
     }
 
+    public Particulier (String email, String mdp, String nom, String adresse, String ville, String cp, int telephone, String prenom){
+        super(email, mdp, nom, adresse, ville, cp, telephone);
+        this.prenom = prenom; 
+    }
+
     public Particulier(){
         super();
         this.prenom = ""; 

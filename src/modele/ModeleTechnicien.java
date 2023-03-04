@@ -8,19 +8,36 @@ import controleur.Technicien;
 
 public class ModeleTechnicien {
 
-	private static Bdd uneBdd = new Bdd("localhost:8889", "dsa", "root", "root");
+	private static Bdd uneBdd = new Bdd("localhost:3306", "dsa", "adrien", "adrien");
 
     public static void insertTechnicien(Technicien unTechnicien) {
         String requete = "INSERT INTO technicien VALUES ( null,'"
                 + unTechnicien.getEmail() + "', '"
                 + unTechnicien.getMdp() + "', '"
-                + unTechnicien.getNom() + "', '"
-                + unTechnicien.getRoles() + "', '"
-                + unTechnicien.getDatemdp() + "', '"
+                + unTechnicien.getNom() +"', 'technicien', curdate(), '"
                 + unTechnicien.getPrenom() + "', '"
                 + unTechnicien.getDiplome() + "', '"
                 + unTechnicien.getDateEmb() + "', '"
                 + unTechnicien.getDateDept() + "');";
+        try {
+            uneBdd.seConnecter();
+            Statement unStat = uneBdd.getMaConnexion().createStatement();
+            unStat.execute(requete);
+            unStat.close();
+            uneBdd.seDeConnecter();
+        } catch (SQLException exp) {
+            System.out.println("Erreur d'execution de la requete : " + requete);
+        }
+    }
+
+    public static void insertTechnicienCDI(Technicien unTechnicien) {
+        String requete = "INSERT INTO technicien VALUES ( null,'"
+                + unTechnicien.getEmail() + "', '"
+                + unTechnicien.getMdp() + "', '"
+                + unTechnicien.getNom() +"', 'technicien', curdate(), '"
+                + unTechnicien.getPrenom() + "', '"
+                + unTechnicien.getDiplome() + "', '"
+                + unTechnicien.getDateEmb() + "', NULL);";
         try {
             uneBdd.seConnecter();
             Statement unStat = uneBdd.getMaConnexion().createStatement();

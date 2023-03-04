@@ -8,13 +8,8 @@ import vue.old_vue.VueProfessionnel;
 
 public class C_Professionnel {
 
-	public static void insertProfessionnel () 
+	public static void insertProfessionnel (Professionnel unProfessionnel) 
 	{
-		// instancier la classe Professionnel
-		Professionnel unProfessionnel = new Professionnel ();
-		// saisir les données du Professionnel 
-		unProfessionnel = VueProfessionnel.saisirProfessionnel();
-		// insérer le Professionnel dans la BDD
 		ModeleProfessionnel.insertProfessionnel(unProfessionnel);
 		System.out.println("Insertion réussie du Professionnel.");
 	}
@@ -60,29 +55,5 @@ public class C_Professionnel {
 		// On affiche le Professionnel 
 			VueProfessionnel.afficherProfessionnel(unProfessionnel);
 		}
-	}
-	
-	public static void menuProfessionnel ()
-	{
-		int choix = 0;
-		Scanner sc = new Scanner (System.in);
-		do {
-			System.out.println("_____MENU Professionnel _____");
-			System.out.println("1 - Insérer un Professionnel");
-			System.out.println("2 - Lister les Professionnels");
-			System.out.println("3 - Supprimer un Professionnel");
-			System.out.println("4 - Modifier un Professionnel");
-			System.out.println("0 - Quitter");
-			System.out.println("Votre choix :");
-			choix = sc.nextInt();
-			switch (choix)
-			{
-			case 1 : insertProfessionnel(); break;
-			case 2 : selectAllProfessionnels(); break;
-			case 3 : deleteProfessionnel(); break;
-			case 4 : updateProfessionnel(); break;
-			
-			}
-		} while (choix != 0);
 	}
 }

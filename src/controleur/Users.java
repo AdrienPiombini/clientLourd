@@ -26,12 +26,12 @@ public class Users {
         this.datemdp = datemdp;
     }
 
-    public Users( String email, String mdp, String nom, String roles ){
+    public Users( String email, String mdp, String nom){
         this.iduser = 0;
         this.email = email; 
         this.mdp = mdp;
         this.nom = nom; 
-        this.roles = roles; 
+        this.roles = ""; 
         this.datemdp = "";
     }
 

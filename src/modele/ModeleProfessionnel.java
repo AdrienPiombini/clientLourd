@@ -8,16 +8,13 @@ import controleur.Professionnel;
 
 public class ModeleProfessionnel {
 
-	private static Bdd uneBdd = new Bdd("localhost:8889", "dsa", "root", "root");
+	private static Bdd uneBdd = new Bdd("localhost:3306", "dsa", "adrien", "adrien");
 
     public static void insertProfessionnel(Professionnel unProfessionnel) {
-        String requete = "INSERT INTO Professionnel VALUES ( null,'"
+        String requete = "INSERT INTO professionnel VALUES ( null,'"
                 + unProfessionnel.getEmail() + "', '"
                 + unProfessionnel.getMdp() + "', '"
-                + unProfessionnel.getNom() + "', '"
-                + unProfessionnel.getRoles() + "', '"
-                + unProfessionnel.getDatemdp() + "', '"
-                + unProfessionnel.getTypeclient() + "', '"
+                + unProfessionnel.getNom() + "', 'client', curdate(), 'professionnel', '"
                 + unProfessionnel.getAdresse() + "', '"
                 + unProfessionnel.getVille() + "', '"
                 + unProfessionnel.getCp() + "', '"

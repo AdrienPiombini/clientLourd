@@ -7,14 +7,17 @@ import modele.ModeleTechnicien;
 import vue.old_vue.VueTechnicien;
 
 public class C_Technicien {
-	public static void insertTechnicien () 
+	public static void insertTechnicien (Technicien unTechnicien) 
 	{
-		// instancier la classe Technicien
-		Technicien unTechnicien = new Technicien ();
-		// saisir les données du Technicien 
-		unTechnicien = VueTechnicien.saisirTechnicien();
 		// insérer le Technicien dans la BDD
 		ModeleTechnicien.insertTechnicien(unTechnicien);
+		System.out.println("Insertion réussie du Technicien.");
+	}
+
+	public static void insertTechnicienCDI (Technicien unTechnicien) 
+	{
+		// insérer le Technicien dans la BDD
+		ModeleTechnicien.insertTechnicienCDI(unTechnicien);
 		System.out.println("Insertion réussie du Technicien.");
 	}
 	
@@ -59,29 +62,5 @@ public class C_Technicien {
 		// On affiche le Technicien 
 			VueTechnicien.afficherTechnicien(unTechnicien);
 		}
-	}
-	
-	public static void menuTechnicien ()
-	{
-		int choix = 0;
-		Scanner sc = new Scanner (System.in);
-		do {
-			System.out.println("_____MENU Technicien _____");
-			System.out.println("1 - Insérer un Technicien");
-			System.out.println("2 - Lister les Techniciens");
-			System.out.println("3 - Supprimer un Technicien");
-			System.out.println("4 - Modifier un Technicien");
-			System.out.println("0 - Quitter");
-			System.out.println("Votre choix :");
-			choix = sc.nextInt();
-			switch (choix)
-			{
-			case 1 : insertTechnicien(); break;
-			case 2 : selectAllTechniciens(); break;
-			case 3 : deleteTechnicien(); break;
-			case 4 : updateTechnicien(); break;
-			
-			}
-		} while (choix != 0);
 	}
 }

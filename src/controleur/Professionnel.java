@@ -22,6 +22,11 @@ public class Professionnel extends Client {
 		this.numeroSiret = numeroSiret;
 	}
 
+	public Professionnel (String email, String mdp, String nom, String adresse, String ville, String cp, int telephone, int numeroSiret){
+		super (email, mdp, nom, adresse, ville, cp, telephone); // Appel du constructeur de la mère dans la fille
+		this.numeroSiret = numeroSiret;
+	}
+
 	public int getNumeroSiret() {
 		return numeroSiret;
 	}

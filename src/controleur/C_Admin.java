@@ -6,11 +6,7 @@ import modele.ModeleAdmin;
 import vue.old_vue.VueAdmin;
 
 public class C_Admin {
-    public static void insertAdmin() {
-		// instacier la classe Client
-		Admin unAdmin = new Admin();
-		// saisir les donnes du client
-		unAdmin = VueAdmin.saisirAdmin();
+    public static void insertAdmin(Admin unAdmin) {
 		// insérer le client dans la BDD
 		ModeleAdmin.insertAdmin(unAdmin);
 		System.out.println("Insertion réussie de l'admin.");
@@ -55,33 +51,4 @@ public class C_Admin {
 
 	}
 
-	public static void menuAdmin() {
-
-		int choix = 0;
-		Scanner sc = new Scanner(System.in);
-		do {
-			System.out.println("___ MENU ADMIN");
-			System.out.println("1- Insérer un admin");
-			System.out.println("2- Lister les admin");
-			System.out.println("3- Supprimer un admin");
-			System.out.println("4- Modifier un admin");
-			System.out.println("0- Quitter");
-			System.out.println("Votre choix : ");
-			choix = sc.nextInt();
-			switch (choix) {
-			case 1:
-				insertAdmin();
-				break;
-			case 2:
-				selectAllAdmin();
-				break;
-			case 3:
-				deleteAdmin();
-				break;
-			case 4:
-				updateAdmin();
-				break;
-			}
-		} while (choix != 0);
-	}
 }

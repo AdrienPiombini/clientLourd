@@ -13,6 +13,11 @@ public class Admin extends Users {
         this.prenom = prenom;
     }
 
+    public Admin(String email, String mdp, String nom, String prenom){
+        super(email, mdp, nom);
+        this.prenom = prenom;
+    }
+
     public Admin(){
         super();
         this.prenom = "";

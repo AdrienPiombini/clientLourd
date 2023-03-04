@@ -18,28 +18,23 @@ public class VueGenerale extends JFrame implements ActionListener {
 
    private JPanel panelMenu = new JPanel();
    private JButton btProfil = new JButton("Profils");
-   //private JButton btUtilisateurs = new JButton("Utilisateurs");
+   private JButton btUtilisateurs = new JButton("Utilisateurs");
    private JButton btInterventions = new JButton("Interventions");
    private JButton btCommandes = new JButton("Commandes");
    private JButton btStatistiques = new JButton("Statistiques");
    private JButton btProduits = new JButton("Produits");
    private JButton btQuitter = new JButton("Quitter");
-   //private JComboBox<JButton> choixUsers = new JComboBox<JButton>();
-
-   // Création des boutons
-JButton btUtilisateurs = new JButton("Utilisateurs");
-JButton btClients = new JButton("Clients");
-JButton btFournisseurs = new JButton("Fournisseurs");
-
-// Ajout des boutons à la JComboBox
-JComboBox<JButton> choixUsers = new JComboBox<JButton>();
-choixUsers.addItem(btUtilisateurs);
-choixUsers.addItem(btClients);
-choixUsers.addItem(btFournisseurs);
+   private String[] typeUsers = {"Utilisateurs","admin", "technicien", "professionnel", "particulier"}; 
+   private JComboBox<String> choixUsers = new JComboBox<String>(typeUsers);
 
 
    // listes des panel
-   private PanelUsers unPanelUsers = new PanelUsers();
+   private PanelAdmin unPanelAdmin = new PanelAdmin();
+   private PanelTechnicien unPanelTechnicien = new PanelTechnicien();
+   private PanelParticulier unPanelParticulier = new PanelParticulier();
+   private PanelProfessionnel unPanelProfessionnel = new PanelProfessionnel();
+
+
 
     public VueGenerale(){
         this.setTitle("Gestion du site Filelec");
@@ -60,10 +55,10 @@ choixUsers.addItem(btFournisseurs);
         this.panelMenu.add(this.btProduits);
         this.panelMenu.add(this.btQuitter);
         
+        
         this.add(this.panelMenu);
-
-        this.choixUsers.addItem(this.btUtilisateurs); 
-
+        
+        
 
         // rendres les boutons écoutables
 		this.btProfil.addActionListener(this);
@@ -73,9 +68,15 @@ choixUsers.addItem(btFournisseurs);
         this.btStatistiques.addActionListener(this);
 		this.btProduits.addActionListener(this);
 		this.btQuitter.addActionListener(this);
+        this.choixUsers.addActionListener(this);
 
 		// ajout des Panels dans la fenetre
-		this.add(this.unPanelUsers);
+		this.add(this.unPanelAdmin);
+		this.add(this.unPanelTechnicien);
+		this.add(this.unPanelParticulier);
+		this.add(this.unPanelProfessionnel);
+
+
 
         this.setVisible(false);
     }
@@ -89,16 +90,31 @@ choixUsers.addItem(btFournisseurs);
 				Filelec2.rendreVisibleVueGenerale(false);
 				Filelec2.rendreVisibleVueConnexion(true);
 			}
-        }else if (e.getSource()==this.btUtilisateurs){
-            this.afficherPanel(1);
+        }else if (e.getSource()==this.choixUsers){
+            if (this.choixUsers.getSelectedItem()=="admin"){
+                this.afficherPanel(1);
+            }else if(this.choixUsers.getSelectedItem()=="technicien"){
+                this.afficherPanel(2);
+            }else if(this.choixUsers.getSelectedItem()=="particulier"){
+                this.afficherPanel(3);
+            }else if(this.choixUsers.getSelectedItem()=="professionnel"){
+                this.afficherPanel(4);
+            }
         }
     }
 
     public void afficherPanel(int numero){
-        this.unPanelUsers.setVisible(false);
+        this.unPanelAdmin.setVisible(false);
+        this.unPanelTechnicien.setVisible(false);
+        this.unPanelParticulier.setVisible(false);
+        this.unPanelProfessionnel.setVisible(false);
+
 		switch (numero) {
-		case 1:
-			this.unPanelUsers.setVisible(true); break;
+		    case 1: this.unPanelAdmin.setVisible(true); break;
+		    case 2: this.unPanelTechnicien.setVisible(true); break;
+            case 3: this.unPanelParticulier.setVisible(true); break;
+            case 4: this.unPanelProfessionnel.setVisible(true); break;
+            //case 5: this.unPanelUsers.setVisible(true); break;
 		}
     }
 

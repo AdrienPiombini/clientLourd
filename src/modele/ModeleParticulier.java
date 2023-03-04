@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import controleur.Particulier;
 
 public class ModeleParticulier {
-    private static Bdd uneBdd = new Bdd("Localhost:8889", "dsa", "root", "root");
+    private static Bdd uneBdd = new Bdd("Localhost:3306", "dsa", "adrien", "adrien");
 
     public static void insertParticulier(Particulier unParticulier) {
-		String requete = "insert into Particulier values (null, '" + unParticulier.getEmail() + "','" + unParticulier.getMdp() + "','"
-				+ unParticulier.getNom() + "','" + unParticulier.getRoles() + "','" + unParticulier.getDatemdp()
-				+ "','" + unParticulier.getTypeclient() +"','" + unParticulier.getAdresse() +"','" + unParticulier.getVille()
-				+"','" + unParticulier.getCp() +"','" + unParticulier.getTelephone() + "','" +  unParticulier.getPrenom() + "');";
+		String requete = "insert into particulier values (null, '" + unParticulier.getEmail() + "','" + unParticulier.getMdp() + "','"
+				+ unParticulier.getNom() + "', 'client', curdate(), 'particulier', '" + unParticulier.getAdresse()
+				+"','" + unParticulier.getVille()+"','" + unParticulier.getCp() +"', " + unParticulier.getTelephone()
+				+ ", '" +  unParticulier.getPrenom() + "');";
 		try {
 			uneBdd.seConnecter();
 			Statement unStat = uneBdd.getMaConnexion().createStatement();

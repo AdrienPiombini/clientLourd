@@ -9,39 +9,40 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import controleur.C_Users;
-import controleur.Users;
+import controleur.C_Admin;
+import controleur.Admin;
 
-public class PanelUsers extends PanelPrincipal implements ActionListener {
+public class PanelAdmin extends PanelPrincipal implements ActionListener {
 
 	private JPanel panelForm = new JPanel();
 
 	private JTextField txtEmail = new JTextField();
-	private JTextField txtMdp = new JTextField();
+	private JPasswordField txtMdp = new JPasswordField();
 	private JTextField txtNom = new JTextField();
-	private JTextField txtRoles = new JTextField();
+	private JTextField txtPrenom = new JTextField();
 
 	private JButton btAnnuler = new JButton("Annuler");
 	private JButton btEnregistrer = new JButton("Enregistrer");
 
-	public PanelUsers() {
+	public PanelAdmin() {
 		super();
-		this.titre.setText("_____Gestion DES CLIENTS______");
+		this.titre.setText("_____Gestion DES ADMIN_______");
 
 		// Construction du Panel Form
 		this.panelForm.setBounds(20, 40, 300, 250);
 		this.panelForm.setBackground(new Color(234, 176, 69));
 		this.panelForm.setLayout(new GridLayout(5, 2));
-		this.panelForm.add(new JLabel("Email Client : "));
+		this.panelForm.add(new JLabel("Email Admin : "));
 		this.panelForm.add(this.txtEmail);
-		this.panelForm.add(new JLabel("Mot de passe Client : "));
+		this.panelForm.add(new JLabel("Mot de passe Admin : "));
 		this.panelForm.add(this.txtMdp);
 		this.panelForm.add(new JLabel("Nom  : "));
 		this.panelForm.add(this.txtNom);
-		this.panelForm.add(new JLabel("Roles : "));
-		this.panelForm.add(this.txtRoles);
+		this.panelForm.add(new JLabel("Prenom : "));
+		this.panelForm.add(this.txtPrenom);
 		this.panelForm.add(this.btAnnuler);
 		this.panelForm.add(this.btEnregistrer);
 
@@ -57,7 +58,7 @@ public class PanelUsers extends PanelPrincipal implements ActionListener {
 		this.txtEmail.setText("");
 		this.txtMdp.setText("");
 		this.txtNom.setText("");
-		this.txtRoles.setText("");
+		this.txtPrenom.setText("");
 	}
 
 	@Override
@@ -66,16 +67,16 @@ public class PanelUsers extends PanelPrincipal implements ActionListener {
 			this.viderChamps();
 		} else if (e.getSource() == this.btEnregistrer) {
 			String email = this.txtEmail.getText();
-			String mdp = this.txtMdp.getText();
+			String mdp = new String (this.txtMdp.getPassword());
             String nom = this.txtNom.getText();
-            String roles = this.txtRoles.getText();
+            String prenom = this.txtPrenom.getText();
 			
 			
 			// instancier un client
-			Users unUser = new Users( email, mdp,nom, roles);
+			Admin unAdmin = new Admin(email, mdp,nom, prenom);
 			// on en l'enregistre dans la base de données
-			C_Users.insertUser(unUser);
-			JOptionPane.showMessageDialog(this, "Client inséré avec succés !");
+			C_Admin.insertAdmin(unAdmin);
+			JOptionPane.showMessageDialog(this, "Admin inséré avec succés !");
 			this.viderChamps();
 		}
 

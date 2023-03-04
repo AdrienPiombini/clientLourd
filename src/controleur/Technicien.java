@@ -31,6 +31,24 @@ public class Technicien extends Users {
 		this.dateDept = dateDept;
 	}
 
+	public Technicien (String email, String mdp, String nom, String prenom, String diplome, String dateEmb, String dateDept) 
+	{
+		super(email, mdp, nom); // Appel du constructeur de la mère dans la fille
+		this.prenom = prenom;
+		this.diplome = diplome;
+		this.dateEmb = dateEmb;
+		this.dateDept = dateDept;
+	}
+
+	public Technicien (String email, String mdp, String nom, String prenom, String diplome, String dateEmb) 
+	{
+		super(email, mdp, nom); // Appel du constructeur de la mère dans la fille
+		this.prenom = prenom;
+		this.diplome = diplome;
+		this.dateEmb = dateEmb;
+		this.dateDept = null;
+	}
+
 	public String getPrenom() {
 		return prenom;
 	}
