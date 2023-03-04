@@ -22,7 +22,6 @@ public class Filelec {
 			System.out.println("Votre choix : ");
 			choix = sc.nextInt();
 			switch (choix) {
-			case 1: C_Users.menuUser();break;
 			case 2: C_Particulier.menuParticulier();break;
 			case 3: C_Professionnel.menuProfessionnel();break;
 			case 4: C_Technicien.menuTechnicien();break;

@@ -3,7 +3,7 @@ package controleur;
 import java.util.ArrayList;
 import java.util.Scanner;
 import modele.ModeleIntervention;
-import vue.VueIntervention;
+import vue.old_vue.VueIntervention;
 
 public class C_Intervention {
 	public static void insertIntervention() {

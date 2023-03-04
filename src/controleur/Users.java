@@ -1,5 +1,8 @@
 package controleur;
 
+import java.sql.Date;
+
+
 public class Users {
     protected int iduser ;
     protected String email, mdp, nom, roles, datemdp;
@@ -21,6 +24,15 @@ public class Users {
         this.nom = nom; 
         this.roles = roles; 
         this.datemdp = datemdp;
+    }
+
+    public Users( String email, String mdp, String nom, String roles ){
+        this.iduser = 0;
+        this.email = email; 
+        this.mdp = mdp;
+        this.nom = nom; 
+        this.roles = roles; 
+        this.datemdp = "";
     }
 
     public Users(){

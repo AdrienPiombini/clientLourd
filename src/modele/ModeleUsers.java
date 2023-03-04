@@ -10,7 +10,7 @@ public class ModeleUsers {
 
     public static void insertUser(Users unUser) {
 		String requete = "insert into users values (null, '" + unUser.getEmail() + "','" + unUser.getMdp() + "','"
-				+ unUser.getNom() + "','" + unUser.getRoles() +"','" + unUser.getDatemdp() + "');";
+				+ unUser.getNom() + "','" + unUser.getRoles() +"',curdate());";
 		try {
 			uneBdd.seConnecter();
 			Statement unStat = uneBdd.getMaConnexion().createStatement();

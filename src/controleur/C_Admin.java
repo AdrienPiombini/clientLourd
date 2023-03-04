@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import modele.ModeleAdmin;
-import vue.VueAdmin;
+import vue.old_vue.VueAdmin;
 
 public class C_Admin {
     public static void insertAdmin() {

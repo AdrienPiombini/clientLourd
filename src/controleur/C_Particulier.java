@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import modele.ModeleParticulier;
-import vue.VueParticulier;
+import vue.old_vue.VueParticulier;
 
 public class C_Particulier {
     public static void insertParticulier() {

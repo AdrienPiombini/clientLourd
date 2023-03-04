@@ -23,7 +23,7 @@ import controleur.Users;
 
 public class VueConnexion extends JFrame implements ActionListener, KeyListener {
 
-    private JTextField txtEmail = new JTextField();
+    private JTextField txtEmail = new JTextField("admin@gmail.com");
     private JPasswordField txtMdp = new JPasswordField();
     private JButton btAnnuler = new JButton("Annuler");
     private JButton btConnexion = new JButton("Connexion");

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import modele.ModeleProduit;
-import vue.VueProduit;
+import vue.old_vue.VueProduit;
 
 public class C_Produit {
 

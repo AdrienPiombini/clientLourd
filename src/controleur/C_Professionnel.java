@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import modele.ModeleProfessionnel;
-import vue.VueProfessionnel;
+import vue.old_vue.VueProfessionnel;
 
 public class C_Professionnel {
 

@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import modele.ModeleClient;
-import vue.VueClient;
+import vue.old_vue.VueClient;
 
 public class C_Client {
     public static void insertClient() {
@@ -84,4 +84,7 @@ public class C_Client {
 			}
 		} while (choix != 0);
 	}
+
+    public static void insertUsers(Users unUser) {
+    }
 }

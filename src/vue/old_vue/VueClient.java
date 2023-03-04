@@ -1,4 +1,4 @@
-package vue;
+package vue.old_vue;
 import java.util.Scanner;
 
 import controleur.Client;
