@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import controleur.Intervention;
 
 public class ModeleIntervention {
-    private static Bdd uneBdd = new Bdd("localhost:8889", "dsa", "root", "root");
+    private static Bdd uneBdd = new Bdd("localhost:3306", "dsa", "adrien", "adrien");
 
 	public static void insertIntervention(Intervention uneIntervention) {
 		String requete = "insert into intervention values (null, '" + uneIntervention.getLibelle() + "','"

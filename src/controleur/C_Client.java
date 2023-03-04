@@ -42,18 +42,10 @@ public class C_Client {
 		System.out.println("Modificiation du client réussie.");
 	}
 
-	public static void selectAllClient() {
-		ArrayList<Client> lesClients;
-		System.out.println("________LISTE DES CLIENTS_________");
-		// on récupère les clients
-		lesClients = ModeleClient.selectAllClient();
-		// on parcours l'ArrayList
-		for (Client unClient : lesClients) {
-			// on affiche le client
-			VueClient.afficherClient(unClient);
-		}
-
+	public static ArrayList<Client> selectAllClient(){
+		return ModeleClient.selectAllClient();
 	}
+	
 
 	public static void menuClient() {
 

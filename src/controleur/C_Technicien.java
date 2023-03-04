@@ -49,18 +49,7 @@ public class C_Technicien {
 		System.out.println("Modification du Technicien réussie.");
 	}
 	
-	public static void selectAllTechniciens ()
-	{
-		ArrayList<Technicien> lesTechniciens;
-		System.out.println("_____ LISTE DES TECHNICIENS _____");
-		
-		// On récupère les Techniciens 
-		lesTechniciens = ModeleTechnicien.selectAllTechnicien();
-		// On parcours l'ArrayList
-		for (Technicien unTechnicien : lesTechniciens)
-		{
-		// On affiche le Technicien 
-			VueTechnicien.afficherTechnicien(unTechnicien);
-		}
+	public static ArrayList<Technicien> selectAllTechniciens(){
+		return ModeleTechnicien.selectAllTechnicien(); 
 	}
 }

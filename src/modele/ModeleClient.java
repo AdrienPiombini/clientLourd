@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import controleur.Client;
 
 public class ModeleClient {
-    private static Bdd uneBdd = new Bdd("Localhost:8889", "dsa", "root", "root");
+    private static Bdd uneBdd = new Bdd("Localhost:3306", "dsa", "adrien", "adrien");
 
     public static void insertClient(Client unClient) {
-		String requete = "insert into Client values (null, '" + unClient.getEmail() + "','" + unClient.getMdp() + "','"
+		String requete = "insert into client values (null, '" + unClient.getEmail() + "','" + unClient.getMdp() + "','"
 				+ unClient.getNom() + "','" + unClient.getRoles() 
                 +"','" + unClient.getDatemdp()
                 + "','" +unClient.getTypeclient()
@@ -32,7 +32,7 @@ public class ModeleClient {
 	}
 
 	public static void deleteClient(String email) {
-		String requete = "delete from Client where email=" + email + ";";
+		String requete = "delete from client where email=" + email + ";";
 		try {
 			uneBdd.seConnecter();
 			Statement unStat = uneBdd.getMaConnexion().createStatement();
@@ -45,7 +45,7 @@ public class ModeleClient {
 	}
 
 	public static void updateClient(Client unClient) {
-		String requete = "update Client set email='" + unClient.getEmail() + "', mdp ='" + unClient.getMdp()
+		String requete = "update client set email='" + unClient.getEmail() + "', mdp ='" + unClient.getMdp()
 				+ "', nom='" + unClient.getNom() + "', datemdp='" + unClient.getDatemdp() 
                 + "', typeclient='"+ unClient.getTypeclient() + "', adresse='" + unClient.getAdresse() 
                 + "', ville='" + unClient.getVille() + "', cp='" + unClient.getCp()
@@ -63,7 +63,7 @@ public class ModeleClient {
 	}
 
 	public static ArrayList<Client> selectAllClient() {
-		String requete = " select * from Client ;";
+		String requete = " select * from client ;";
 		ArrayList<Client> lesClients = new ArrayList<Client>();
 		try {
 			uneBdd.seConnecter();

@@ -6,12 +6,7 @@ import modele.ModeleIntervention;
 import vue.old_vue.VueIntervention;
 
 public class C_Intervention {
-	public static void insertIntervention() {
-		// instacier la classe Intervention
-		Intervention uneIntervention = new Intervention();
-		// saisir les donnes du Intervention
-		uneIntervention = VueIntervention.saisirIntervention();
-		// insérer le Intervention dans la BDD
+	public static void insertIntervention(Intervention uneIntervention){
 		ModeleIntervention.insertIntervention(uneIntervention);
 		System.out.println("Insertion réussie du Intervention.");
 	}
@@ -53,35 +48,5 @@ public class C_Intervention {
 			VueIntervention.afficherIntervention(uneIntervention);
 		}
 
-	}
-
-	public static void menuIntervention() {
-
-		int choix = 0;
-		Scanner sc = new Scanner(System.in);
-		do {
-			System.out.println("___ MENU Intervention___");
-			System.out.println("1- Insérer un Intervention");
-			System.out.println("2- Lister les Intervention");
-			System.out.println("3- Supprimer un Intervention");
-			System.out.println("4- Modifier un Intervention");
-			System.out.println("0- Quitter");
-			System.out.println("Votre choix : ");
-			choix = sc.nextInt();
-			switch (choix) {
-			case 1:
-				insertIntervention();
-				break;
-			case 2:
-				selectAllInterventions();
-				break;
-			case 3:
-				deleteIntervention();
-				break;
-			case 4:
-				updateIntervention();
-				break;
-			}
-		} while (choix != 0);
 	}
 }

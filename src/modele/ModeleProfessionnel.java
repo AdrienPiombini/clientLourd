@@ -32,7 +32,7 @@ public class ModeleProfessionnel {
     }
 
     public static void updateProfessionnel(Professionnel unProfessionnel) {
-        String requete = "UPDATE Professionnel SET email = '" 
+        String requete = "UPDATE professionnel SET email = '" 
         		+ unProfessionnel.getEmail() + "', mdp = '" 
         		+ unProfessionnel.getMdp() + "', nom = '" 
         		+ unProfessionnel.getNom() + "', roles = '" 
@@ -58,7 +58,7 @@ public class ModeleProfessionnel {
     }
 
     public static void deleteProfessionnel(String email) {
-        String requete = "DELETE FROM Professionnel WHERE email = '"+email+"';";
+        String requete = "DELETE FROM professionnel WHERE email = '"+email+"';";
         try {
             uneBdd.seConnecter();
             Statement unStat = uneBdd.getMaConnexion().createStatement();
@@ -72,7 +72,7 @@ public class ModeleProfessionnel {
 
     public static ArrayList<Professionnel> selectAllProfessionnel() {
         ArrayList<Professionnel> lesProfessionnels = new ArrayList<Professionnel>();
-        String requete = "SELECT * FROM Professionnel;";
+        String requete = "SELECT * FROM professionnel;";
         try {
             uneBdd.seConnecter();
             Statement unStat = uneBdd.getMaConnexion().createStatement();
@@ -106,7 +106,7 @@ public class ModeleProfessionnel {
 
     public static Professionnel selectWhereProfessionnel(String email) {
     	Professionnel unProfessionnel = null;
-        String requete = "SELECT * FROM Professionnel WHERE email = '"+email+"';";
+        String requete = "SELECT * FROM professionnel WHERE email = '"+email+"';";
         try {
             uneBdd.seConnecter();
             Statement unStat = uneBdd.getMaConnexion().createStatement();

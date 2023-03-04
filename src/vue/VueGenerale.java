@@ -33,9 +33,8 @@ public class VueGenerale extends JFrame implements ActionListener {
    private PanelTechnicien unPanelTechnicien = new PanelTechnicien();
    private PanelParticulier unPanelParticulier = new PanelParticulier();
    private PanelProfessionnel unPanelProfessionnel = new PanelProfessionnel();
-
-
-
+   private PanelIntervention unPanelIntervention = new PanelIntervention();
+   
     public VueGenerale(){
         this.setTitle("Gestion du site Filelec");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,8 +56,6 @@ public class VueGenerale extends JFrame implements ActionListener {
         
         
         this.add(this.panelMenu);
-        
-        
 
         // rendres les boutons écoutables
 		this.btProfil.addActionListener(this);
@@ -75,6 +72,7 @@ public class VueGenerale extends JFrame implements ActionListener {
 		this.add(this.unPanelTechnicien);
 		this.add(this.unPanelParticulier);
 		this.add(this.unPanelProfessionnel);
+        this.add(this.unPanelIntervention);
 
 
 
@@ -100,7 +98,10 @@ public class VueGenerale extends JFrame implements ActionListener {
             }else if(this.choixUsers.getSelectedItem()=="professionnel"){
                 this.afficherPanel(4);
             }
+        }else if (e.getSource()==this.btInterventions){
+            this.afficherPanel(5);
         }
+
     }
 
     public void afficherPanel(int numero){
@@ -114,7 +115,8 @@ public class VueGenerale extends JFrame implements ActionListener {
 		    case 2: this.unPanelTechnicien.setVisible(true); break;
             case 3: this.unPanelParticulier.setVisible(true); break;
             case 4: this.unPanelProfessionnel.setVisible(true); break;
-            //case 5: this.unPanelUsers.setVisible(true); break;
+            case 5: this.unPanelIntervention.setVisible(true); break;
+            //case 6: this.unPanelUsers.setVisible(true); break;
 		}
     }
 
