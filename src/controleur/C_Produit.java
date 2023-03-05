@@ -8,13 +8,7 @@ import vue.old_vue.VueProduit;
 
 public class C_Produit {
 
-	public static void insertProduit () 
-	{
-		// instancier la classe Produit
-		Produit unProduit = new Produit ();
-		// saisir les données du Produit 
-		unProduit = VueProduit.saisirProduit();
-		// insérer le produit dans la BDD
+	public static void insertProduit(Produit unProduit){
 		ModeleProduit.insertProduit(unProduit);
 		System.out.println("Insertion réussie du produit.");
 	}
@@ -47,42 +41,7 @@ public class C_Produit {
 		System.out.println("Modification du produit réussie.");
 	}
 	
-	public static void selectAllProduits ()
-	{
-		ArrayList<Produit> lesProduits;
-		System.out.println("_____ LISTE DES PRODUITS _____");
-		
-		// On récupère les produits 
-		lesProduits = ModeleProduit.selectAllProduit();
-		// On parcours l'ArrayList
-		for (Produit unProduit : lesProduits)
-		{
-		// On affiche le produit 
-			VueProduit.afficherProduit(unProduit);
-		}
-	}
-	
-	public static void menuProduit ()
-	{
-		int choix = 0;
-		Scanner sc = new Scanner (System.in);
-		do {
-			System.out.println("_____MENU PRODUIT _____");
-			System.out.println("1 - Insérer un produit");
-			System.out.println("2 - Lister les produits");
-			System.out.println("3 - Supprimer un produit");
-			System.out.println("4 - Modifier un produit");
-			System.out.println("0 - Quitter");
-			System.out.println("Votre choix :");
-			choix = sc.nextInt();
-			switch (choix)
-			{
-			case 1 : insertProduit(); break;
-			case 2 : selectAllProduits(); break;
-			case 3 : deleteProduit(); break;
-			case 4 : updateProduit(); break;
-			
-			}
-		} while (choix != 0);
+	public static ArrayList<Produit>  selectAllProduits(){
+		return ModeleProduit.selectAllProduit();
 	}
 }

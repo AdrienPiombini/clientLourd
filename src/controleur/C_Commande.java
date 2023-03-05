@@ -6,13 +6,16 @@ import vue.old_vue.VueCommande;
 public class C_Commande {
 
 
-    public static void insertCommande() {
-		// instacier la classe Intervention
-		Commande uneCommande = new Commande();
-		// saisir les donnes du Intervention
-		uneCommande = VueCommande.saisirCommande();
-		// insérer le Intervention dans la BDD
+	public static int selectDerniereCommande(){
+		return ModeleCommande.selectDerniereCommande();
+	}
+    public static void insertCommande(Commande uneCommande){
 		ModeleCommande.insertCommande(uneCommande);
+		System.out.println("Insertion réussie du Intervention.");
+	}
+
+	public static void insertPanier(Commande uneCommande){
+		ModeleCommande.insertPanier(uneCommande);
 		System.out.println("Insertion réussie du Intervention.");
 	}
 
@@ -52,36 +55,5 @@ public class C_Commande {
 			// on affiche le Commande
 			VueCommande.afficherCommande(uneCommande);
 		}
-
-	}
-
-	public static void menuCommande() {
-
-		int choix = 0;
-		Scanner sc = new Scanner(System.in);
-		do {
-			System.out.println("___ MENU Commande___");
-			System.out.println("1- Insérer une Commande");
-			System.out.println("2- Lister les Commande");
-			System.out.println("3- Supprimer un Commande");
-			System.out.println("4- Modifier un Commande");
-			System.out.println("0- Quitter");
-			System.out.println("Votre choix : ");
-			choix = sc.nextInt();
-			switch (choix) {
-                case 1:
-				insertCommande();
-				break;
-			case 2:
-				selectAllCommandes();
-				break;
-			case 3:
-				deleteCommande();
-				break;
-			case 4:
-				updateCommande();
-				break;
-			}
-		} while (choix != 0);
 	}
 }

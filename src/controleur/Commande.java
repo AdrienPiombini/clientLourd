@@ -41,6 +41,18 @@ public class Commande {
         this.dateCommande = dateCommande;
     }
 
+    public Commande(int idcommande, int iduser, int idproduit, int quantite, String statut){
+        this.idcommande = idcommande;
+        this.iduser = iduser; 
+        this.idproduit = idproduit; 
+        this. quantite = quantite;
+        this.totalHT = 0;
+        this.totalTTC = 0;
+        this.tvaCommande = (float) 1.2;
+        this.statut = statut; 
+        this.dateCommande = "";
+    }
+
     public int getIdcommande() {
         return idcommande;
     }

@@ -11,7 +11,6 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import controleur.C_Client;
@@ -49,7 +48,7 @@ public class PanelIntervention extends PanelPrincipal implements ActionListener
 		this.panelForm.add(this.txtLibelle);
 		this.panelForm.add(new JLabel("Date Intervention : ")); 
 		this.panelForm.add(this.txtDateIntervention);
-		this.panelForm.add(new JLabel("Staut : ")); 
+		this.panelForm.add(new JLabel("Statut : ")); 
         this.panelForm.add(this.cbxStatut);
 		this.panelForm.add(new JLabel("Prix HT : ")); 
 		this.panelForm.add(this.txtPrixHT);

@@ -6,7 +6,25 @@ import java.util.ArrayList;
 import controleur.Commande;
 
 public class ModeleCommande {
-    private static Bdd uneBdd = new Bdd("localhost:8889", "dsa", "root", "root");
+    private static Bdd uneBdd = new Bdd("localhost:3306", "dsa", "adrien", "adrien");
+
+	public static int selectDerniereCommande(){
+		String requete = "select max(idcommande) from commande ;";
+		int idDerniereCommande = 0; 
+		try{
+			uneBdd.seConnecter();
+			Statement unStat = uneBdd.getMaConnexion().createStatement();
+			ResultSet resultat = unStat.executeQuery(requete);
+			if(resultat.next()){
+				idDerniereCommande = resultat.getInt(1);
+			}
+			unStat.close();
+			uneBdd.seDeConnecter();
+		}catch(SQLException exp){
+			System.out.println("Erreur d'exécution : " + requete);
+		}
+		return idDerniereCommande;
+	}
 
 	public static void insertCommande(Commande uneCommande) {
 		String requete = "insert into Commande values ("+ uneCommande.getIdcommande() + ","
@@ -14,6 +32,20 @@ public class ModeleCommande {
                 + ",'" + uneCommande.getStatut() + "','"+ uneCommande.getDateCommande()
 				+ "'," + uneCommande.getTvaCommande() + "," 
                 + uneCommande.getTotalHT() + "," + uneCommande.getTotalTTC()+ ");";
+		try {
+			uneBdd.seConnecter();
+			Statement unStat = uneBdd.getMaConnexion().createStatement();
+			unStat.execute(requete);
+			unStat.close();
+			uneBdd.seDeConnecter();
+		} catch (SQLException exp) {
+			System.out.println("Erreur d'execution : " + requete);
+		}
+	}
+
+	public static void insertPanier(Commande uneCommande) {
+		String requete = "call gestion_panier (" + uneCommande.getIdcommande() + ", "+ uneCommande.getIduser() + ", " 
+		+ uneCommande.getIdproduit() +", " + uneCommande.getQuantite() +");";
 		try {
 			uneBdd.seConnecter();
 			Statement unStat = uneBdd.getMaConnexion().createStatement();

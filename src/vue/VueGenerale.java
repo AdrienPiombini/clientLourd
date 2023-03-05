@@ -34,6 +34,10 @@ public class VueGenerale extends JFrame implements ActionListener {
    private PanelParticulier unPanelParticulier = new PanelParticulier();
    private PanelProfessionnel unPanelProfessionnel = new PanelProfessionnel();
    private PanelIntervention unPanelIntervention = new PanelIntervention();
+   private PanelCommande unPanelCommande = new PanelCommande();
+   private PanelProduit unPanelProduit= new PanelProduit();
+
+
    
     public VueGenerale(){
         this.setTitle("Gestion du site Filelec");
@@ -73,7 +77,8 @@ public class VueGenerale extends JFrame implements ActionListener {
 		this.add(this.unPanelParticulier);
 		this.add(this.unPanelProfessionnel);
         this.add(this.unPanelIntervention);
-
+        this.add(this.unPanelCommande);
+        this.add(this.unPanelProduit);
 
 
         this.setVisible(false);
@@ -100,6 +105,10 @@ public class VueGenerale extends JFrame implements ActionListener {
             }
         }else if (e.getSource()==this.btInterventions){
             this.afficherPanel(5);
+        }else if(e.getSource()==this.btCommandes){
+            this.afficherPanel(6);
+        }else if(e.getSource()==this.btProduits){
+            this.afficherPanel(7);
         }
 
     }
@@ -109,6 +118,9 @@ public class VueGenerale extends JFrame implements ActionListener {
         this.unPanelTechnicien.setVisible(false);
         this.unPanelParticulier.setVisible(false);
         this.unPanelProfessionnel.setVisible(false);
+        this.unPanelIntervention.setVisible(false);
+        this.unPanelCommande.setVisible(false);
+        this.unPanelProduit.setVisible(false);
 
 		switch (numero) {
 		    case 1: this.unPanelAdmin.setVisible(true); break;
@@ -116,7 +128,9 @@ public class VueGenerale extends JFrame implements ActionListener {
             case 3: this.unPanelParticulier.setVisible(true); break;
             case 4: this.unPanelProfessionnel.setVisible(true); break;
             case 5: this.unPanelIntervention.setVisible(true); break;
-            //case 6: this.unPanelUsers.setVisible(true); break;
+            case 6: this.unPanelCommande.setVisible(true); break;
+            case 7: this.unPanelProduit.setVisible(true); break;
+
 		}
     }
 

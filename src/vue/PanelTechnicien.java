@@ -18,7 +18,6 @@ import controleur.Technicien;
 public class PanelTechnicien extends PanelPrincipal implements ActionListener {
 
 	private JPanel panelForm = new JPanel();
-
 	private JTextField txtEmail = new JTextField();
 	private JPasswordField txtMdp = new JPasswordField();
 	private JTextField txtNom = new JTextField();

@@ -38,18 +38,9 @@ public class C_Users {
 		System.out.println("Modificiation du client réussie.");
 	}
 
-	public static void selectAllUser() {
-		ArrayList<Users> lesUsers;
-		System.out.println("________LISTE DES USERS__________");
-		// on récupère les clients
-		lesUsers = ModeleUsers.selectAllUser();
-		// on parcours l'ArrayList
-		for (Users unUser : lesUsers) {
-			// on affiche le client
-			VueUsers.afficherUser(unUser);
+	public static ArrayList<Users> selectAllUser() {
+		return ModeleUsers.selectAllUser();
 		}
-
-	}
 
 	public static Users connexion(String email, String mdp) {
         return ModeleUsers.connexion(email, mdp);
