@@ -36,8 +36,7 @@ public class VueGenerale extends JFrame implements ActionListener {
    private PanelIntervention unPanelIntervention = new PanelIntervention();
    private PanelCommande unPanelCommande = new PanelCommande();
    private PanelProduit unPanelProduit= new PanelProduit();
-
-
+   private PanelProfil unPanelProfil= new PanelProfil();
    
     public VueGenerale(){
         this.setTitle("Gestion du site Filelec");
@@ -79,6 +78,8 @@ public class VueGenerale extends JFrame implements ActionListener {
         this.add(this.unPanelIntervention);
         this.add(this.unPanelCommande);
         this.add(this.unPanelProduit);
+        this.add(this.unPanelProfil);
+
 
 
         this.setVisible(false);
@@ -109,6 +110,8 @@ public class VueGenerale extends JFrame implements ActionListener {
             this.afficherPanel(6);
         }else if(e.getSource()==this.btProduits){
             this.afficherPanel(7);
+        }else if(e.getSource()==this.btProfil){
+            this.afficherPanel(8);
         }
 
     }
@@ -121,6 +124,7 @@ public class VueGenerale extends JFrame implements ActionListener {
         this.unPanelIntervention.setVisible(false);
         this.unPanelCommande.setVisible(false);
         this.unPanelProduit.setVisible(false);
+        this.unPanelProfil.setVisible(false);
 
 		switch (numero) {
 		    case 1: this.unPanelAdmin.setVisible(true); break;
@@ -130,6 +134,7 @@ public class VueGenerale extends JFrame implements ActionListener {
             case 5: this.unPanelIntervention.setVisible(true); break;
             case 6: this.unPanelCommande.setVisible(true); break;
             case 7: this.unPanelProduit.setVisible(true); break;
+            case 8: this.unPanelProfil.setVisible(true); break;
 
 		}
     }

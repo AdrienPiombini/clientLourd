@@ -22,19 +22,8 @@ public class C_Admin {
 		ModeleAdmin.deleteAdmin(email);
 	}
 
-	public static void updateAdmin() {
-		// saisir id client a modifier
-		Scanner sc = new Scanner(System.in);
-		String email;
-		System.out.println("Donner l'email de l'admin a modifier");
-		email = sc.next();
-		// récuperer le client dans la bdd avant cet id
-		Admin unAdmin = ModeleAdmin.selectWhereAdmin(email);
-		// modifier les infos du client
-		unAdmin = VueAdmin.modifierAdmin(unAdmin);
-		// actualiser les infos dans la bdd
+	public static void updateAdmin(Admin unAdmin) {
 		ModeleAdmin.updateAdmin(unAdmin);
-
 		System.out.println("Modificiation de l'admin réussie.");
 	}
 
@@ -50,5 +39,9 @@ public class C_Admin {
 		}
 
 	}
+
+	public static Admin connexionAdmin(String email, String mdp) {
+        return ModeleAdmin.connexionAdmin(email, mdp);
+    }
 
 }

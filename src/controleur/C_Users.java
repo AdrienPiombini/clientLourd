@@ -7,6 +7,7 @@ import modele.ModeleUsers;
 import vue.old_vue.VueUsers;
 
 public class C_Users {
+	
     public static void insertUser(Users unUser) {
 		ModeleUsers.insertUser(unUser);
 		System.out.println("Insertion réussie de l'User.");

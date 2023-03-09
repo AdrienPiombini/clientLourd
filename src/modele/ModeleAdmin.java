@@ -104,4 +104,27 @@ public class ModeleAdmin {
 		}
 		return unAdmin;
 	}
+
+
+	public static Admin connexionAdmin(String email, String mdp) {
+		String requete = "call connexionAdmin('" + email + "','" + mdp + "');";
+		Admin unAdmin  = null;
+		try {
+			uneBdd.seConnecter();
+			Statement unStat = uneBdd.getMaConnexion().createStatement();
+			// recuperation un seul client resultat
+			ResultSet unResultat = unStat.executeQuery(requete);
+			// on teste si on a un seul résultat
+			if (unResultat.next()) {
+				 unAdmin = new Admin(unResultat.getInt("iduser"), unResultat.getString("email"),
+						unResultat.getString("mdp"), unResultat.getString("nom"),
+						unResultat.getString("roles"), unResultat.getString("datemdp"), unResultat.getString("prenom"));
+			}
+			unStat.close();
+			uneBdd.seDeConnecter();
+		} catch (SQLException exp) {
+			System.out.println("Erreur d'execution : " + requete);
+		}
+		return unAdmin;
+	}
 }

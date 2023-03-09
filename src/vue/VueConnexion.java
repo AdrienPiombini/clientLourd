@@ -16,10 +16,10 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-
-import controleur.C_Users;
+import controleur.Admin;
+import controleur.C_Admin;
 import controleur.Filelec2;
-import controleur.Users; 
+
 
 public class VueConnexion extends JFrame implements ActionListener, KeyListener {
 
@@ -28,6 +28,13 @@ public class VueConnexion extends JFrame implements ActionListener, KeyListener 
     private JButton btAnnuler = new JButton("Annuler");
     private JButton btConnexion = new JButton("Connexion");
     private JPanel panelConnexion = new JPanel();
+
+    private static Admin unAdminConnecte = null;
+    
+    public static Admin getAdminConnecte(){
+        return unAdminConnecte;
+    }     
+    
 
     public VueConnexion(){
         this.setTitle("Gestion du site Filelec");
@@ -98,11 +105,11 @@ public class VueConnexion extends JFrame implements ActionListener, KeyListener 
     public void traitement(){
         String email = this.txtEmail.getText();
         String mdp = new String(this.txtMdp.getPassword());
-        Users unUser = C_Users.connexion(email, mdp);
-        if(unUser == null){
+        unAdminConnecte = C_Admin.connexionAdmin(email, mdp);
+        if(unAdminConnecte == null){
             JOptionPane.showMessageDialog(this, "Veuillez vérifier vos identifiants");
         }else{
-            JOptionPane.showMessageDialog(this,"Bienvenue " + unUser.getNom());
+            JOptionPane.showMessageDialog(this,"Bienvenue " + unAdminConnecte.getNom());
             Filelec2.rendreVisibleVueConnexion(false);
             Filelec2.rendreVisibleVueGenerale(true);
         }

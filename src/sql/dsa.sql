@@ -231,6 +231,20 @@ begin
 end //
 delimiter ;
 
+
+drop procedure if exists connexionAdmin;
+delimiter //
+create procedure connexionAdmin(mail varchar(100), password varchar(100))
+begin 
+    declare grain varchar(100);
+    declare motdepasse varchar(100);
+    select salt into grain from grainSel;
+    set motdepasse = sha1(concat(password, grain));
+    select  *  from admin where email = mail and mdp = motdepasse;
+end //
+delimiter ;
+
+
 drop procedure if exists gestion_panier;
 delimiter  //
 create procedure gestion_panier (idpan int, idu int, idprod varchar(25), qtprod int)

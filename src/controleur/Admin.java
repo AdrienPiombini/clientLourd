@@ -2,7 +2,7 @@ package controleur;
 
 public class Admin extends Users {
     private String prenom;
-    
+
     public Admin(int iduser, String email, String mdp, String nom, String roles, String datemdp, String prenom){
         super(iduser, email, mdp, nom, roles, datemdp);
         this.prenom = prenom;
