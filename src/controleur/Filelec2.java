@@ -8,7 +8,7 @@ public class Filelec2{
     private static VueGenerale uneVueGenerale;
     public static void main(String[] args){
         uneVueConnexion = new VueConnexion();
-        uneVueGenerale = new VueGenerale();
+        
     }
 
     public static void rendreVisibleVueConnexion(boolean action){
@@ -16,6 +16,9 @@ public class Filelec2{
     }
 
     public static void rendreVisibleVueGenerale(boolean action){
+        if(uneVueGenerale==null){
+            uneVueGenerale = new VueGenerale();
+        }
         uneVueGenerale.setVisible(action);
     }
 

@@ -31,7 +31,7 @@ public class VueConnexion extends JFrame implements ActionListener, KeyListener 
 
     private static Admin unAdminConnecte = null;
     
-    public static Admin getAdminConnecte(){
+    public static Admin getAdmin(){
         return unAdminConnecte;
     }     
     
