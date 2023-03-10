@@ -6,8 +6,9 @@ import java.util.ArrayList;
 import controleur.Commande;
 
 public class ModeleCommande {
-    private static Bdd uneBdd = new Bdd("localhost:3306", "dsa", "adrien", "adrien");
-
+    //private static Bdd uneBdd = new Bdd("localhost:3306", "dsa", "adrien", "adrien");
+	private static Bdd uneBdd = new Bdd();
+	
 	public static int selectDerniereCommande(){
 		String requete = "select max(idcommande) from commande ;";
 		int idDerniereCommande = 0; 
@@ -102,10 +103,12 @@ public class ModeleCommande {
 			while (desResultats.next()) {
 				Commande uneCommande = new Commande(desResultats.getInt("idcommande"),
 						desResultats.getInt("iduser"), desResultats.getInt("idproduit"),
-						desResultats.getInt("quantiteproduit"), desResultats.getFloat("totalHT"), 
-						desResultats.getFloat("totalTTC"), desResultats.getFloat("tvaCommande"),
+						desResultats.getInt("quantiteproduit"), 
 						desResultats.getString("statut"),
-						desResultats.getString("dateCommande")
+						desResultats.getString("dateCommande"),
+						desResultats.getFloat("tvaCommande"),
+						desResultats.getFloat("totalHT"), 
+						desResultats.getFloat("totalTTC")
 						);
 				// on ajoute le Commande dans l'ArrayList
 				lesCommandes.add(uneCommande);
@@ -130,10 +133,12 @@ public class ModeleCommande {
 			if (unResultat.next()) {
                  uneCommande = new Commande(unResultat.getInt("idcommande"),
                 unResultat.getInt("iduser"), unResultat.getInt("idproduit"),
-                unResultat.getInt("quantiteproduit"), unResultat.getFloat("totalHT"), 
-                unResultat.getFloat("totalTTC"), unResultat.getFloat("tvaCommande"),
-                unResultat.getString("statut"),
-                unResultat.getString("dateCommande")
+                unResultat.getInt("quantiteproduit"),
+				unResultat.getString("statut"),
+                unResultat.getString("dateCommande"),
+				unResultat.getFloat("tvaCommande"),
+				 unResultat.getFloat("totalHT"), 
+                unResultat.getFloat("totalTTC")
                 );
 			}
 			unStat.close();

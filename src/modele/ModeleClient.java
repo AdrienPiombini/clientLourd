@@ -8,7 +8,8 @@ import java.util.ArrayList;
 import controleur.Client;
 
 public class ModeleClient {
-    private static Bdd uneBdd = new Bdd("Localhost:3306", "dsa", "adrien", "adrien");
+    //private static Bdd uneBdd = new Bdd("Localhost:3306", "dsa", "adrien", "adrien");
+	private static Bdd uneBdd = new Bdd();
 
     public static void insertClient(Client unClient) {
 		String requete = "insert into client values (null, '" + unClient.getEmail() + "','" + unClient.getMdp() + "','"

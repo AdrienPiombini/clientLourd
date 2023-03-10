@@ -8,7 +8,8 @@ import controleur.Produit;
 
 public class ModeleProduit 
 {
-	private static Bdd uneBdd = new Bdd("localhost:3306","dsa","adrien","adrien");
+	//private static Bdd uneBdd = new Bdd("localhost:3306","dsa","adrien","adrien");
+	private static Bdd uneBdd = new Bdd();
 	
 	public static void insertProduit(Produit unProduit)
 	{

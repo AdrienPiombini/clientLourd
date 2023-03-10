@@ -4,15 +4,19 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import controleur.C_Technicien;
+import controleur.Tableau;
 import controleur.Technicien;
 
 public class PanelTechnicien extends PanelPrincipal implements ActionListener {
@@ -26,6 +30,8 @@ public class PanelTechnicien extends PanelPrincipal implements ActionListener {
 	private JTextField txtDateEmb = new JTextField();
 	private JTextField txtDateDept = new JTextField();
 
+	private JTable tableTechniciens;
+	private Tableau unTableau;
 
 	private JButton btAnnuler = new JButton("Annuler");
 	private JButton btEnregistrer = new JButton("Enregistrer");
@@ -58,11 +64,42 @@ public class PanelTechnicien extends PanelPrincipal implements ActionListener {
 		// ajout du panelform au panel Clients
 		this.add(this.panelForm);
 
+		//construction de la JTable 
+		String entetes[] = { "ID User", "Nom", "Prenom", "Email", "DateMdp", "Roles", "Diplome", "dateEmb", "dateDept" };
+		Object[][] donnees = this.getDonnees();
+		this.unTableau = new Tableau(donnees, entetes);
+		this.tableTechniciens = new JTable(this.unTableau);
+		JScrollPane uneScroll = new JScrollPane(this.tableTechniciens);
+		uneScroll.setBounds(360, 80, 460, 250);
+
+		this.add(uneScroll);
+
 		// rendre les boutons ecoutables
 		this.btAnnuler.addActionListener(this);
 		this.btEnregistrer.addActionListener(this);
 	}
 
+
+	public Object[][] getDonnees() {
+		ArrayList<Technicien> lesTechniciens = C_Technicien.selectAllTechniciens();
+		Object[][] matrice = new Object[lesTechniciens.size()][9];
+		int i = 0;
+		for (Technicien unTechnicien : lesTechniciens) {
+			matrice[i][0] = unTechnicien.getIduser();
+			matrice[i][1] = unTechnicien.getNom();
+			matrice[i][2] = unTechnicien.getPrenom();
+			matrice[i][3] = unTechnicien.getEmail();
+			matrice[i][4] = unTechnicien.getDatemdp();
+			matrice[i][5] = unTechnicien.getRoles();
+			matrice[i][6] = unTechnicien.getDiplome();
+			matrice[i][7] = unTechnicien.getDateEmb();
+			matrice[i][8] = unTechnicien.getDateDept();
+
+			i++;
+		}
+		return matrice;
+	}
+	
 	public void viderChamps() {
 		this.txtEmail.setText("");
 		this.txtMdp.setText("");

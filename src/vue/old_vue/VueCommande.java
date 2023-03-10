@@ -6,26 +6,8 @@ import controleur.Commande;
 
 public class VueCommande {
     public static Commande saisirCommande() {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Donner le idcommande");
-		int idcommande = sc.nextInt();
-		System.out.println("Donner iduser ");
-		int  iduser = sc.nextInt();
-		System.out.println("Donner idproduit");
-		int idproduit = sc.nextInt();
-        System.out.println("Donner le statut");
-		String statut = sc.next();
-        System.out.println("Donner la date de la commande");
-		String datecommande = sc.next();
-        System.out.println("Donner la quantite");
-		int quantite = sc.nextInt();
-        System.out.println("Donner le tva");
-		float tvaCommande = sc.nextFloat();
-		System.out.println("Donner le totalHT ");
-		float totalHT = sc.nextFloat();
-        System.out.println("Donner le total TTC ");
-		float totalTTC = sc.nextFloat();
-		Commande uneCommande = new Commande(idcommande, iduser, idproduit, quantite, totalHT, totalTTC, tvaCommande, statut, datecommande);
+		
+		Commande uneCommande = new Commande();
 		return uneCommande;
 	}
 

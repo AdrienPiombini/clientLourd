@@ -19,6 +19,14 @@ public class Bdd {
 		this.mdp = mdp;
 	}
 
+	public Bdd(){
+		this.maConnexion= null;
+		this.serveur = "Localhost:8889";
+		this.bdd =  "dsa";
+		this.user = "root";
+		this.mdp = "root";
+	}
+
 	public void chargerPilote() {
 		try {
 

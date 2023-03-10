@@ -41,7 +41,7 @@ public class VueGenerale extends JFrame implements ActionListener {
     public VueGenerale(){
         this.setTitle("Gestion du site Filelec");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setResizable(false);
+        this.setResizable(true);
         this.setBounds(100,100,900,500);
         this.getContentPane().setBackground(new Color (234, 176, 69));
         this.setLayout(null);

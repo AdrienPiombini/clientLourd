@@ -11,6 +11,8 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import controleur.C_Users;
@@ -19,6 +21,7 @@ import controleur.C_Produit;
 import controleur.Users;
 import controleur.Commande;
 import controleur.Produit;
+import controleur.Tableau;
 
 public class PanelCommande extends PanelPrincipal implements ActionListener
 {
@@ -32,6 +35,9 @@ public class PanelCommande extends PanelPrincipal implements ActionListener
 	private JComboBox<String> cbxIdProduit = new JComboBox<String>(); 
 	private JButton btAnnuler = new JButton("Annuler"); 
 	private JButton btEnregistrer= new JButton("Enregistrer");
+	
+	private JTable tableCommandes;
+	private Tableau unTableau;
 	
 	public PanelCommande ()
 	{
@@ -55,6 +61,15 @@ public class PanelCommande extends PanelPrincipal implements ActionListener
 		this.panelForm.add(this.btEnregistrer);
 		//ajout du panelform à au panelUsers
 		this.add(this.panelForm);
+		//construction de la JTable 
+		String entetes[] = { "ID Commande", "iduser", "idproduit", "quantiteproduit", "statut", "dateComande", "tvaCommande", "totalHT", "totalTTC"};
+		Object[][] donnees = this.getDonnees();
+		this.unTableau = new Tableau(donnees, entetes);
+		this.tableCommandes = new JTable(this.unTableau);
+		JScrollPane uneScroll = new JScrollPane(this.tableCommandes);
+		uneScroll.setBounds(360, 80, 460, 250);
+
+		this.add(uneScroll);
 		
 		//remplir les CBX IdUser et IdProduit 
 		this.remplirCBX (); 
@@ -86,6 +101,25 @@ public class PanelCommande extends PanelPrincipal implements ActionListener
 		}
         
         
+	}
+
+	public Object[][] getDonnees() {
+		ArrayList<Commande> lesCommandes = C_Commande.selectAllCommandes();
+		Object[][] matrice = new Object[lesCommandes.size()][9];
+		int i = 0;
+		for (Commande unCommande : lesCommandes) {
+			matrice[i][0] = unCommande.getIdcommande();
+			matrice[i][1] = unCommande.getIduser();
+			matrice[i][2] = unCommande.getIdproduit();
+			matrice[i][3] = unCommande.getQuantite();
+			matrice[i][4] = unCommande.getStatut();
+			matrice[i][5] = unCommande.getDateCommande();
+			matrice[i][6] = unCommande.getTvaCommande();
+			matrice[i][7] = unCommande.getTotalHT();
+			matrice[i][8] = unCommande.getTotalTTC();
+			i++;
+		}
+		return matrice;
 	}
 
 	public void viderChamps ()

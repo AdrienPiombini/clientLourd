@@ -37,16 +37,7 @@ public class C_Intervention {
 		System.out.println("Modificiation du Intervention réussie.");
 	}
 
-	public static void selectAllInterventions() {
-		ArrayList<Intervention> lesInterventions;
-		System.out.println("________LISTE DES INTERVENTIONS________");
-		// on récupère les Interventions
-		lesInterventions = ModeleIntervention.selectAllIntervention();
-		// on parcours l'ArrayList
-		for (Intervention uneIntervention : lesInterventions) {
-			// on affiche le Intervention
-			VueIntervention.afficherIntervention(uneIntervention);
-		}
-
+	public static ArrayList<Intervention> selectAllInterventions() {
+		return  ModeleIntervention.selectAllIntervention();	
 	}
 }

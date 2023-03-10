@@ -29,7 +29,7 @@ public class Commande {
         this.dateCommande = dateCommande;
     }
 
-    public Commande(int idcommande, int iduser, int idproduit, int quantite, float totalHT, float totalTTC, float tvaCommande, String statut, String dateCommande){
+    public Commande(int idcommande, int iduser, int idproduit, int quantite, String statut, String dateCommande, float tvaCommande, float totalHT, float totalTTC){
         this.idcommande = idcommande;
         this.iduser = iduser; 
         this.idproduit = idproduit; 

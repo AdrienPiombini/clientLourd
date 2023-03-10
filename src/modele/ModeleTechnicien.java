@@ -8,8 +8,9 @@ import controleur.Technicien;
 
 public class ModeleTechnicien {
 
-	private static Bdd uneBdd = new Bdd("localhost:3306", "dsa", "adrien", "adrien");
-
+	//private static Bdd uneBdd = new Bdd("localhost:3306", "dsa", "adrien", "adrien");
+    private static Bdd uneBdd = new Bdd();
+    
     public static void insertTechnicien(Technicien unTechnicien) {
         String requete = "INSERT INTO technicien VALUES ( null,'"
                 + unTechnicien.getEmail() + "', '"

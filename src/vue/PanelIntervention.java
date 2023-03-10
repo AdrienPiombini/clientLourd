@@ -11,6 +11,8 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import controleur.C_Client;
@@ -18,6 +20,7 @@ import controleur.C_Intervention;
 import controleur.C_Technicien;
 import controleur.Client;
 import controleur.Intervention;
+import controleur.Tableau;
 import controleur.Technicien;
 
 public class PanelIntervention extends PanelPrincipal implements ActionListener
@@ -32,6 +35,8 @@ public class PanelIntervention extends PanelPrincipal implements ActionListener
 	private JComboBox<String> cbxStatut = new JComboBox<String>(typeStatut); 
 	private JComboBox<String> cbxIdClient = new JComboBox<String>(); 
 	private JComboBox<String> cbxIdTechnicien = new JComboBox<String>(); 
+	private JTable tableInterventions;
+	private Tableau unTableau;
 	
 	private JButton btAnnuler = new JButton("Annuler"); 
 	private JButton btEnregistrer= new JButton("Enregistrer");
@@ -41,7 +46,7 @@ public class PanelIntervention extends PanelPrincipal implements ActionListener
 		super (); 
 		this.titre.setText("_____Gestion des Interventions _____");
 		//construction du Panel Form 
-		this.panelForm.setBounds(20, 60, 300, 250);
+		this.panelForm.setBounds(20, 40, 300, 250);
 		this.panelForm.setBackground(new Color (234, 176, 69));
 		this.panelForm.setLayout(new GridLayout(8,2));
 		this.panelForm.add(new JLabel("Libelle : ")); 
@@ -62,6 +67,13 @@ public class PanelIntervention extends PanelPrincipal implements ActionListener
 		this.panelForm.add(this.btEnregistrer);
 		//ajout du panelform à au panelClients
 		this.add(this.panelForm);
+		//construction de la JTable 
+		String entetes[] = { "IDintervention", "Libelle", "Date Intervention", "Statut", "PrixHT", "PrixTTC" , "iduser", "idtechnicien",};
+		Object[][] donnees = this.getDonnees();
+		this.unTableau = new Tableau(donnees, entetes);
+		this.tableInterventions = new JTable(this.unTableau);
+		JScrollPane uneScroll = new JScrollPane(this.tableInterventions);
+		uneScroll.setBounds(360, 80, 460, 250);
 		
 		//remplir les CBX Idclient et Idtechnicien 
 		this.remplirCBX (); 
@@ -91,8 +103,24 @@ public class PanelIntervention extends PanelPrincipal implements ActionListener
 		{
 			this.cbxIdTechnicien.addItem(unTechnicien.getIduser()+"-"+unTechnicien.getNom());
 		}
-        
-        
+	}
+
+	public Object[][] getDonnees() {
+		ArrayList<Intervention> lesInterventions = C_Intervention.selectAllInterventions();
+		Object[][] matrice = new Object[lesInterventions.size()][8];
+		int i = 0;
+		for (Intervention unIntervention : lesInterventions) {
+			matrice[i][0] = unIntervention.getIdintervention();
+			matrice[i][1] = unIntervention.getLibelle();
+			matrice[i][2] = unIntervention.getDateintervention();
+			matrice[i][3] = unIntervention.getStatut();
+			matrice[i][4] = unIntervention.getPrixHT();
+			matrice[i][5] = unIntervention.getPrixTTC();
+			matrice[i][6] = unIntervention.getIduser();
+			matrice[i][7] = unIntervention.getIdtechnicien();
+			i++;
+		}
+		return matrice;
 	}
 
 	public void viderChamps ()
@@ -102,6 +130,7 @@ public class PanelIntervention extends PanelPrincipal implements ActionListener
 		this.txtPrixHT.setText("");
 		this.txtPrixTTC.setText("");
 	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == this.btAnnuler)

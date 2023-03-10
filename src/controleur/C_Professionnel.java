@@ -42,18 +42,8 @@ public class C_Professionnel {
 		System.out.println("Modification du Professionnel réussie.");
 	}
 	
-	public static void selectAllProfessionnels ()
-	{
-		ArrayList<Professionnel> lesProfessionnels;
-		System.out.println("_____ LISTE DES ProfessionnelS _____");
-		
-		// On récupère les Professionnels 
-		lesProfessionnels = ModeleProfessionnel.selectAllProfessionnel();
-		// On parcours l'ArrayList
-		for (Professionnel unProfessionnel : lesProfessionnels)
-		{
-		// On affiche le Professionnel 
-			VueProfessionnel.afficherProfessionnel(unProfessionnel);
-		}
+	public static ArrayList<Professionnel> selectAllProfessionnels (){
+	return  ModeleProfessionnel.selectAllProfessionnel();
 	}
+	
 }

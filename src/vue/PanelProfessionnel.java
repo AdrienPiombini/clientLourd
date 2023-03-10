@@ -4,16 +4,20 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import controleur.C_Professionnel;
 import controleur.Professionnel;
+import controleur.Tableau;
 
 public class PanelProfessionnel extends PanelPrincipal implements ActionListener {
 
@@ -27,6 +31,10 @@ public class PanelProfessionnel extends PanelPrincipal implements ActionListener
 	private JTextField txtVille = new JTextField();
 	private JTextField txtCp = new JTextField();
 	private JTextField txtTelephone = new JTextField();
+	private JTable tableProfessionnels;
+	private Tableau unTableau;
+
+	
 
 
 
@@ -63,6 +71,16 @@ public class PanelProfessionnel extends PanelPrincipal implements ActionListener
 		// ajout du panelform au panel Clients
 		this.add(this.panelForm);
 
+		//construction de la JTable 
+		String entetes[] = { "ID User", "Nom", "numerSiret", "Email", "DateMdp", "Roles", "typeclient", "adresse", "ville", "cp", "telephone" };
+		Object[][] donnees = this.getDonnees();
+		this.unTableau = new Tableau(donnees, entetes);
+		this.tableProfessionnels = new JTable(this.unTableau);
+		JScrollPane uneScroll = new JScrollPane(this.tableProfessionnels);
+		uneScroll.setBounds(360, 80, 460, 250);
+
+		this.add(uneScroll);
+
 		// rendre les boutons ecoutables
 		this.btAnnuler.addActionListener(this);
 		this.btEnregistrer.addActionListener(this);
@@ -93,6 +111,28 @@ public class PanelProfessionnel extends PanelPrincipal implements ActionListener
 		}
 
 	}
+
+	public Object[][] getDonnees() {
+		ArrayList<Professionnel> lesProfessionnels = C_Professionnel.selectAllProfessionnels();
+		Object[][] matrice = new Object[lesProfessionnels.size()][11];
+		int i = 0;
+		for (Professionnel unProfessionnel : lesProfessionnels) {
+			matrice[i][0] = unProfessionnel.getIduser();
+			matrice[i][1] = unProfessionnel.getNom();
+			matrice[i][2] = unProfessionnel.getNumeroSiret();
+			matrice[i][3] = unProfessionnel.getEmail();
+			matrice[i][4] = unProfessionnel.getDatemdp();
+			matrice[i][5] = unProfessionnel.getRoles();
+			matrice[i][6] = unProfessionnel.getTypeclient();
+			matrice[i][7] = unProfessionnel.getAdresse();
+			matrice[i][8] = unProfessionnel.getVille();
+			matrice[i][9] = unProfessionnel.getCp();
+			matrice[i][10] = unProfessionnel.getTelephone();
+			i++;
+		}
+		return matrice;
+	}
+
 
     public void viderChamps() {
 		this.txtEmail.setText("");

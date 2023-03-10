@@ -39,9 +39,9 @@ public class VueConnexion extends JFrame implements ActionListener, KeyListener 
     public VueConnexion(){
         this.setTitle("Gestion du site Filelec");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setResizable(false);
+        this.setResizable(true);
         this.setBounds(100,100,700,300);
-        this.getContentPane().setBackground(new Color(234,176,69));
+        this.getContentPane().setBackground(new Color( 31, 32, 41));
         this.setLayout(null);
 
         // LOGO 

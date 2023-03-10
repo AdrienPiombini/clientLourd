@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import controleur.Particulier;
 
 public class ModeleParticulier {
-    private static Bdd uneBdd = new Bdd("Localhost:3306", "dsa", "adrien", "adrien");
+    //private static Bdd uneBdd = new Bdd("Localhost:3306", "dsa", "adrien", "adrien");
+	private static Bdd uneBdd = new Bdd();
 
     public static void insertParticulier(Particulier unParticulier) {
 		String requete = "insert into particulier values (null, '" + unParticulier.getEmail() + "','" + unParticulier.getMdp() + "','"

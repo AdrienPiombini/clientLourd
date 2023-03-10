@@ -45,15 +45,11 @@ public class C_Commande {
 		System.out.println("Modificiation du Commande réussie.");
 	}
 
-	public static void selectAllCommandes() {
-		ArrayList<Commande> lesCommandes;
-		System.out.println("________LISTE DES CommandeS________");
-		// on récupère les Commandes
-		lesCommandes = ModeleCommande.selectAllCommande();
-		// on parcours l'ArrayList
-		for (Commande uneCommande : lesCommandes) {
-			// on affiche le Commande
-			VueCommande.afficherCommande(uneCommande);
-		}
+	
+	public static ArrayList<Commande> selectAllCommandes() {
+		 return ModeleCommande.selectAllCommande();
 	}
 }
+
+
+

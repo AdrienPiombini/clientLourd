@@ -8,8 +8,9 @@ import controleur.Professionnel;
 
 public class ModeleProfessionnel {
 
-	private static Bdd uneBdd = new Bdd("localhost:3306", "dsa", "adrien", "adrien");
-
+	//private static Bdd uneBdd = new Bdd("localhost:3306", "dsa", "adrien", "adrien");
+    private static Bdd uneBdd = new Bdd();
+    
     public static void insertProfessionnel(Professionnel unProfessionnel) {
         String requete = "INSERT INTO professionnel VALUES ( null,'"
                 + unProfessionnel.getEmail() + "', '"

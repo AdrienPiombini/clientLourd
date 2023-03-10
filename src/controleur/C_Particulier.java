@@ -38,16 +38,7 @@ public class C_Particulier {
 		System.out.println("Modificiation du client réussie.");
 	}
 
-	public static void selectAllParticulier() {
-		ArrayList<Particulier> lesParticuliers;
-		System.out.println("________LISTE DES PARTICULIERS_________");
-		// on récupère les clients
-		lesParticuliers = ModeleParticulier.selectAllParticulier();
-		// on parcours l'ArrayList
-		for (Particulier unParticulier : lesParticuliers) {
-			// on affiche le client
-			VueParticulier.afficherParticulier(unParticulier);
-		}
-
+	public static ArrayList<Particulier> selectAllParticulier() {
+		return  ModeleParticulier.selectAllParticulier();
 	}
 }

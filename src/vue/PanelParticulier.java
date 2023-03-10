@@ -4,16 +4,20 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import controleur.C_Particulier;
 import controleur.Particulier;
+import controleur.Tableau;
 
 public class PanelParticulier extends PanelPrincipal implements ActionListener {
 
@@ -27,6 +31,9 @@ public class PanelParticulier extends PanelPrincipal implements ActionListener {
 	private JTextField txtVille = new JTextField();
 	private JTextField txtCp = new JTextField();
 	private JTextField txtTelephone = new JTextField();
+
+	private JTable tableParticuliers;
+	private Tableau unTableau;
 
 
 
@@ -63,9 +70,40 @@ public class PanelParticulier extends PanelPrincipal implements ActionListener {
 		// ajout du panelform au panel Clients
 		this.add(this.panelForm);
 
+		//construction de la JTable 
+		String entetes[] = { "ID User", "Nom", "Prenom", "Email", "DateMdp", "Roles" , "typeclient", "adresse", "ville", "cp", "telephone"};
+		Object[][] donnees = this.getDonnees();
+		this.unTableau = new Tableau(donnees, entetes);
+		this.tableParticuliers = new JTable(this.unTableau);
+		JScrollPane uneScroll = new JScrollPane(this.tableParticuliers);
+		uneScroll.setBounds(360, 80, 460, 250);
+
+		this.add(uneScroll);
+
 		// rendre les boutons ecoutables
 		this.btAnnuler.addActionListener(this);
 		this.btEnregistrer.addActionListener(this);
+	}
+
+	public Object[][] getDonnees() {
+		ArrayList<Particulier> lesParticuliers = C_Particulier.selectAllParticulier();
+		Object[][] matrice = new Object[lesParticuliers.size()][11];
+		int i = 0;
+		for (Particulier unParticulier : lesParticuliers) {
+			matrice[i][0] = unParticulier.getIduser();
+			matrice[i][1] = unParticulier.getNom();
+			matrice[i][2] = unParticulier.getPrenom();
+			matrice[i][3] = unParticulier.getEmail();
+			matrice[i][4] = unParticulier.getDatemdp();
+			matrice[i][5] = unParticulier.getRoles();
+			matrice[i][6] = unParticulier.getTypeclient();
+			matrice[i][7] = unParticulier.getAdresse();
+			matrice[i][8] = unParticulier.getVille();
+			matrice[i][9] = unParticulier.getCp();
+			matrice[i][10] = unParticulier.getTelephone();
+			i++;
+		}
+		return matrice;
 	}
 
 	@Override

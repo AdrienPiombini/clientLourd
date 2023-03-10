@@ -27,16 +27,8 @@ public class C_Admin {
 		System.out.println("Modificiation de l'admin réussie.");
 	}
 
-	public static void selectAllAdmin() {
-		ArrayList<Admin> lesAdmins;
-		System.out.println("________LISTE DES ADMINS_________");
-		// on récupère les clients
-		lesAdmins = ModeleAdmin.selectAllAdmin();
-		// on parcours l'ArrayList
-		for (Admin unAdmin : lesAdmins) {
-			// on affiche le client
-			VueAdmin.afficherAdmin(unAdmin);
-		}
+	public static ArrayList<Admin>  selectAllAdmin() {
+		return ModeleAdmin.selectAllAdmin();
 
 	}
 

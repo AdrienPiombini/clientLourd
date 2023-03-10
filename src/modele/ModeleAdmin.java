@@ -7,7 +7,8 @@ import controleur.Admin;
 
 
 public class ModeleAdmin {
-    private static Bdd uneBdd = new Bdd("Localhost:3306", "dsa", "adrien", "adrien");
+    //private static Bdd uneBdd = new Bdd("Localhost:3306", "dsa", "adrien", "adrien");
+	private static Bdd uneBdd = new Bdd();
 
     public static void insertAdmin(Admin unAdmin) {
 		String requete = "insert into admin values (null, '" + unAdmin.getEmail() 
