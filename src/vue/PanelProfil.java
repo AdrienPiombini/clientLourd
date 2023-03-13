@@ -39,18 +39,18 @@ public class PanelProfil extends PanelPrincipal implements ActionListener {
 		super();
 		this.titre.setText("_______ MON PROFIL _______");
 		// construction du Panel Form
-		this.panelForm.setBounds(350, 50, 300, 240);
-		this.panelForm.setBackground(new Color(234, 176, 69));
+		this.panelForm.setBounds(350, 50, 300, 340);
+		this.panelForm.setBackground(new Color(224, 224, 224));
 		this.panelForm.setLayout(new GridLayout(7, 2));
-		this.panelForm.add(new JLabel("Nom Admin : "));
+		this.panelForm.add(new JLabel("Nom : "));
 		this.panelForm.add(this.txtNom);
-		this.panelForm.add(new JLabel("Prénom Admin : "));
+		this.panelForm.add(new JLabel("Prénom : "));
 		this.panelForm.add(this.txtPrenom);
-		this.panelForm.add(new JLabel("Email Admin : "));
+		this.panelForm.add(new JLabel("Email : "));
 		this.panelForm.add(this.txtEmail);
         this.panelForm.add(new JLabel("Roles: "));
 		this.panelForm.add(this.txtRole);
-		this.panelForm.add(new JLabel("MDP Admin : "));
+		this.panelForm.add(new JLabel("MDP : "));
 		this.panelForm.add(this.txtMdp);
         this.panelForm.add(new JLabel("DATE MDP: "));
 		this.panelForm.add(this.txtDateMdp);
@@ -61,8 +61,8 @@ public class PanelProfil extends PanelPrincipal implements ActionListener {
 		this.panelForm.setVisible(false);
 
 		// installation du TextArea
-		this.txtInfos.setBounds(50, 80, 200, 180);
-		this.txtInfos.setBackground(new Color(234, 176, 69));
+		this.txtInfos.setBounds(50, 80, 250, 280 );
+		this.txtInfos.setBackground(new Color(224, 224, 224));
 
 		this.unAdmin = VueConnexion.getAdmin();
 		this.txtInfos.setText("___________ INFOS PERSONNELLES _________\n\n" 
@@ -76,15 +76,15 @@ public class PanelProfil extends PanelPrincipal implements ActionListener {
 
 		this.add(this.txtInfos);
 
-		// remplir les infos dans le formualaire
+		// remplir les infos dans le formulaire
 		this.txtNom.setText(this.unAdmin.getNom());
 		this.txtPrenom.setText(this.unAdmin.getPrenom());
 		this.txtEmail.setText(this.unAdmin.getEmail());
-		this.txtRole.setText(this.unAdmin.getRoles());
 		this.txtMdp.setText(this.unAdmin.getMdp());
 		this.txtDateMdp.setText(this.unAdmin.getDatemdp());
+		this.txtRole.setText(this.unAdmin.getRoles());
 
-		this.btModifier.setBounds(80, 260, 100, 20);
+		this.btModifier.setBounds(80, 360, 100, 20);
 		this.add(this.btModifier);
 
 		// rendre le boutons ecoutables

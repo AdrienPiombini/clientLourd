@@ -46,7 +46,7 @@ public class PanelParticulier extends PanelPrincipal implements ActionListener {
 
 		// Construction du Panel Form
 		this.panelForm.setBounds(20, 40, 300, 250);
-		this.panelForm.setBackground(new Color(234, 176, 69));
+		this.panelForm.setBackground(new Color(224, 224, 224));
 		this.panelForm.setLayout(new GridLayout(9, 2));
 		this.panelForm.add(new JLabel("Email Particulier : "));
 		this.panelForm.add(this.txtEmail);
@@ -125,6 +125,14 @@ public class PanelParticulier extends PanelPrincipal implements ActionListener {
             Particulier unParticulier = new Particulier(email, mdp, nom, adresse, ville, cp, telephone, prenom) ;
             // on en l'enregistre dans la base de données
             C_Particulier.insertParticulier(unParticulier);
+
+			// ajout du client dans le tableau
+			unParticulier = C_Particulier.selectWhereParticulier(email);
+			Object ligne[] = { unParticulier.getIduser(), unParticulier.getNom(), unParticulier.getPrenom(),
+				unParticulier.getDatemdp(), unParticulier.getMdp(),
+				unParticulier.getEmail(), unParticulier.getRoles(), unParticulier.getTypeclient(), unParticulier.getAdresse(),
+				unParticulier.getVille(), unParticulier.getCp(), unParticulier.getTelephone() };
+			this.unTableau.insertLigne(ligne);
             		
 			JOptionPane.showMessageDialog(this, "Particulier inséré avec succés !");
 			this.viderChamps();

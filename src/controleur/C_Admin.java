@@ -29,11 +29,14 @@ public class C_Admin {
 
 	public static ArrayList<Admin>  selectAllAdmin() {
 		return ModeleAdmin.selectAllAdmin();
-
 	}
 
 	public static Admin connexionAdmin(String email, String mdp) {
         return ModeleAdmin.connexionAdmin(email, mdp);
     }
+
+	public static Admin selectWhereAdmin(String email){
+		return ModeleAdmin.selectWhereAdmin(email);
+	}
 
 }

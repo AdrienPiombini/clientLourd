@@ -41,4 +41,8 @@ public class C_Particulier {
 	public static ArrayList<Particulier> selectAllParticulier() {
 		return  ModeleParticulier.selectAllParticulier();
 	}
+
+	public static Particulier selectWhereParticulier(String email){
+		return ModeleParticulier.selectWhereParticulier(email);
+	}
 }

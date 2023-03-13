@@ -122,5 +122,33 @@ public class ModeleProduit
 		}
 		return unProduit;
 	}
+	
+	public static Produit selectWhereProduit (String nomProduit)
+	{
+		String requete = "select * from produit where nomProduit="+nomProduit+";";
+		Produit unProduit = null;
 		
+		try {
+			uneBdd.seConnecter();
+			Statement unStat = uneBdd.getMaConnexion().createStatement();
+			// recuperation un seul client resultat
+			ResultSet unResultat = unStat.executeQuery(requete);
+			// on teste si on a un seul resultat 
+			if (unResultat.next())
+				{
+					unProduit = new Produit (
+							unResultat.getInt("idProduit"), unResultat.getString("nomProduit"),
+							unResultat.getFloat("prixProduit"), unResultat.getString("description"), unResultat.getInt("quantite")
+							);
+				}
+			unStat.close();
+			uneBdd.seDeConnecter();
+			}
+		catch (Exception exp)
+		{
+			System.out.println("Erreur d'execution :" +requete);
+			
+		}
+		return unProduit;
+	}
 }

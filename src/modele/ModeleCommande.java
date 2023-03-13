@@ -10,7 +10,7 @@ public class ModeleCommande {
 	private static Bdd uneBdd = new Bdd();
 	
 	public static int selectDerniereCommande(){
-		String requete = "select max(idcommande) from commande ;";
+		String requete = "select max(idcommande) +1 from commande ;";
 		int idDerniereCommande = 0; 
 		try{
 			uneBdd.seConnecter();
@@ -28,7 +28,7 @@ public class ModeleCommande {
 	}
 
 	public static void insertCommande(Commande uneCommande) {
-		String requete = "insert into Commande values ("+ uneCommande.getIdcommande() + ","
+		String requete = "insert into commande values ("+ uneCommande.getIdcommande() + ","
 				+ uneCommande.getIduser() + "," + uneCommande.getIdproduit() + "," + uneCommande.getQuantite()
                 + ",'" + uneCommande.getStatut() + "','"+ uneCommande.getDateCommande()
 				+ "'," + uneCommande.getTvaCommande() + "," 
@@ -59,7 +59,7 @@ public class ModeleCommande {
 	}
 
 	public static void deleteCommande(int idCommande) {
-		String requete = "delete from Commande where idCommande=" + idCommande + ";";
+		String requete = "delete from commande where idCommande=" + idCommande + ";";
 		try {
 			uneBdd.seConnecter();
 			Statement unStat = uneBdd.getMaConnexion().createStatement();
@@ -72,7 +72,7 @@ public class ModeleCommande {
 	}
 
 	public static void updateCommande(Commande uneCommande) {
-		String requete = "update Commande set dateCommande='"
+		String requete = "update commande set dateCommande='"
 				+ uneCommande.getDateCommande() + "',statut='" + uneCommande.getStatut() + "',totalHT='"+ uneCommande.getTotalHT()
                 + "',totalTTC='" + uneCommande.getTotalTTC() 
                 + "',idproduit='" + uneCommande.getIdproduit()
@@ -121,8 +121,39 @@ public class ModeleCommande {
 		return lesCommandes;
 	}
 
-	public static Commande selectWhereCommande(int idCommande) {
-		String requete = " select * from Commande where idCommande = " + idCommande + ";";
+	public static ArrayList<Commande> selectWhereLaCommande(int idCommande) {
+		String requete = " select * from commande where idCommande = " + idCommande + ";";
+		ArrayList<Commande> lesCommandes = new ArrayList<Commande>();
+		try {
+			uneBdd.seConnecter();
+			Statement unStat = uneBdd.getMaConnexion().createStatement();
+			// recuperation un seul Commande resultat
+			ResultSet desResultats = unStat.executeQuery(requete);
+			// on teste si on a un seul résultat
+			while (desResultats.next()) {
+				Commande uneCommande = new Commande(desResultats.getInt("idcommande"),
+                desResultats.getInt("iduser"), desResultats.getInt("idproduit"),
+                desResultats.getInt("quantiteproduit"),
+				desResultats.getString("statut"),
+                desResultats.getString("dateCommande"),
+				desResultats.getFloat("tvaCommande"),
+				 desResultats.getFloat("totalHT"), 
+                desResultats.getFloat("totalTTC")
+                );
+			// on ajoute le Commande dans l'ArrayList
+			lesCommandes.add(uneCommande);
+			}
+			unStat.close();
+			uneBdd.seDeConnecter();
+		} catch (SQLException exp) {
+			System.out.println("Erreur d'execution : " + requete);
+		}
+		return lesCommandes;
+	}
+
+
+	public static Commande selectWhereUneCommande(int idCommande) {
+		String requete = " select * from commande where idCommande = " + idCommande + ";";
 		Commande uneCommande = null;
 		try {
 			uneBdd.seConnecter();
@@ -131,15 +162,17 @@ public class ModeleCommande {
 			ResultSet unResultat = unStat.executeQuery(requete);
 			// on teste si on a un seul résultat
 			if (unResultat.next()) {
-                 uneCommande = new Commande(unResultat.getInt("idcommande"),
-                unResultat.getInt("iduser"), unResultat.getInt("idproduit"),
-                unResultat.getInt("quantiteproduit"),
+				uneCommande = new Commande(
+				unResultat.getInt("idcommande"),
+				unResultat.getInt("iduser"),
+				unResultat.getInt("idproduit"),
+				unResultat.getInt("quantiteproduit"),
 				unResultat.getString("statut"),
-                unResultat.getString("dateCommande"),
+				unResultat.getString("dateCommande"),
 				unResultat.getFloat("tvaCommande"),
-				 unResultat.getFloat("totalHT"), 
-                unResultat.getFloat("totalTTC")
-                );
+				unResultat.getFloat("totalHT"), 
+				unResultat.getFloat("totalTTC")
+				);
 			}
 			unStat.close();
 			uneBdd.seDeConnecter();

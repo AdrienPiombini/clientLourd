@@ -52,4 +52,7 @@ public class C_Technicien {
 	public static ArrayList<Technicien> selectAllTechniciens(){
 		return ModeleTechnicien.selectAllTechnicien(); 
 	}
+	public static Technicien selectWhereTechnicien(String email){
+		return ModeleTechnicien.selectWhereTechnicien(email);
+	}
 }

@@ -11,10 +11,9 @@ public class PanelPrincipal extends JPanel {
 
 	public PanelPrincipal() {
 		// les caractéristique communes aux différents Panels
-		this.setBounds(50, 100, 800, 300);
-		this.setBackground(new Color(234, 176, 79));
+		this.setBounds(50, 50, 1400, 800);
+		this.setBackground(new Color(224, 224, 224));
 		this.setLayout(null);
-
 		this.titre.setBounds(300, 10, 300, 20);
 		this.add(this.titre);
 

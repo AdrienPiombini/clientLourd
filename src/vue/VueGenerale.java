@@ -42,12 +42,14 @@ public class VueGenerale extends JFrame implements ActionListener {
         this.setTitle("Gestion du site Filelec");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(true);
-        this.setBounds(100,100,900,500);
-        this.getContentPane().setBackground(new Color (234, 176, 69));
+        this.setBounds(100,100,1400,900);
+        //Centrer la fenêtre par rapport à l'écran 
+        this.setLocationRelativeTo(null);
+        this.getContentPane().setBackground(new Color (224, 224, 224));
         this.setLayout(null);
 
-        this.panelMenu.setBounds(50,20,800,30);
-        this.panelMenu.setBackground(new Color(234,176,69));
+        this.panelMenu.setBounds(0,0,800,30);
+        this.panelMenu.setBackground(new Color(224, 224, 224));
         this.panelMenu.setLayout(new GridLayout(1,6));
         this.panelMenu.add(this.btProfil);
         this.panelMenu.add(this.choixUsers);

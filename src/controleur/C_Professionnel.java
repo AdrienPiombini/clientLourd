@@ -45,5 +45,9 @@ public class C_Professionnel {
 	public static ArrayList<Professionnel> selectAllProfessionnels (){
 	return  ModeleProfessionnel.selectAllProfessionnel();
 	}
+
+	public static Professionnel selectWhereProfessionnel(String email){
+		return ModeleProfessionnel.selectWhereProfessionnel(email);
+	}
 	
 }

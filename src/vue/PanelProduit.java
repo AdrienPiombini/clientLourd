@@ -38,7 +38,7 @@ public class PanelProduit extends PanelPrincipal implements ActionListener
 		this.titre.setText("_____Gestion des Produits _____");
 		//construction du Panel Form 
 		this.panelForm.setBounds(20, 50, 300, 250);
-		this.panelForm.setBackground(new Color (234, 176, 69));
+		this.panelForm.setBackground(new Color (224, 224, 224));
 		this.panelForm.setLayout(new GridLayout(5,2));
         this.panelForm.add(new JLabel("Nom : ")); 
 		this.panelForm.add(this.txtNomProduit);
@@ -103,11 +103,17 @@ public class PanelProduit extends PanelPrincipal implements ActionListener
 			Float prixProduit = Float.parseFloat(this.txtPrixProduit.getText());
             String description = this.txtDescription.getText();
 			int quantite = Integer.parseInt(this.txtQuantite.getText()); 
-					
+			
 			//instancier un User 
 			Produit unProduit = new Produit(nomProduit, prixProduit, description, quantite);
 			//on l'enregistre dans la base de données 
 			C_Produit.insertProduit(unProduit);
+			// ajout du client dans le tableau
+			unProduit = C_Produit.selectWhereProduit(nomProduit);
+			Object ligne[] = { unProduit.getIdProduit(), unProduit.getNomProduit(), unProduit.getPrixProduit(),
+				unProduit.getQuantite()};
+			this.unTableau.insertLigne(ligne);
+
 			JOptionPane.showMessageDialog(this, " Produit insérée avec succès !");
 			this.viderChamps();
 			

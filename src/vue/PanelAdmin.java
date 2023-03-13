@@ -40,7 +40,7 @@ public class PanelAdmin extends PanelPrincipal implements ActionListener {
 
 		// Construction du Panel Form
 		this.panelForm.setBounds(20, 40, 300, 250);
-		this.panelForm.setBackground(new Color(234, 176, 69));
+		this.panelForm.setBackground(new Color(224, 224, 224));
 		this.panelForm.setLayout(new GridLayout(5, 2));
 		this.panelForm.add(new JLabel("Email Admin : "));
 		this.panelForm.add(this.txtEmail);
@@ -52,7 +52,6 @@ public class PanelAdmin extends PanelPrincipal implements ActionListener {
 		this.panelForm.add(this.txtPrenom);
 		this.panelForm.add(this.btAnnuler);
 		this.panelForm.add(this.btEnregistrer);
-
 		// ajout du panelform au panel Clients
 		this.add(this.panelForm);
 
@@ -109,9 +108,10 @@ public class PanelAdmin extends PanelPrincipal implements ActionListener {
 			// on en l'enregistre dans la base de données
 			C_Admin.insertAdmin(unAdmin);
 
-			// ajout du client dans le tableau
+			// ajout de l'admin dans le tableau
 			unAdmin = C_Admin.selectWhereAdmin(email);
-			Object ligne[] = { unAdmin.getIduser(), unAdmin.getNom(), unAdmin.getPrenom(), unAdmin.getDatemdp(), unAdmin.getMdp(),
+			Object ligne[] = { unAdmin.getIduser(), unAdmin.getNom(), unAdmin.getPrenom(),
+				unAdmin.getDatemdp(), unAdmin.getMdp(),
 				unAdmin.getEmail(), unAdmin.getRoles() };
 			this.unTableau.insertLigne(ligne);
 

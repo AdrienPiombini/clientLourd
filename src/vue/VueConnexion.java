@@ -41,7 +41,10 @@ public class VueConnexion extends JFrame implements ActionListener, KeyListener 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(true);
         this.setBounds(100,100,700,300);
-        this.getContentPane().setBackground(new Color( 31, 32, 41));
+        //Centrer la fenêtre par rapport à l'écran 
+        this.setLocationRelativeTo(null);
+        this.getContentPane().setBackground(new Color(224, 224, 224));
+        
         this.setLayout(null);
 
         // LOGO 
@@ -53,7 +56,7 @@ public class VueConnexion extends JFrame implements ActionListener, KeyListener 
 
         //panel de connexion
         this.panelConnexion.setBounds(360,40,320,200);
-        this.panelConnexion.setBackground(new Color(234,176,69));
+        this.panelConnexion.setBackground(new Color(224, 224, 224));
         this.panelConnexion.setLayout(new GridLayout(3,2));
         //ajout des labels 
         this.panelConnexion.add(new JLabel("Email : "));

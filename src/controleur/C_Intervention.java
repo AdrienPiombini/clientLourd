@@ -28,16 +28,20 @@ public class C_Intervention {
 		System.out.println("Donner l'id a modifier");
 		idIntervention = sc.nextInt();
 		// récuperer le Intervention dans la bdd avant cet id
-		Intervention uneIntervention = ModeleIntervention.selectWhereIntervention(idIntervention);
+		//Intervention uneIntervention = ModeleIntervention.selectWhereIntervention(idIntervention);
 		// modifier les infos du Intervention
-		uneIntervention = VueIntervention.modifierIntervention(uneIntervention);
+		//uneIntervention = VueIntervention.modifierIntervention(uneIntervention);
 		// actualiser les infos dans la bdd
-		ModeleIntervention.updateIntervention(uneIntervention);
+		//ModeleIntervention.updateIntervention(uneIntervention);
 
 		System.out.println("Modificiation du Intervention réussie.");
 	}
 
 	public static ArrayList<Intervention> selectAllInterventions() {
 		return  ModeleIntervention.selectAllIntervention();	
+	}
+
+	public static Intervention selectWhereIntervention(String dateIntervention, int idClient, int idTechnicien){
+		return ModeleIntervention.selectWhereIntervention(dateIntervention, idClient, idTechnicien );
 	}
 }

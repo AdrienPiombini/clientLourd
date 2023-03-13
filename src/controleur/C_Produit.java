@@ -44,4 +44,8 @@ public class C_Produit {
 	public static ArrayList<Produit>  selectAllProduits(){
 		return ModeleProduit.selectAllProduit();
 	}
+
+	public static Produit selectWhereProduit(String nomProduit){
+		return ModeleProduit.selectWhereProduit(nomProduit);
+	}
 }

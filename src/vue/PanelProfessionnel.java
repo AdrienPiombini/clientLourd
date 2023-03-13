@@ -47,7 +47,7 @@ public class PanelProfessionnel extends PanelPrincipal implements ActionListener
 
 		// Construction du Panel Form
 		this.panelForm.setBounds(20, 40, 300, 250);
-		this.panelForm.setBackground(new Color(234, 176, 69));
+		this.panelForm.setBackground(new Color(224, 224, 224));
 		this.panelForm.setLayout(new GridLayout(9, 2));
 		this.panelForm.add(new JLabel("Email : "));
 		this.panelForm.add(this.txtEmail);
@@ -105,6 +105,14 @@ public class PanelProfessionnel extends PanelPrincipal implements ActionListener
             Professionnel unProfessionnel = new Professionnel(email, mdp, nom, adresse, ville, cp, telephone, numeroSiret) ;
             // on en l'enregistre dans la base de données
             C_Professionnel.insertProfessionnel(unProfessionnel);
+
+			// ajout du client dans le tableau
+			unProfessionnel = C_Professionnel.selectWhereProfessionnel(email);
+			Object ligne[] = { unProfessionnel.getIduser(), unProfessionnel.getNom(), unProfessionnel.getNumeroSiret(),
+				unProfessionnel.getDatemdp(), unProfessionnel.getMdp(),
+				unProfessionnel.getEmail(), unProfessionnel.getRoles(), unProfessionnel.getTypeclient(),
+				unProfessionnel.getAdresse(), unProfessionnel.getVille(), unProfessionnel.getCp(), unProfessionnel.getTelephone() };
+			this.unTableau.insertLigne(ligne);
             		
 			JOptionPane.showMessageDialog(this, "Professionnel inséré avec succés !");
 			this.viderChamps();

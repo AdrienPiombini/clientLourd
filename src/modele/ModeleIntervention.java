@@ -85,8 +85,8 @@ public class ModeleIntervention {
 		return lesInterventions;
 	}
 
-	public static Intervention selectWhereIntervention(int idintervention) {
-		String requete = " select * from intervention where idintervention = " + idintervention + ";";
+	public static Intervention selectWhereIntervention(String dateIntervention, int idClient, int idTechnicien) {
+		String requete = " select * from intervention where dateintervention = '" + dateIntervention + "' and iduser = '" + idClient + "' and idtechnicien = '" + idTechnicien + "';";
 		Intervention uneIntervention = null;
 		try {
 			uneBdd.seConnecter();

@@ -42,7 +42,7 @@ public class PanelTechnicien extends PanelPrincipal implements ActionListener {
 
 		// Construction du Panel Form
 		this.panelForm.setBounds(20, 40, 300, 250);
-		this.panelForm.setBackground(new Color(234, 176, 69));
+		this.panelForm.setBackground(new Color(224, 224, 224));
 		this.panelForm.setLayout(new GridLayout(8, 2));
 		this.panelForm.add(new JLabel("Email Technicien : "));
 		this.panelForm.add(this.txtEmail);
@@ -134,9 +134,16 @@ public class PanelTechnicien extends PanelPrincipal implements ActionListener {
 			    Technicien unTechnicien = new Technicien(email, mdp,nom, prenom, diplome, dateEmb, dateDept);
                 // on en l'enregistre dans la base de données
 			    C_Technicien.insertTechnicien(unTechnicien);
+				// ajout du client dans le tableau
+				unTechnicien = C_Technicien.selectWhereTechnicien(email);
+				Object ligne[] = { unTechnicien.getIduser(), unTechnicien.getNom(), unTechnicien.getPrenom(),
+					unTechnicien.getDatemdp(), unTechnicien.getMdp(),
+					unTechnicien.getEmail(), unTechnicien.getRoles(), unTechnicien.getDiplome(), unTechnicien.getDateEmb(), unTechnicien.getDateDept() };
+				this.unTableau.insertLigne(ligne);
+				JOptionPane.showMessageDialog(this, "Technicien inséré avec succés !");
+				this.viderChamps();
             }			
-			JOptionPane.showMessageDialog(this, "Technicien inséré avec succés !");
-			this.viderChamps();
+			
 		}
 
 	}

@@ -47,7 +47,7 @@ public class PanelIntervention extends PanelPrincipal implements ActionListener
 		this.titre.setText("_____Gestion des Interventions _____");
 		//construction du Panel Form 
 		this.panelForm.setBounds(20, 40, 300, 250);
-		this.panelForm.setBackground(new Color (234, 176, 69));
+		this.panelForm.setBackground(new Color (224, 224, 224));
 		this.panelForm.setLayout(new GridLayout(8,2));
 		this.panelForm.add(new JLabel("Libelle : ")); 
 		this.panelForm.add(this.txtLibelle);
@@ -74,6 +74,8 @@ public class PanelIntervention extends PanelPrincipal implements ActionListener
 		this.tableInterventions = new JTable(this.unTableau);
 		JScrollPane uneScroll = new JScrollPane(this.tableInterventions);
 		uneScroll.setBounds(360, 80, 460, 250);
+		this.add(uneScroll);
+
 		
 		//remplir les CBX Idclient et Idtechnicien 
 		this.remplirCBX (); 
@@ -158,6 +160,12 @@ public class PanelIntervention extends PanelPrincipal implements ActionListener
 			Intervention uneIntervention = new Intervention(libelle, dateintervention, statut, prixHT, prixTTC, idclient, idtechnicien);
 			//on l'enregistre dans la base de données 
 			C_Intervention.insertIntervention(uneIntervention);
+			// ajout de l'intervention dans le tableau
+			uneIntervention = C_Intervention.selectWhereIntervention(dateintervention, idclient, idtechnicien);
+			Object ligne[] = { uneIntervention.getIdintervention(), uneIntervention.getLibelle(), uneIntervention.getDateintervention(),
+				uneIntervention.getStatut(), uneIntervention.getPrixHT(), uneIntervention.getPrixTTC(), uneIntervention.getIduser(),
+				uneIntervention.getIdtechnicien()};
+			this.unTableau.insertLigne(ligne);
 			
 			JOptionPane.showMessageDialog(this, " Intervention insérée avec succès !");
 			this.viderChamps();

@@ -21,10 +21,10 @@ public class Bdd {
 
 	public Bdd(){
 		this.maConnexion= null;
-		this.serveur = "Localhost:8889";
+		this.serveur = "Localhost:3306";
 		this.bdd =  "dsa";
-		this.user = "root";
-		this.mdp = "root";
+		this.user = "adrien";
+		this.mdp = "adrien";
 	}
 
 	public void chargerPilote() {

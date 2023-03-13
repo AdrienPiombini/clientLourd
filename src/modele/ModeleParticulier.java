@@ -27,7 +27,7 @@ public class ModeleParticulier {
 	}
 
 	public static void deleteParticulier(String email) {
-		String requete = "delete from Particulier where email='" + email + "';";
+		String requete = "delete from particulier where email='" + email + "';";
 		try {
 			uneBdd.seConnecter();
 			Statement unStat = uneBdd.getMaConnexion().createStatement();
@@ -40,7 +40,7 @@ public class ModeleParticulier {
 	}
 
 	public static void updateParticulier(Particulier unParticulier) {
-		String requete = "update Particulier set email='" + unParticulier.getEmail() + "', mdp ='" + unParticulier.getMdp()
+		String requete = "update particulier set email='" + unParticulier.getEmail() + "', mdp ='" + unParticulier.getMdp()
 				+ "', nom='" + unParticulier.getNom() + "', roles='" + unParticulier.getRoles()
 				+ "', datemdp='" + unParticulier.getDatemdp() 
 				+ "', typeclient='" + unParticulier.getTypeclient() + "', adresse='" + unParticulier.getAdresse() 
@@ -59,7 +59,7 @@ public class ModeleParticulier {
 	}
 
 	public static ArrayList<Particulier> selectAllParticulier() {
-		String requete = " select * from Particulier ;";
+		String requete = " select * from particulier ;";
 		ArrayList<Particulier> lesParticuliers = new ArrayList<Particulier>();
 		try {
 			uneBdd.seConnecter();
@@ -87,7 +87,7 @@ public class ModeleParticulier {
 	}
 
 	public static Particulier selectWhereParticulier(String email) {
-		String requete = " select * from Particulier where email= '" + email + "';";
+		String requete = " select * from particulier where email= '" + email + "';";
 		Particulier unParticulier  = null;
 		try {
 			uneBdd.seConnecter();

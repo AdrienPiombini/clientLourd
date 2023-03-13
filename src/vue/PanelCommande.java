@@ -39,14 +39,15 @@ public class PanelCommande extends PanelPrincipal implements ActionListener
 	private JTable tableCommandes;
 	private Tableau unTableau;
 	
+
 	public PanelCommande ()
 	{
 		super (); 
 		this.titre.setText("_____Gestion des Commandes _____");
 		//construction du Panel Form 
-		this.panelForm.setBounds(20, 60, 300, 250);
-		this.panelForm.setBackground(new Color (234, 176, 69));
-		this.panelForm.setLayout(new GridLayout(8,2));
+		this.panelForm.setBounds(20, 60, 300, 300);
+		this.panelForm.setBackground(new Color (224, 224, 224));
+		this.panelForm.setLayout(new GridLayout(6,2));
         this.panelForm.add(new JLabel("Id commande : ")); 
 		this.panelForm.add(this.txtIdCommande);
         this.panelForm.add(new JLabel("quantité de produit : ")); 
@@ -62,13 +63,14 @@ public class PanelCommande extends PanelPrincipal implements ActionListener
 		//ajout du panelform à au panelUsers
 		this.add(this.panelForm);
 		//construction de la JTable 
-		String entetes[] = { "ID Commande", "iduser", "idproduit", "quantiteproduit", "statut", "dateComande", "tvaCommande", "totalHT", "totalTTC"};
+		String entetes[] = { "ID Commande", "iduser", "idproduit", "quantiteproduit", "statut", "dateComande", "tvaCommande", "totalHT", "totalTTC"}; 
 		Object[][] donnees = this.getDonnees();
 		this.unTableau = new Tableau(donnees, entetes);
 		this.tableCommandes = new JTable(this.unTableau);
 		JScrollPane uneScroll = new JScrollPane(this.tableCommandes);
-		uneScroll.setBounds(360, 80, 460, 250);
+		uneScroll.setBounds(360, 60, 560, 250);
 
+		//ajout de la la jtable contenant la scrollbar
 		this.add(uneScroll);
 		
 		//remplir les CBX IdUser et IdProduit 
@@ -149,6 +151,13 @@ public class PanelCommande extends PanelPrincipal implements ActionListener
 			Commande uneCommande = new Commande(idCommande, idUser, idProduit, quantite, statut);
 			//on l'enregistre dans la base de données 
 			C_Commande.insertPanier(uneCommande);
+			// ajout la commande dans le tableau
+			uneCommande = C_Commande.selectWhereUneCommande(idCommande);
+			Object ligne[] = { uneCommande.getIdcommande(), uneCommande.getIduser(), uneCommande.getIdproduit(),
+				uneCommande.getQuantite(), uneCommande.getStatut(), uneCommande.getDateCommande(), uneCommande.getTvaCommande(),
+				uneCommande.getTotalHT(), uneCommande.getTotalTTC() };
+			this.unTableau.insertLigne(ligne);
+			
 			JOptionPane.showMessageDialog(this, " Commande insérée avec succès !");
 			this.viderChamps();
 			

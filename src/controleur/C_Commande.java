@@ -9,6 +9,7 @@ public class C_Commande {
 	public static int selectDerniereCommande(){
 		return ModeleCommande.selectDerniereCommande();
 	}
+
     public static void insertCommande(Commande uneCommande){
 		ModeleCommande.insertCommande(uneCommande);
 		System.out.println("Insertion réussie du Intervention.");
@@ -36,11 +37,11 @@ public class C_Commande {
 		System.out.println("Donner l'id a modifier");
 		idCommande = sc.nextInt();
 		// récuperer le Commande dans la bdd avant cet id
-		Commande uneCommande = ModeleCommande.selectWhereCommande(idCommande);
+		ArrayList<Commande> uneCommande = ModeleCommande.selectWhereLaCommande(idCommande);
 		// modifier les infos du Commande
-		uneCommande = VueCommande.modifierCommande(uneCommande);
+		//uneCommande = VueCommande.modifierCommande(uneCommande);
 		// actualiser les infos dans la bdd
-		ModeleCommande.updateCommande(uneCommande);
+		//ModeleCommande.updateCommande(uneCommande);
 
 		System.out.println("Modificiation du Commande réussie.");
 	}
@@ -48,6 +49,14 @@ public class C_Commande {
 	
 	public static ArrayList<Commande> selectAllCommandes() {
 		 return ModeleCommande.selectAllCommande();
+	}
+
+	public static ArrayList<Commande> selectWhereLaCommande(int idCommande){
+		return ModeleCommande.selectWhereLaCommande(idCommande);
+	}
+
+	public static Commande selectWhereUneCommande(int idCommande){
+		return ModeleCommande.selectWhereUneCommande(idCommande);
 	}
 }
 
