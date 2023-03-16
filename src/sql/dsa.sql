@@ -104,7 +104,7 @@ idproduit int not null,
 quantiteproduit int, 
 statut enum('en cours', 'validée', 'annulée', 'archivée' ),
 dateCommande date ,
-tvaCommande varchar(4) ,
+tvaCommande FLOAT(9,2) ,
 totalHT float (9,2),
 totalTTC float (9,2),
 constraint pk_panier primary key (idcommande, iduser, idproduit),
@@ -252,7 +252,7 @@ begin
     declare prixprod float; 
     declare HT float;
     declare  TTC float; 
-    insert into commande (idcommande, iduser, idproduit, quantiteproduit, statut, dateCommande, tvaCommande) values (idpan, idu, idprod, qtprod, 'en cours', curdate(), '20%');
+    insert into commande (idcommande, iduser, idproduit, quantiteproduit, statut, dateCommande, tvaCommande) values (idpan, idu, idprod, qtprod, 'en cours', curdate(), '1.2');
     select prixProduit from produit where idproduit = idprod  into prixprod ;
     select  totalHT, totalTTC from commande where idcommande = idpan limit 1  into HT, TTC;
     if HT is null then 

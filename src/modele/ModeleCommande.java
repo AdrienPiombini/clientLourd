@@ -59,7 +59,7 @@ public class ModeleCommande {
 	}
 
 	public static void deleteCommande(int idCommande) {
-		String requete = "delete from commande where idCommande=" + idCommande + ";";
+		String requete = "delete from commande where idcommande=" + idCommande + ";";
 		try {
 			uneBdd.seConnecter();
 			Statement unStat = uneBdd.getMaConnexion().createStatement();
@@ -122,7 +122,7 @@ public class ModeleCommande {
 	}
 
 	public static ArrayList<Commande> selectWhereLaCommande(int idCommande) {
-		String requete = " select * from commande where idCommande = " + idCommande + ";";
+		String requete = " select * from commande where idcommande = " + idCommande + ";";
 		ArrayList<Commande> lesCommandes = new ArrayList<Commande>();
 		try {
 			uneBdd.seConnecter();
@@ -153,7 +153,7 @@ public class ModeleCommande {
 
 
 	public static Commande selectWhereUneCommande(int idCommande) {
-		String requete = " select * from commande where idCommande = " + idCommande + ";";
+		String requete = " select * from commande where idcommande = " + idCommande + ";";
 		Commande uneCommande = null;
 		try {
 			uneBdd.seConnecter();

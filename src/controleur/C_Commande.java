@@ -17,7 +17,7 @@ public class C_Commande {
 
 	public static void insertPanier(Commande uneCommande){
 		ModeleCommande.insertPanier(uneCommande);
-		System.out.println("Insertion réussie du Intervention.");
+		System.out.println("Insertion réussie du commande.");
 	}
 
 	public static void deleteCommande() {

@@ -53,4 +53,9 @@ public class Tableau extends AbstractTableModel {
 
 	}
 
+	public void setDonnees (Object [][] donnees)
+	{
+		this.donnees = donnees; // recopie de matrices.
+		this.fireTableDataChanged();
+	}
 }

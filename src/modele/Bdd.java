@@ -18,13 +18,23 @@ public class Bdd {
 		this.user = user;
 		this.mdp = mdp;
 	}
-
+/*
 	public Bdd(){
 		this.maConnexion= null;
 		this.serveur = "Localhost:3306";
 		this.bdd =  "dsa";
 		this.user = "adrien";
 		this.mdp = "adrien";
+	}
+
+*/
+
+	public Bdd(){
+		this.maConnexion= null;
+		this.serveur = "Localhost:8889";
+		this.bdd =  "dsa";
+		this.user = "root";
+		this.mdp = "root";
 	}
 
 	public void chargerPilote() {

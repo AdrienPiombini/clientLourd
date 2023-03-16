@@ -117,8 +117,8 @@ public class PanelCommande extends PanelPrincipal implements ActionListener
 			matrice[i][4] = unCommande.getStatut();
 			matrice[i][5] = unCommande.getDateCommande();
 			matrice[i][6] = unCommande.getTvaCommande();
-			matrice[i][7] = unCommande.getTotalHT();
-			matrice[i][8] = unCommande.getTotalTTC();
+			matrice[i][7] = unCommande.getTotalHT() ;
+			matrice[i][8] = unCommande.getTotalTTC() ;
 			i++;
 		}
 		return matrice;
@@ -146,17 +146,21 @@ public class PanelCommande extends PanelPrincipal implements ActionListener
 			tab = chaine.split("-"); //explode de PHP 
 			int idProduit = Integer.parseInt(tab[0]);
             String statut = this.cbxStatut.getSelectedItem().toString(); 
+
 			
-			//instancier un User 
+			//instancier une commande
 			Commande uneCommande = new Commande(idCommande, idUser, idProduit, quantite, statut);
 			//on l'enregistre dans la base de données 
 			C_Commande.insertPanier(uneCommande);
-			// ajout la commande dans le tableau
+			/* 
 			uneCommande = C_Commande.selectWhereUneCommande(idCommande);
 			Object ligne[] = { uneCommande.getIdcommande(), uneCommande.getIduser(), uneCommande.getIdproduit(),
 				uneCommande.getQuantite(), uneCommande.getStatut(), uneCommande.getDateCommande(), uneCommande.getTvaCommande(),
 				uneCommande.getTotalHT(), uneCommande.getTotalTTC() };
-			this.unTableau.insertLigne(ligne);
+			this.unTableau.insertLigne(ligne);*/
+
+			Object donnees [][]  = this.getDonnees(); 
+			this.unTableau.setDonnees (donnees);
 			
 			JOptionPane.showMessageDialog(this, " Commande insérée avec succès !");
 			this.viderChamps();
