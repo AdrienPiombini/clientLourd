@@ -54,14 +54,12 @@ public class ModeleTechnicien {
         String requete = "UPDATE technicien SET email = '" 
         		+ unTechnicien.getEmail() + "', mdp = '" 
         		+ unTechnicien.getMdp() + "', nom = '" 
-        		+ unTechnicien.getNom() + "', roles = '" 
-        		+ unTechnicien.getRoles() + "', datemdp = '" 
-        		+ unTechnicien.getDatemdp() + "', prenom = '" 
+        		+ unTechnicien.getNom() + "', prenom = '" 
         		+ unTechnicien.getPrenom() + "', diplome = '" 
         		+ unTechnicien.getDiplome() + "', dateEmb = '" 
         		+ unTechnicien.getDateEmb() + "', dateDept = '" 
-        		+ unTechnicien.getDateDept() + "' WHERE iduser = '" 
-        		+ unTechnicien.getIduser() + "';";
+        		+ unTechnicien.getDateDept() + "' WHERE email = '" 
+        		+ unTechnicien.getEmail() + "';";
         
         try {
             uneBdd.seConnecter();
@@ -87,9 +85,15 @@ public class ModeleTechnicien {
         }
     }
 
-    public static ArrayList<Technicien> selectAllTechnicien() {
+    public static ArrayList<Technicien> selectAllTechnicien(String filtre) {
+        String requete = "";
+		if(filtre.equals("")){
+		 requete = " select * from technicien ;";
+		}else {
+			requete = " select * from technicien where nom like '%" + filtre + "%' or prenom like '%" + filtre
+					+ "%' or email like '%" + filtre + "%' or diplome like '%" + filtre + "%' or dateEmb like '%" + filtre + "%' or dateDept like '%" + filtre + "%';";
+		}
         ArrayList<Technicien> lesTechniciens = new ArrayList<Technicien>();
-        String requete = "SELECT * FROM technicien;";
         try {
             uneBdd.seConnecter();
             Statement unStat = uneBdd.getMaConnexion().createStatement();

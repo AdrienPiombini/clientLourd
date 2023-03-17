@@ -41,12 +41,11 @@ public class ModeleParticulier {
 
 	public static void updateParticulier(Particulier unParticulier) {
 		String requete = "update particulier set email='" + unParticulier.getEmail() + "', mdp ='" + unParticulier.getMdp()
-				+ "', nom='" + unParticulier.getNom() + "', roles='" + unParticulier.getRoles()
-				+ "', datemdp='" + unParticulier.getDatemdp() 
-				+ "', typeclient='" + unParticulier.getTypeclient() + "', adresse='" + unParticulier.getAdresse() 
+				+ "', nom='" + unParticulier.getNom()
+				+ "', adresse='" + unParticulier.getAdresse() 
 				+ "', ville='" + unParticulier.getVille() + "', cp='" + unParticulier.getCp() + "', telephone=" + unParticulier.getTelephone() 
 				+ ", prenom='"+ unParticulier.getPrenom()
-				+ "' where iduser ="+ unParticulier.getIduser() + ";";
+				+ "' where email = '"+ unParticulier.getEmail() + "';";
 		try {
 			uneBdd.seConnecter();
 			Statement unStat = uneBdd.getMaConnexion().createStatement();
@@ -58,8 +57,14 @@ public class ModeleParticulier {
 		}
 	}
 
-	public static ArrayList<Particulier> selectAllParticulier() {
-		String requete = " select * from particulier ;";
+	public static ArrayList<Particulier> selectAllParticulier(String filtre) {
+		String requete = "";
+		if(filtre.equals("")){
+		 requete = " select * from particulier ;";
+		}else {
+			requete = " select * from particulier where nom like '%" + filtre + "%' or prenom like '%" + filtre
+					+ "%' or email like '%" + filtre + "%' or adresse like '%" + filtre + "%' or ville like '%" + filtre + "%' or cp like '%" + filtre + "%' or telephone like '%" + filtre + "%';";
+		}		
 		ArrayList<Particulier> lesParticuliers = new ArrayList<Particulier>();
 		try {
 			uneBdd.seConnecter();

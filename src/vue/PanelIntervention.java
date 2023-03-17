@@ -99,7 +99,7 @@ public class PanelIntervention extends PanelPrincipal implements ActionListener
 		//supprimer ou vider le CBX idtechnicien 
 		this.cbxIdTechnicien.removeAllItems();
 		//récupérer de la base de données tous les techniciens 
-		ArrayList<Technicien> lesTechniciens = C_Technicien.selectAllTechniciens(); 
+		ArrayList<Technicien> lesTechniciens = C_Technicien.selectAllTechniciens(""); 
 		//parcourir lesTechniciens et remplir le CBX 
 		for(Technicien unTechnicien : lesTechniciens)
 		{

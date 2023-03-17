@@ -5,44 +5,6 @@ public class Commande {
     private float totalHT, totalTTC, tvaCommande;
     private String statut, dateCommande ;
 
-    public Commande(){
-        this.idcommande = 0;
-        this.iduser = 0; 
-        this.idproduit = 0; 
-        this. quantite = 0;
-        this.totalHT = 0;
-        this.totalTTC = 0;
-        this.tvaCommande = (float) 1.2;
-        this.statut = "";
-        this.dateCommande = "";
-    }
-
-
-
-    public Commande(int iduser, int idproduit, int quantite, float totalHT, float totalTTC, float tvaCommande, String statut, String dateCommande){
-        this.idcommande = 0;
-        this.iduser = iduser; 
-        this.idproduit = idproduit; 
-        this. quantite = quantite;
-        this.totalHT = totalHT;
-        this.totalTTC = totalTTC;
-        this.tvaCommande = (float) 1.2;
-        this.statut = statut; 
-        this.dateCommande = dateCommande;
-    }
-
-    public Commande(int idcommande, int iduser, int idproduit, int quantite, String statut, float totalHT, float totalTTC){
-        this.idcommande = idcommande;
-        this.iduser = iduser; 
-        this.idproduit = idproduit; 
-        this. quantite = quantite;
-        this.totalHT = totalHT;
-        this.totalTTC = totalTTC;
-        this.tvaCommande = (float) 1.2;
-        this.statut = statut; 
-        this.dateCommande = "";
-    }
-
 
     public Commande(int idcommande, int iduser, int idproduit, int quantite, String statut, String dateCommande, float tvaCommande, float totalHT, float totalTTC){
         this.idcommande = idcommande;

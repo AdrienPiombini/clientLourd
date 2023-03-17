@@ -1,10 +1,6 @@
 package controleur;
-
 import java.util.ArrayList;
-import java.util.Scanner;
-
 import modele.ModeleProfessionnel;
-import vue.old_vue.VueProfessionnel;
 
 public class C_Professionnel {
 
@@ -14,36 +10,19 @@ public class C_Professionnel {
 		System.out.println("Insertion réussie du Professionnel.");
 	}
 	
-	public static void deleteProfessionnel()
+	public static void deleteProfessionnel(String email)
 	{
-		// Saisir un mail Professionnel
-		Scanner sc = new Scanner (System.in);
-		String email;
-		System.out.println("Donner l'email Professionnel à supprimer :");
-		email = sc.next();
-		// Supprimer dans la BDD le Professionnel avec cet id
 		ModeleProfessionnel.deleteProfessionnel(email);
-		System.out.println("Supression réussie du Professionnel.");
+
 	}
 	
-	public static void updateProfessionnel () 
+	public static void updateProfessionnel (Professionnel unProfessionnel) 
 	{
-		// Saisir le mail du Professionnel à modifier 
-		Scanner sc = new Scanner (System.in);
-		String email; 
-		System.out.println("Donner le mail du Professionnel à modifier :");
-		email = sc.next();	
-		// Récupérer le Professionnel dans la BDD avec cet email
-		Professionnel unProfessionnel = ModeleProfessionnel.selectWhereProfessionnel(email);
-		// Modifier les infos du Professionnel
-		unProfessionnel = VueProfessionnel.modifierProfessionnel(unProfessionnel);
-		// Actualiser les infos dans la BDD
 		ModeleProfessionnel.updateProfessionnel(unProfessionnel);
-		System.out.println("Modification du Professionnel réussie.");
 	}
 	
-	public static ArrayList<Professionnel> selectAllProfessionnels (){
-	return  ModeleProfessionnel.selectAllProfessionnel();
+	public static ArrayList<Professionnel> selectAllProfessionnels(String filtre){
+	return  ModeleProfessionnel.selectAllProfessionnel(filtre);
 	}
 
 	public static Professionnel selectWhereProfessionnel(String email){

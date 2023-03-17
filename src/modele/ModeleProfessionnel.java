@@ -36,16 +36,13 @@ public class ModeleProfessionnel {
         String requete = "UPDATE professionnel SET email = '" 
         		+ unProfessionnel.getEmail() + "', mdp = '" 
         		+ unProfessionnel.getMdp() + "', nom = '" 
-        		+ unProfessionnel.getNom() + "', roles = '" 
-        		+ unProfessionnel.getRoles() + "', datemdp = '" 
-        		+ unProfessionnel.getDatemdp() + "', typeclient = '" 
-        		+ unProfessionnel.getTypeclient() + "', adresse = '" 
+        		+ unProfessionnel.getNom() + "', adresse = '" 
         		+ unProfessionnel.getAdresse() + "', ville = '" 
         		+ unProfessionnel.getVille() + "', cp = '" 
         		+ unProfessionnel.getCp() + "', telephone = '" 
         		+ unProfessionnel.getTelephone() + "', numeroSiret = '" 
-        		+ unProfessionnel.getNumeroSiret() + "' WHERE iduser = '" 
-        		+ unProfessionnel.getIduser() + "';";
+        		+ unProfessionnel.getNumeroSiret() + "' WHERE email = '" 
+        		+ unProfessionnel.getEmail() + "';";
         
         try {
             uneBdd.seConnecter();
@@ -71,9 +68,15 @@ public class ModeleProfessionnel {
         }
     }
 
-    public static ArrayList<Professionnel> selectAllProfessionnel() {
+    public static ArrayList<Professionnel> selectAllProfessionnel(String filtre) {
+        String requete = "";
+		if(filtre.equals("")){
+		 requete = " select * from professionnel ;";
+		}else {
+			requete = " select * from professionnel where nom like '%" + filtre + "%' or numeroSiret like '%" + filtre
+					+ "%' or email like '%" + filtre + "%' or adresse like '%" + filtre + "%' or ville like '%" + filtre + "%' or cp like '%" + filtre + "%' or telephone like '%" + filtre + "%';";
+		}	
         ArrayList<Professionnel> lesProfessionnels = new ArrayList<Professionnel>();
-        String requete = "SELECT * FROM professionnel;";
         try {
             uneBdd.seConnecter();
             Statement unStat = uneBdd.getMaConnexion().createStatement();

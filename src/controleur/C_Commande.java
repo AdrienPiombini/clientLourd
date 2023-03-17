@@ -20,13 +20,7 @@ public class C_Commande {
 		System.out.println("Insertion réussie du commande.");
 	}
 
-	public static void deleteCommande() {
-		// saisir un idCommande
-		Scanner sc = new Scanner(System.in);
-		int idCommande;
-		System.out.println("Donner l'id a supprimer");
-		idCommande = sc.nextInt();
-		// supprimer le cliend dans la bdd
+	public static void deleteCommande(int idCommande) {
 		ModeleCommande.deleteCommande(idCommande);
 	}
 

@@ -45,12 +45,30 @@ public class Tableau extends AbstractTableModel {
 
 	// supprimer une ligne identifé par un indice/numero
 	public void deleteLigne(int numLigne) {
-
+		Object matrice[][] = new Object[this.donnees.length - 1][this.entetes.length];
+		int j = 0; 
+		for (int i = 0; i < this.donnees.length; i++){
+			if(i!= numLigne){
+				matrice[j] = this.donnees[i];
+				j++;
+			}
+		}
+		this.donnees = matrice;
+		this.fireTableDataChanged();
 	}
 
 	// remplacer une ligne identique par un numero avec une nouvelle ligne
 	public void updateLigne(int numLigne, Object[] ligne) {
-
+		Object matrice[][] = new Object[this.donnees.length][this.entetes.length];
+		for (int i = 0; i < this.donnees.length; i++){
+			if(i!= numLigne){
+				matrice[i] = this.donnees[i];
+			}else{
+				matrice[i] = ligne;
+			}
+		}
+		this.donnees = matrice;
+		this.fireTableDataChanged();
 	}
 
 	public void setDonnees (Object [][] donnees)

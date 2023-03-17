@@ -44,10 +44,9 @@ public class ModeleAdmin {
 		String requete = "update admin set email='"
 		+ unAdmin.getEmail()+ "', mdp ='"
 		+ unAdmin.getMdp()+ "', nom='" 
-		+ unAdmin.getNom()+ "', datemdp='"
-		+ unAdmin.getDatemdp() + "', prenom='"
-		+ unAdmin.getPrenom() + "' where iduser = "
-		+ unAdmin.getIduser() + ";";
+		+ unAdmin.getNom()+ "', prenom='"
+		+ unAdmin.getPrenom() + "' where email = '"
+		+ unAdmin.getEmail() + "';";
 		try {
 			uneBdd.seConnecter();
 			Statement unStat = uneBdd.getMaConnexion().createStatement();
@@ -59,8 +58,14 @@ public class ModeleAdmin {
 		}
 	}
 
-	public static ArrayList<Admin> selectAllAdmin() {
-		String requete = " select * from admin ;";
+	public static ArrayList<Admin> selectAllAdmin(String filtre) {
+		String requete = "";
+		if(filtre.equals("")){
+		 requete = " select * from admin ;";
+		}else {
+			requete = " select * from admin where nom like '%" + filtre + "%' or prenom like '%" + filtre
+					+ "%' or email like '%" + filtre + "%';";
+		}
 		ArrayList<Admin> lesAdmins = new ArrayList<Admin>();
 		try {
 			uneBdd.seConnecter();

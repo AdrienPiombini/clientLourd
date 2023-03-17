@@ -1,9 +1,9 @@
 package controleur;
 import java.util.ArrayList;
-import java.util.Scanner;
+
 
 import modele.ModeleAdmin;
-import vue.old_vue.VueAdmin;
+
 
 public class C_Admin {
     public static void insertAdmin(Admin unAdmin) {
@@ -12,23 +12,16 @@ public class C_Admin {
 		System.out.println("Insertion réussie de l'admin.");
 	}
 
-	public static void deleteAdmin() {
-		// saisir un idclient
-		Scanner sc = new Scanner(System.in);
-		String email;
-		System.out.println("Donner l'email de l'admin a supprimer");
-		email = sc.next();
-		// supprimer le cliend dans la bdd
+	public static void deleteAdmin(String email) {
 		ModeleAdmin.deleteAdmin(email);
 	}
 
 	public static void updateAdmin(Admin unAdmin) {
 		ModeleAdmin.updateAdmin(unAdmin);
-		System.out.println("Modificiation de l'admin réussie.");
 	}
 
-	public static ArrayList<Admin>  selectAllAdmin() {
-		return ModeleAdmin.selectAllAdmin();
+	public static ArrayList<Admin>  selectAllAdmin(String filtre) {
+		return ModeleAdmin.selectAllAdmin(filtre);
 	}
 
 	public static Admin connexionAdmin(String email, String mdp) {
