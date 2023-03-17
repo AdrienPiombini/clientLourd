@@ -69,7 +69,7 @@ public class PanelCommande extends PanelPrincipal implements ActionListener
 		this.add(this.panelForm);
 
 		//construction de la JTable 
-		String entetes[] = { "ID Commande", "iduser", "idproduit", "quantiteproduit", "statut", "dateComande", "tvaCommande", "totalHT", "totalTTC"}; 
+		String entetes[] = { "ID Commande", "Nom Client", "Nb Article", "statut", "dateComande", "tvaCommande", "totalHT", "totalTTC"}; 
 		Object[][] donnees = this.getDonnees();
 		this.unTableau = new Tableau(donnees, entetes);
 		this.tableCommandes = new JTable(this.unTableau);
@@ -172,18 +172,17 @@ public class PanelCommande extends PanelPrincipal implements ActionListener
 
 	public Object[][] getDonnees() {
 		ArrayList<Commande> lesCommandes = C_Commande.selectAllCommandes();
-		Object[][] matrice = new Object[lesCommandes.size()][9];
+		Object[][] matrice = new Object[lesCommandes.size()][8];
 		int i = 0;
 		for (Commande unCommande : lesCommandes) {
 			matrice[i][0] = unCommande.getIdcommande();
-			matrice[i][1] = unCommande.getIduser();
-			matrice[i][2] = unCommande.getIdproduit();
-			matrice[i][3] = unCommande.getQuantite();
-			matrice[i][4] = unCommande.getStatut();
-			matrice[i][5] = unCommande.getDateCommande();
-			matrice[i][6] = unCommande.getTvaCommande();
-			matrice[i][7] = unCommande.getTotalHT() ;
-			matrice[i][8] = unCommande.getTotalTTC() ;
+			matrice[i][1] = unCommande.getNomclient();
+			matrice[i][2] = unCommande.getNbarticle();
+			matrice[i][3] = unCommande.getStatut();
+			matrice[i][4] = unCommande.getDateCommande();
+			matrice[i][5] = unCommande.getTvaCommande();
+			matrice[i][6] = unCommande.getTotalHT() ;
+			matrice[i][7] = unCommande.getTotalTTC() ;
 			i++;
 		}
 		return matrice;

@@ -1,9 +1,9 @@
 package controleur;
 
 public class Commande {
-    private int idcommande, iduser, idproduit, quantite;
+    private int idcommande, iduser, idproduit, quantite, nbArticle;
     private float totalHT, totalTTC, tvaCommande;
-    private String statut, dateCommande ;
+    private String statut, dateCommande, nomClient ;
 
 
     public Commande(int idcommande, int iduser, int idproduit, int quantite, String statut, String dateCommande, float tvaCommande, float totalHT, float totalTTC){
@@ -11,6 +11,17 @@ public class Commande {
         this.iduser = iduser; 
         this.idproduit = idproduit; 
         this. quantite = quantite;
+        this.totalHT = totalHT;
+        this.totalTTC = totalTTC;
+        this.tvaCommande = (float) 1.2;
+        this.statut = statut; 
+        this.dateCommande = dateCommande;
+    }
+
+    public Commande(int idcommande, String nomClient, int nbArticle, String statut, String dateCommande, float tvaCommande, float totalHT, float totalTTC){
+        this.idcommande = idcommande;
+        this.nomClient = nomClient; 
+        this.nbArticle = nbArticle; 
         this.totalHT = totalHT;
         this.totalTTC = totalTTC;
         this.tvaCommande = (float) 1.2;
@@ -44,6 +55,22 @@ public class Commande {
 
     public void setIduser(int iduser) {
         this.iduser = iduser;
+    }
+
+    public String getNomclient(){
+        return nomClient;
+    }
+
+    public void setNomclient(String nomClient){
+        this.nomClient = nomClient;
+    }
+
+    public int getNbarticle(){
+        return nbArticle;
+    }
+
+    public void setNbarticle(int nbArticle){
+        this.nbArticle = nbArticle;
     }
 
     public int getIdproduit() {

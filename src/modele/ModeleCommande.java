@@ -90,7 +90,7 @@ public class ModeleCommande {
 	}
 
 	public static ArrayList<Commande> selectAllCommande() {
-		String requete = "select * from commande ;";
+		String requete = "select * from commandeResume ;";
 		ArrayList<Commande> lesCommandes = new ArrayList<Commande>();
 		try {
 			uneBdd.seConnecter();
@@ -102,8 +102,8 @@ public class ModeleCommande {
 			// dans l'ArrayList
 			while (desResultats.next()) {
 				Commande uneCommande = new Commande(desResultats.getInt("idcommande"),
-						desResultats.getInt("iduser"), desResultats.getInt("idproduit"),
-						desResultats.getInt("quantiteproduit"), 
+						desResultats.getString("nomClient"),
+						desResultats.getInt("nbArticle"), 
 						desResultats.getString("statut"),
 						desResultats.getString("dateCommande"),
 						desResultats.getFloat("tvaCommande"),

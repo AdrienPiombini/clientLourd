@@ -69,7 +69,6 @@ public class PanelProfil extends PanelPrincipal implements ActionListener {
                 + "NOM: " + unAdmin.getNom()
 				+ "\n\n" + "PRENOM : " + unAdmin.getPrenom()
                 + "\n\n" + "EMAIL : " + unAdmin.getEmail()
-				+ "\n\n" + "MDP: " + unAdmin.getMdp()
                 + "\n\n" + "dateMdp: " + unAdmin.getDatemdp()
                 + "\n\n" + "Role: " + unAdmin.getRoles()
                 + "\n");
@@ -81,7 +80,6 @@ public class PanelProfil extends PanelPrincipal implements ActionListener {
 		this.txtPrenom.setText(this.unAdmin.getPrenom());
 		this.txtEmail.setText(this.unAdmin.getEmail());
 		this.txtMdp.setText(this.unAdmin.getMdp());
-		this.txtDateMdp.setText(this.unAdmin.getDatemdp());
 		this.txtRole.setText(this.unAdmin.getRoles());
 
 		this.btModifier.setBounds(80, 360, 100, 20);
@@ -118,9 +116,9 @@ public class PanelProfil extends PanelPrincipal implements ActionListener {
 			String mdp = new String(this.txtMdp.getPassword());
 			String datemdp = this.txtDateMdp.getText();
 			// instancier un Admin
-			this.unAdmin = new Admin(unAdmin.getIduser(),email, mdp, nom, role, datemdp, prenom);
+			unAdmin = new Admin(unAdmin.getIduser(),email, mdp, nom, role, datemdp, prenom);
 			// on l'enregistre dans la base de données
-			C_Admin.updateAdmin(this.unAdmin);
+			C_Admin.updateAdmin(unAdmin);
 
 			JOptionPane.showMessageDialog(this, " Modification de votre profil faite avec succès !");
 
