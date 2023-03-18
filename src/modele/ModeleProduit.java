@@ -45,8 +45,7 @@ public class ModeleProduit
 		}
 	}
 	
-	public static void updateProduit (Produit unProduit)
-	{
+	public static void updateProduit (Produit unProduit){
 		String requete = "update produit set nomProduit ='"
 				+unProduit.getNomProduit()+"', prixProduit='" + unProduit.getPrixProduit()+"', description='"
 				+unProduit.getDescription()+"', quantite='" + unProduit.getQuantite() + "' where idProduit ="+ unProduit.getIdProduit() + ";";
@@ -63,9 +62,13 @@ public class ModeleProduit
 		}
 	}
 	
-	public static ArrayList<Produit> selectAllProduit () 
-	{
-		String requete = "select * from produit;";
+	public static ArrayList<Produit> selectAllProduits(String filtre){
+		String requete = "";
+		if(filtre.equals("")){
+			requete = "select * from produit";
+		}else{
+			requete = " select * from produit where idProduit like '%" + filtre + "%' or nomProduit like '%" + filtre + "%' or prixProduit like '%" + filtre +"%' or description like '%" + filtre + "%' or quantite like '%" + filtre + "%'";
+		}
 		ArrayList<Produit> lesProduits = new ArrayList <Produit>();
 		
 		try {
@@ -125,7 +128,7 @@ public class ModeleProduit
 	
 	public static Produit selectWhereProduit (String nomProduit)
 	{
-		String requete = "select * from produit where nomProduit="+nomProduit+";";
+		String requete = "select * from produit where nomProduit='"+nomProduit+"';";
 		Produit unProduit = null;
 		
 		try {

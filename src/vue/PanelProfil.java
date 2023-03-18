@@ -52,8 +52,6 @@ public class PanelProfil extends PanelPrincipal implements ActionListener {
 		this.panelForm.add(this.txtRole);
 		this.panelForm.add(new JLabel("MDP : "));
 		this.panelForm.add(this.txtMdp);
-        this.panelForm.add(new JLabel("DATE MDP: "));
-		this.panelForm.add(this.txtDateMdp);
 		this.panelForm.add(this.btAnnuler);
 		this.panelForm.add(this.btEnregistrer);
 		// ajout du panelform à au panelClients
@@ -123,9 +121,10 @@ public class PanelProfil extends PanelPrincipal implements ActionListener {
 			JOptionPane.showMessageDialog(this, " Modification de votre profil faite avec succès !");
 
 			this.txtInfos.setText("___________ INFOS PERSONNELLES _________\n\n" + "NOM: " + unAdmin.getNom()
-				+ "\n\n" + "PRENOM  " + unAdmin.getPrenom() + "\n\n" + "DATE MDP : "+ unAdmin.getDatemdp()
-                + "\n\n" + "ROLES : "+ unAdmin.getRoles()
-                + "\n\n" + "EMAIL " + unAdmin.getEmail() + "\n");
+				+ "\n\n" + "PRENOM  " + unAdmin.getPrenom()
+				+ "\n\n" + "EMAIL " + unAdmin.getEmail()
+				+ "\n\n" + "dateMdp: " + unAdmin.getDatemdp()
+                + "\n\n" + "ROLES : "+ unAdmin.getRoles() + "\n");
 		}
 
 	}

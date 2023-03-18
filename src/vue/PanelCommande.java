@@ -148,7 +148,7 @@ public class PanelCommande extends PanelPrincipal implements ActionListener
 		//supprimer ou vider le CBX idProduit 
 		this.cbxIdProduit.removeAllItems();
 		//récupérer de la base de données tous les Produits 
-		ArrayList<Produit> lesProduits = C_Produit.selectAllProduits(); 
+		ArrayList<Produit> lesProduits = C_Produit.selectAllProduits(""); 
 		//parcourir lesProduits et remplir le CBX 
 		for(Produit unProduit : lesProduits)
 		{
