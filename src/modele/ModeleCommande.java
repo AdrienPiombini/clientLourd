@@ -72,12 +72,8 @@ public class ModeleCommande {
 	}
 
 	public static void updateCommande(Commande uneCommande) {
-		String requete = "update commande set dateCommande='"
-				+ uneCommande.getDateCommande() + "',statut='" + uneCommande.getStatut() + "',totalHT='"+ uneCommande.getTotalHT()
-                + "',totalTTC='" + uneCommande.getTotalTTC() 
-                + "',idproduit='" + uneCommande.getIdproduit()
-                + "',quantiteproduit='" + uneCommande.getQuantite()
-                + "',iduser='" + uneCommande.getIduser()  + "' where idCommande ="+ uneCommande.getIdcommande()+";";
+		String requete = "update commande set statut='" + uneCommande.getStatut()
+				+ "' where idCommande ="+ uneCommande.getIdcommande()+";";
 		try {
 			uneBdd.seConnecter();
 			Statement unStat = uneBdd.getMaConnexion().createStatement();
@@ -89,8 +85,14 @@ public class ModeleCommande {
 		}
 	}
 
-	public static ArrayList<Commande> selectAllCommande() {
-		String requete = "select * from commandeResume ;";
+	public static ArrayList<Commande> selectAllCommandes(String filtre) {
+		String requete = "";
+		if(filtre.equals("")){
+		 requete = " select * from commandeResume ;";
+		}else {
+			requete = " select * from commandeResume where idcommande like '%" + filtre + "%' or nomClient like '%" + filtre
+					+ "%' or nbArticle like '%" + filtre + "%' or statut like '%" + filtre + "%' or dateCommande like '%" + filtre + "%' or totalHT like '%" + filtre + "%' or totalTTC like '%" + filtre + "%';";
+		}
 		ArrayList<Commande> lesCommandes = new ArrayList<Commande>();
 		try {
 			uneBdd.seConnecter();
@@ -131,13 +133,14 @@ public class ModeleCommande {
 			ResultSet desResultats = unStat.executeQuery(requete);
 			// on teste si on a un seul résultat
 			while (desResultats.next()) {
-				Commande uneCommande = new Commande(desResultats.getInt("idcommande"),
-                desResultats.getInt("iduser"), desResultats.getInt("idproduit"),
-                desResultats.getInt("quantiteproduit"),
+				Commande uneCommande = new Commande(
+				desResultats.getInt("idcommande"),
+				desResultats.getString("nomClient"),
+                desResultats.getInt("nbArticle"),
 				desResultats.getString("statut"),
                 desResultats.getString("dateCommande"),
 				desResultats.getFloat("tvaCommande"),
-				 desResultats.getFloat("totalHT"), 
+				desResultats.getFloat("totalHT"), 
                 desResultats.getFloat("totalTTC")
                 );
 			// on ajoute le Commande dans l'ArrayList
@@ -153,7 +156,7 @@ public class ModeleCommande {
 
 
 	public static Commande selectWhereUneCommande(int idCommande) {
-		String requete = " select * from commande where idcommande = " + idCommande + ";";
+		String requete = " select * from commandeResume where idcommande = " + idCommande + ";";
 		Commande uneCommande = null;
 		try {
 			uneBdd.seConnecter();
@@ -164,9 +167,8 @@ public class ModeleCommande {
 			if (unResultat.next()) {
 				uneCommande = new Commande(
 				unResultat.getInt("idcommande"),
-				unResultat.getInt("iduser"),
-				unResultat.getInt("idproduit"),
-				unResultat.getInt("quantiteproduit"),
+				unResultat.getString("nomClient"),
+				unResultat.getInt("nbArticle"),
 				unResultat.getString("statut"),
 				unResultat.getString("dateCommande"),
 				unResultat.getFloat("tvaCommande"),

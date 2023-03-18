@@ -239,7 +239,7 @@ public class PanelParticulier extends PanelPrincipal implements ActionListener {
 			Object ligne[] = { unParticulier.getIduser(), unParticulier.getNom(), unParticulier.getPrenom(),
 				unParticulier.getEmail(), unParticulier.getDatemdp(), unParticulier.getRoles(),
 				unParticulier.getTypeclient(), unParticulier.getAdresse(), unParticulier.getVille(),
-				unParticulier.getCp(), unParticulier.getTelephone(), };
+				unParticulier.getCp(), unParticulier.getTelephone()};
 			this.unTableau.updateLigne(numLigne, ligne);
 
 			JOptionPane.showMessageDialog(this, "Particulier modifié avec succés !");

@@ -29,14 +29,14 @@ public class PanelCommande extends PanelPrincipal implements ActionListener
 {
 	private JPanel panelForm = new JPanel(); 
 	private int derniereCommande = C_Commande.selectDerniereCommande();; 
-	private JTextField txtQuantite = new JTextField(); 
+	private JTextField txtNbArticle = new JTextField(); 
 	private JTextField txtIdCommande = new JTextField(Integer.toString(derniereCommande)); 
     private String[] typeStatut = {"en cours","validée","annulée","archivée"};
 	private JComboBox<String> cbxStatut = new JComboBox<String>(typeStatut); 
 	private JComboBox<String> cbxIdUser = new JComboBox<String>(); 
 	private JComboBox<String> cbxIdProduit = new JComboBox<String>(); 
 	private JButton btAnnuler = new JButton("Annuler"); 
-	private JButton btModifier= new JButton("Enregistrer");
+	private JButton btModifier= new JButton("Modifier");
 	
 	private JTable tableCommandes;
 	private Tableau unTableau;
@@ -50,22 +50,24 @@ public class PanelCommande extends PanelPrincipal implements ActionListener
 		super (); 
 		this.titre.setText("_____Gestion des Commandes _____");
 		//construction du Panel Form 
-		this.panelForm.setBounds(20, 60, 300, 300);
+		this.panelForm.setBounds(10, 60, 400, 30);
 		this.panelForm.setBackground(new Color (224, 224, 224));
-		this.panelForm.setLayout(new GridLayout(2,1));
+		this.panelForm.setLayout(new GridLayout(1,3));
         this.panelForm.add(new JLabel("Le statut : ")); 
 		this.panelForm.add(this.cbxStatut);
 		this.panelForm.add(this.btModifier);
 		//ajout du panelform à au panelUsers
 		this.add(this.panelForm);
+		this.panelForm.setVisible(false);
+
 
 		//construction de la JTable 
 		String entetes[] = { "ID Commande", "Nom Client", "Nb Article", "statut", "dateComande", "tvaCommande", "totalHT", "totalTTC"}; 
-		Object[][] donnees = this.getDonnees();
+		Object[][] donnees = this.getDonnees("");
 		this.unTableau = new Tableau(donnees, entetes);
 		this.tableCommandes = new JTable(this.unTableau);
 		JScrollPane uneScroll = new JScrollPane(this.tableCommandes);
-		uneScroll.setBounds(360, 60, 560, 250);
+		uneScroll.setBounds(500, 60, 560, 250);
 
 		//ajout de la la jtable contenant la scrollbar
 		this.add(uneScroll);
@@ -88,13 +90,7 @@ public class PanelCommande extends PanelPrincipal implements ActionListener
 						JOptionPane.showMessageDialog(null, "Suppression effectué avec succés");
 					}
 				}else if(e.getClickCount()== 1){
-					//on remplie les champs de modification 
-					txtIdCommande.setText(tableCommandes.getValueAt(numLigne,0).toString());
-					txtQuantite.setText(tableCommandes.getValueAt(numLigne, 3).toString());
-					
-
-					btModifier.setText("Modifier");
-
+					panelForm.setVisible(true);
 				}
 			}
 
@@ -121,7 +117,7 @@ public class PanelCommande extends PanelPrincipal implements ActionListener
 		});
 
 		//placement du panel Filtre
-		this.panelFiltre.setBounds(400, 40, 300, 20);
+		this.panelFiltre.setBounds(500, 40, 300, 20);
 		this.panelFiltre.setBackground(new Color (224, 224, 224));
 		this.panelFiltre.setLayout(new GridLayout(1,3));
 		this.panelFiltre.add(new JLabel("Filtrer par :"));
@@ -132,6 +128,8 @@ public class PanelCommande extends PanelPrincipal implements ActionListener
 		//rendre le boutons ecoutables 
 		this.btAnnuler.addActionListener(this);
 		this.btModifier.addActionListener(this );
+		this.btFiltrer.addActionListener(this);
+
 	}
 
 
@@ -159,19 +157,19 @@ public class PanelCommande extends PanelPrincipal implements ActionListener
         
 	}
 
-	public Object[][] getDonnees() {
-		ArrayList<Commande> lesCommandes = C_Commande.selectAllCommandes();
+	public Object[][] getDonnees(String filtre) {
+		ArrayList<Commande> lesCommandes = C_Commande.selectAllCommandes(filtre);
 		Object[][] matrice = new Object[lesCommandes.size()][8];
 		int i = 0;
-		for (Commande unCommande : lesCommandes) {
-			matrice[i][0] = unCommande.getIdcommande();
-			matrice[i][1] = unCommande.getNomclient();
-			matrice[i][2] = unCommande.getNbarticle();
-			matrice[i][3] = unCommande.getStatut();
-			matrice[i][4] = unCommande.getDateCommande();
-			matrice[i][5] = unCommande.getTvaCommande();
-			matrice[i][6] = unCommande.getTotalHT() ;
-			matrice[i][7] = unCommande.getTotalTTC() ;
+		for (Commande uneCommande : lesCommandes) {
+			matrice[i][0] = uneCommande.getIdcommande();
+			matrice[i][1] = uneCommande.getNomclient();
+			matrice[i][2] = uneCommande.getNbarticle();
+			matrice[i][3] = uneCommande.getStatut();
+			matrice[i][4] = uneCommande.getDateCommande();
+			matrice[i][5] = uneCommande.getTvaCommande();
+			matrice[i][6] = uneCommande.getTotalHT() ;
+			matrice[i][7] = uneCommande.getTotalTTC() ;
 			i++;
 		}
 		return matrice;
@@ -179,39 +177,44 @@ public class PanelCommande extends PanelPrincipal implements ActionListener
 
 	public void viderChamps ()
 	{
-		this.txtQuantite.setText(""); 
-		btModifier.setText("Enregistrer");
+		this.txtFiltre.setText(""); 
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == this.btAnnuler)
+		if (e.getSource() == this.btModifier)
 		{
-			this.viderChamps();
-		}
-		else if (e.getSource() == this.btModifier)
-		{
-			int idCommande = Integer.parseInt(this.txtIdCommande.getText());
-			int quantite = Integer.parseInt(this.txtQuantite.getText()); 
-			//récuperer les id User et Produits
-			String chaine = this.cbxIdUser.getSelectedItem().toString(); 
-			String tab [] = chaine.split("-"); //explode de PHP 
-			int idUser = Integer.parseInt(tab[0]);
-			chaine = this.cbxIdProduit.getSelectedItem().toString(); 
-			tab = chaine.split("-"); //explode de PHP 
-			int idProduit = Integer.parseInt(tab[0]);
-            String statut = this.cbxStatut.getSelectedItem().toString(); 
+			int numLigne = this.tableCommandes.getSelectedRow();
 
-			
+			//"ID Commande", "Nom Client", "Nb Article", "statut", "dateComande", "tvaCommande", "totalHT", "totalTTC"
+			int idCommande = Integer.parseInt(this.tableCommandes.getValueAt(numLigne, 0).toString());
+			String nomClient = this.tableCommandes.getValueAt(numLigne, 1).toString(); 
+			int nbArticle = Integer.parseInt(this.tableCommandes.getValueAt(numLigne, 2).toString()); 
+			String statut = this.cbxStatut.getSelectedItem().toString(); 
+			String dateCommande = this.tableCommandes.getValueAt(numLigne, 4).toString(); 
+			float tvaCommande = (float) 1.2; 
+			float totalHT = Float.parseFloat(this.tableCommandes.getValueAt(numLigne,6).toString()); 
+			float totalTTC = Float.parseFloat(this.tableCommandes.getValueAt(numLigne,7).toString()); 
+		
 			//instancier une commande
-			Commande uneCommande = new Commande(idCommande, idUser, idProduit, quantite, statut);
-			//on l'enregistre dans la base de données 
-			C_Commande.insertPanier(uneCommande);
-			Object donnees [][]  = this.getDonnees(); 
-			this.unTableau.setDonnees (donnees);
-			
-			JOptionPane.showMessageDialog(this, " Commande insérée avec succès !");
-			this.viderChamps();
-			
+			Commande uneCommande = new Commande(idCommande, nomClient, nbArticle, statut, dateCommande, tvaCommande, totalHT, totalTTC);
+			//on la modoifie dans la base de données 
+			C_Commande.updateCommande(uneCommande);
+
+			uneCommande = C_Commande.selectWhereUneCommande(idCommande);
+			Object ligne[] = { uneCommande.getIdcommande(), uneCommande.getNomclient(), uneCommande.getNbarticle(),
+				uneCommande.getStatut(), uneCommande.getDateCommande(), uneCommande.getTvaCommande(),
+				uneCommande.getTotalHT(), uneCommande.getTotalTTC()};
+			this.unTableau.updateLigne(numLigne, ligne);
+
+			//Object donnees [][]  = this.getDonnees(); 
+			//this.unTableau.setDonnees (donnees);
+			JOptionPane.showMessageDialog(this, "Commande modifié avec succés !");
+			this.viderChamps();	
+		}else if (e.getSource()==this.btFiltrer){
+			String filtre = this.txtFiltre.getText();
+			Object donnees[][] = this.getDonnees(filtre);
+			//actualisation de l'affichage 
+			this.unTableau.setDonnees(donnees);
 		}
 		
 	}

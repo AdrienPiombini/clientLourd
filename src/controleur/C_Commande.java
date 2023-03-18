@@ -12,37 +12,23 @@ public class C_Commande {
 
     public static void insertCommande(Commande uneCommande){
 		ModeleCommande.insertCommande(uneCommande);
-		System.out.println("Insertion réussie du Intervention.");
 	}
 
 	public static void insertPanier(Commande uneCommande){
 		ModeleCommande.insertPanier(uneCommande);
-		System.out.println("Insertion réussie du commande.");
 	}
 
 	public static void deleteCommande(int idCommande) {
 		ModeleCommande.deleteCommande(idCommande);
 	}
 
-	public static void updateCommande() {
-		// saisir id Commande a modifier
-		Scanner sc = new Scanner(System.in);
-		int idCommande;
-		System.out.println("Donner l'id a modifier");
-		idCommande = sc.nextInt();
-		// récuperer le Commande dans la bdd avant cet id
-		ArrayList<Commande> uneCommande = ModeleCommande.selectWhereLaCommande(idCommande);
-		// modifier les infos du Commande
-		//uneCommande = VueCommande.modifierCommande(uneCommande);
-		// actualiser les infos dans la bdd
-		//ModeleCommande.updateCommande(uneCommande);
-
-		System.out.println("Modificiation du Commande réussie.");
+	public static void updateCommande(Commande uneCommande) {
+		ModeleCommande.updateCommande(uneCommande);
 	}
 
 	
-	public static ArrayList<Commande> selectAllCommandes() {
-		 return ModeleCommande.selectAllCommande();
+	public static ArrayList<Commande> selectAllCommandes(String filtre) {
+		 return ModeleCommande.selectAllCommandes(filtre);
 	}
 
 	public static ArrayList<Commande> selectWhereLaCommande(int idCommande){

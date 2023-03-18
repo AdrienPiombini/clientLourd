@@ -156,9 +156,9 @@ create table archive_commande as
 
 /************* VUE *************/ 
 create or replace view commandeResume as(
-     SELECT idcommande, users.nom as 'nomClient', SUM(quantiteproduit) as 'nbArticle', statut, dateCommande, tvaCommande, totalHT, totalTTC 
-     FROM commande INNER JOIN users ON commande.iduser = users.iduser
-     GROUP BY idcommande, users.nom, statut, dateCommande, tvaCommande, totalHT, totalTTC
+    SELECT idcommande, users.nom as 'nomClient', SUM(quantiteproduit) as 'nbArticle', statut, dateCommande, tvaCommande, totalHT, totalTTC 
+    FROM commande INNER JOIN users ON commande.iduser = users.iduser
+    GROUP BY idcommande, users.nom, statut, dateCommande, tvaCommande, totalHT, totalTTC
 );
 
 create or replace view details_commande as(
@@ -542,18 +542,18 @@ delimiter ;
 /*** PRODUITS ******/
 insert into produit (nomProduit, prixProduit, description, quantite) values ('pneu', 250, '- Neuf comme usé, ce pneu offre un freinage remarquable sur routes mouillées..
 - Adhérence exceptionnelle sur sol mouillé.
-- Une consommation moindre et un kilométrage supérieur de 20 % par rapport à son prédécesseur.', 10);
-insert into produit (nomProduit, prixProduit, description, quantite ) values ('phare', 150, "Le projecteur de complément antibrouillard VALEO permet d'apporter un complément d'éclairage. Les projecteurs antibrouillard contribuent à une amélioration de la sécurité en améliorant la visibilité de l'automobiliste. Ceux-ci procurent un éclairage uniforme sur toute la largeur de la route, fournissant ainsi un large faisceau de lumière pour une conduite plus sûre, adaptée aux conditions climatiques extrêmes.", 10);
+- Une consommation moindre et un kilométrage supérieur de 20 % par rapport à son prédécesseur.', 1000);
+insert into produit (nomProduit, prixProduit, description, quantite ) values ('phare', 150, "Le projecteur de complément antibrouillard VALEO permet d'apporter un complément d'éclairage. Les projecteurs antibrouillard contribuent à une amélioration de la sécurité en améliorant la visibilité de l'automobiliste. Ceux-ci procurent un éclairage uniforme sur toute la largeur de la route, fournissant ainsi un large faisceau de lumière pour une conduite plus sûre, adaptée aux conditions climatiques extrêmes.", 1000);
 insert into produit (nomProduit, prixProduit, description, quantite ) values ('siege', 125, "Ce siège-auto rotatif avec système Isofix offre un confort optimal à la fois aux parents et aux enfants, et peut être utilisé dos ou face à la route. Grâce à sa rotation latérale côté portière, l’installation de votre enfant est plus facile. Son design élégant et moderne vous séduira et la sécurité garantira un voyage en toute tranquillité.
-", 3);
+", 300);
 insert into produit (nomProduit, prixProduit, description, quantite ) values ('siege2', 130, "Ce siège-auto rotatif avec système Isofix offre un confort optimal à la fois aux parents et aux enfants, et peut être utilisé dos ou face à la route. Grâce à sa rotation latérale côté portière, l’installation de votre enfant est plus facile. Son design élégant et moderne vous séduira et la sécurité garantira un voyage en toute tranquillité.
-", 6);
+", 600);
 insert into produit (nomProduit, prixProduit, description, quantite ) values ('parchoc', 65, "Un pare-chocs est un élément de carrosserie en métal ou en plastique situé devant et derrière une voiture. Il permet d'atténuer les dégâts en cas de collision avec un autre véhicule ou objet. Orthographe simplifiée : pare-choc.", 7);
 insert into produit (nomProduit, prixProduit, description, quantite ) values ('moteur', 850, "Le moteur Gaposa Rapido LP6090/TMM avec parachute et électrofrein incorporés motorise parfaitement les portes industrielles rapides, il a une force de 60 newtons, une puissance de 950 W et une vitesse de 90 tours minute.
-Moteur Rapido Gaposa avec commande de secours manivelle standard possédant des fins de course mécaniques.", 50);
+Moteur Rapido Gaposa avec commande de secours manivelle standard possédant des fins de course mécaniques.", 5000);
 insert into produit (nomProduit, prixProduit, description, quantite ) values ('jante', 175, "La jante Spike est une jante de haute qualité, elle fait partie de la gamme INFINY. Intemporelle, cette jante vous séduira avec ses 10 doubles branches. Son design lui confère une allure élégante et sportive.
 Les photos de nos jantes aluminium ne tiennent pas compte de la typologie de votre véhicule. Elles peuvent être présentées en 4 ou 5 trous. Pour vérifier que la jante dispose bien du nombre de trous souhaité, nous vous invitons à consulter dans le tableau ci-dessous les caractéristiques de cette jante.
-", 5);
+", 500);
 insert into produit (nomProduit, prixProduit, description, quantite ) values ('essuie-glace', 35, "Les essuie-glaces plats BOSCH Clearview permettent de remplacer les balais d'essuie-glaces métalliques et d’améliorer les performances d’essuyage : une visibilité optimale pour une sécurité maximale. Les 2 raidisseurs de haute technologie en acier Evodium répartissent la pression exercée par le bras d'essuyage de manière uniforme d’un bout à l’autre de l’essuie-glace.
 Les essuies-glaces BOSCH Clearview sont particulierement facile et rapide à monter. Pour faciliter le montage, le balai est vendu avec 1 adaptateur prémonté", 5);
 
