@@ -36,7 +36,7 @@ public class PanelCommande extends PanelPrincipal implements ActionListener
 	private JComboBox<String> cbxIdUser = new JComboBox<String>(); 
 	private JComboBox<String> cbxIdProduit = new JComboBox<String>(); 
 	private JButton btAnnuler = new JButton("Annuler"); 
-	private JButton btEnregistrer= new JButton("Enregistrer");
+	private JButton btModifier= new JButton("Enregistrer");
 	
 	private JTable tableCommandes;
 	private Tableau unTableau;
@@ -52,19 +52,10 @@ public class PanelCommande extends PanelPrincipal implements ActionListener
 		//construction du Panel Form 
 		this.panelForm.setBounds(20, 60, 300, 300);
 		this.panelForm.setBackground(new Color (224, 224, 224));
-		this.panelForm.setLayout(new GridLayout(6,2));
-        this.panelForm.add(new JLabel("Id commande : ")); 
-		this.panelForm.add(this.txtIdCommande);
-        this.panelForm.add(new JLabel("quantité de produit : ")); 
-		this.panelForm.add(this.txtQuantite);
-		this.panelForm.add(new JLabel("Le Client : ")); 
-		this.panelForm.add(this.cbxIdUser);
-		this.panelForm.add(new JLabel("Le produit : ")); 
-		this.panelForm.add(this.cbxIdProduit);
+		this.panelForm.setLayout(new GridLayout(2,1));
         this.panelForm.add(new JLabel("Le statut : ")); 
 		this.panelForm.add(this.cbxStatut);
-		this.panelForm.add(this.btAnnuler); 
-		this.panelForm.add(this.btEnregistrer);
+		this.panelForm.add(this.btModifier);
 		//ajout du panelform à au panelUsers
 		this.add(this.panelForm);
 
@@ -102,7 +93,7 @@ public class PanelCommande extends PanelPrincipal implements ActionListener
 					txtQuantite.setText(tableCommandes.getValueAt(numLigne, 3).toString());
 					
 
-					btEnregistrer.setText("Modifier");
+					btModifier.setText("Modifier");
 
 				}
 			}
@@ -140,7 +131,7 @@ public class PanelCommande extends PanelPrincipal implements ActionListener
 		
 		//rendre le boutons ecoutables 
 		this.btAnnuler.addActionListener(this);
-		this.btEnregistrer.addActionListener(this );
+		this.btModifier.addActionListener(this );
 	}
 
 
@@ -168,8 +159,6 @@ public class PanelCommande extends PanelPrincipal implements ActionListener
         
 	}
 
-
-
 	public Object[][] getDonnees() {
 		ArrayList<Commande> lesCommandes = C_Commande.selectAllCommandes();
 		Object[][] matrice = new Object[lesCommandes.size()][8];
@@ -191,7 +180,7 @@ public class PanelCommande extends PanelPrincipal implements ActionListener
 	public void viderChamps ()
 	{
 		this.txtQuantite.setText(""); 
-		btEnregistrer.setText("Enregistrer");
+		btModifier.setText("Enregistrer");
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -199,7 +188,7 @@ public class PanelCommande extends PanelPrincipal implements ActionListener
 		{
 			this.viderChamps();
 		}
-		else if (e.getSource() == this.btEnregistrer)
+		else if (e.getSource() == this.btModifier)
 		{
 			int idCommande = Integer.parseInt(this.txtIdCommande.getText());
 			int quantite = Integer.parseInt(this.txtQuantite.getText()); 
@@ -217,13 +206,6 @@ public class PanelCommande extends PanelPrincipal implements ActionListener
 			Commande uneCommande = new Commande(idCommande, idUser, idProduit, quantite, statut);
 			//on l'enregistre dans la base de données 
 			C_Commande.insertPanier(uneCommande);
-			/* 
-			uneCommande = C_Commande.selectWhereUneCommande(idCommande);
-			Object ligne[] = { uneCommande.getIdcommande(), uneCommande.getIduser(), uneCommande.getIdproduit(),
-				uneCommande.getQuantite(), uneCommande.getStatut(), uneCommande.getDateCommande(), uneCommande.getTvaCommande(),
-				uneCommande.getTotalHT(), uneCommande.getTotalTTC() };
-			this.unTableau.insertLigne(ligne);*/
-
 			Object donnees [][]  = this.getDonnees(); 
 			this.unTableau.setDonnees (donnees);
 			

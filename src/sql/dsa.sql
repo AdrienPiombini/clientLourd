@@ -104,7 +104,7 @@ idproduit int not null,
 quantiteproduit int, 
 statut enum('en cours', 'validée', 'annulée', 'archivée' ),
 dateCommande date ,
-tvaCommande FLOAT(9,2) ,
+tvaCommande FLOAT(9,2),
 totalHT float (9,2),
 totalTTC float (9,2),
 constraint pk_panier primary key (idcommande, iduser, idproduit),
@@ -155,6 +155,16 @@ create table archive_commande as
 
 
 /************* VUE *************/ 
+create or replace view commandeResume as(
+     SELECT idcommande, users.nom as 'nomClient', SUM(quantiteproduit) as 'nbArticle', statut, dateCommande, tvaCommande, totalHT, totalTTC 
+     FROM commande INNER JOIN users ON commande.iduser = users.iduser
+     GROUP BY idcommande, users.nom, statut, dateCommande, tvaCommande, totalHT, totalTTC
+);
+
+create or replace view details_commande as(
+    select idcommande, nomProduit, prixProduit,  quantiteproduit, totalHT, totalTTC from commande inner join produit on commande.idproduit = produit.idproduit 
+);
+
 create  or replace view vue_intervention_and_users_enCours as(
     select intervention.* , users.nom as 'nomClient', technicien.nom as 'nomTech' 
     from intervention 
@@ -217,6 +227,37 @@ create or replace view vue_commande_validee as (
     select * from commande where statut = 'validée'
 );
 
+
+/*********************** EVENTS *****************************/
+
+
+SET GLOBAL event_scheduler = ON;
+
+DROP EVENT IF EXISTS maj_commande;
+CREATE EVENT maj_commande
+ON SCHEDULE EVERY 1 MINUTE DO
+    UPDATE COMMANDE SET STATUT = 'validée' where STATUT = 'en cours';
+
+DROP EVENT IF EXISTS maj_commande2;
+CREATE EVENT maj_commande2
+ON SCHEDULE EVERY 1 DAY DO
+    UPDATE COMMANDE SET STATUT = 'annulée' where STATUT = 'validée' and datediff(curdate(), dateintervention) > 31;
+
+
+
+DROP EVENT IF EXISTS maj_intervention;
+CREATE EVENT maj_intervention
+ON SCHEDULE EVERY 10 MINUTE DO
+    UPDATE INTERVENTION SET STATUT = 'Validée' where STATUT = 'En attente';
+
+DROP EVENT IF EXISTS maj_intervention2;
+CREATE EVENT maj_intervention2
+ON SCHEDULE EVERY 1 DAY DO
+    UPDATE INTERVENTION SET STATUT = 'Annulée' where STATUT = 'Validée' and datediff(curdate(), dateintervention) > 31;
+
+
+
+
 /*-------------------PROCEDURE --------------------*/
 
 drop procedure if exists connexion;
@@ -252,7 +293,7 @@ begin
     declare prixprod float; 
     declare HT float;
     declare  TTC float; 
-    insert into commande (idcommande, iduser, idproduit, quantiteproduit, statut, dateCommande, tvaCommande) values (idpan, idu, idprod, qtprod, 'en cours', curdate(), '1.2');
+    insert into commande (idcommande, iduser, idproduit, quantiteproduit, statut, dateCommande, tvaCommande) values (idpan, idu, idprod, qtprod, 'en cours', curdate(), 1.2);
     select prixProduit from produit where idproduit = idprod  into prixprod ;
     select  totalHT, totalTTC from commande where idcommande = idpan limit 1  into HT, TTC;
     if HT is null then 
@@ -378,6 +419,7 @@ begin
     select salt into grain from grainSel;
     if new.mdp != old.mdp then
     set new.mdp = sha1(concat(new.mdp, grain));
+    set new.datemdp = curdate();
     end if;
     update users set email = new.email, nom = new.nom, mdp = new.mdp, datemdp = new.datemdp where email = old.email;
     update client set email = new.email, nom = new.nom, mdp = new.mdp, adresse = new.adresse, ville = new.ville, cp = new.cp, telephone = new.telephone, datemdp = new.datemdp  where email = old.email;
@@ -395,6 +437,7 @@ BEGIN
     select salt into grain from grainSel;
     if new.mdp != old.mdp then
     set new.mdp = sha1(concat(new.mdp, grain));
+    set new.datemdp = curdate();
     end if;
     UPDATE users SET email = new.email, nom = NEW.nom, mdp = NEW.mdp, datemdp = new.datemdp WHERE email = OLD.email;
     UPDATE client SET email = NEW.email, nom = NEW.nom, mdp = NEW.mdp, adresse = NEW.adresse, ville = NEW.ville, cp = NEW.cp, telephone = NEW.telephone, datemdp = new.datemdp WHERE email = OLD.email;
@@ -412,6 +455,7 @@ begin
     select salt into grain from grainSel;
     if new.mdp != old.mdp then
     set new.mdp = sha1(concat(new.mdp, grain));
+    set new.datemdp = curdate();
     end if;
     UPDATE users SET email = new.email, nom = NEW.nom, mdp = NEW.mdp, datemdp = new.datemdp WHERE email = OLD.email;
 end // 
@@ -427,6 +471,7 @@ begin
     select salt into grain from grainSel;
     if new.mdp != old.mdp then
     set new.mdp = sha1(concat(new.mdp, grain));
+    set new.datemdp = curdate();
     end if;
     UPDATE users SET email = new.email, nom = NEW.nom, mdp = NEW.mdp, datemdp = new.datemdp WHERE email = OLD.email;
 end // 
@@ -550,5 +595,7 @@ INSERT INTO commande (idcommande, iduser, idproduit, quantiteproduit, statut, da
 VALUES (3, 3, 3, 3, 'annulée', '2022-03-01', '19.6');
 
 insert into intervention (libelle, dateintervention, iduser) values ('reparation', curdate(), 2);
+
+
 
 

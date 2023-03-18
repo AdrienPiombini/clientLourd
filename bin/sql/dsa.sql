@@ -156,11 +156,10 @@ create table archive_commande as
 
 /************* VUE *************/ 
 create or replace view commandeResume as(
-    select idcommande, users.nom as 'nomClient', sum(quantiteproduit) as 'nbArticle', statut, dateCommande, tvaCommande, totalHT, totalTTC
-        from commande inner join users on commande.iduser = users.iduser 
-        group by idcommande
+     SELECT idcommande, users.nom as 'nomClient', SUM(quantiteproduit) as 'nbArticle', statut, dateCommande, tvaCommande, totalHT, totalTTC 
+     FROM commande INNER JOIN users ON commande.iduser = users.iduser
+     GROUP BY idcommande, users.nom, statut, dateCommande, tvaCommande, totalHT, totalTTC
 );
-
 
 create or replace view details_commande as(
     select idcommande, nomProduit, prixProduit,  quantiteproduit, totalHT, totalTTC from commande inner join produit on commande.idproduit = produit.idproduit 
