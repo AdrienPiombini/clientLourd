@@ -56,8 +56,15 @@ public class ModeleIntervention {
 		}
 	}
 
-	public static ArrayList<Intervention> selectAllIntervention() {
-		String requete = "select * from intervention ;";
+	public static ArrayList<Intervention> selectAllIntervention(String filtre) {
+		String requete = "";
+		if(filtre.equals("")){
+		 requete = " select * from intervention ;";
+		}else {
+			requete = " select * from intervention where idintervention like '%" + filtre + "%' or libelle like '%" + filtre
+					+ "%' or dateintervention like '%" + filtre + "%' or statut like '%" + filtre + "%' or iduser like '%"
+					+ filtre + "%' or prixHT like '%" + filtre + "%' or prixTTC like '%" + filtre + "%' or idtechnicien like '%" + filtre + "%';";
+		}
 		ArrayList<Intervention> lesInterventions = new ArrayList<Intervention>();
 		try {
 			uneBdd.seConnecter();
@@ -83,6 +90,30 @@ public class ModeleIntervention {
 			System.out.println("Erreur d'execution : " + requete);
 		}
 		return lesInterventions;
+	}
+
+	public static Intervention selectWhereIntervention(int idIntervention) {
+		String requete = " select * from intervention where idintervention = " + idIntervention + ";";
+		Intervention uneIntervention = null;
+		try {
+			uneBdd.seConnecter();
+			Statement unStat = uneBdd.getMaConnexion().createStatement();
+			// recuperation un seul Intervention resultat
+			ResultSet unResultat = unStat.executeQuery(requete);
+			// on teste si on a un seul résultat
+			if (unResultat.next()) {
+				 uneIntervention = new Intervention(unResultat.getInt("idintervention"),
+						unResultat.getString("libelle"), unResultat.getString("dateintervention"),
+						unResultat.getString("statut"), unResultat.getFloat("prixHT"), 
+						unResultat.getFloat("prixTTC"), unResultat.getInt("iduser"),
+						unResultat.getInt("idtechnicien"));
+			}
+			unStat.close();
+			uneBdd.seDeConnecter();
+		} catch (SQLException exp) {
+			System.out.println("Erreur d'execution : " + requete);
+		}
+		return uneIntervention;
 	}
 
 	public static Intervention selectWhereIntervention(String dateIntervention, int idClient, int idTechnicien) {
