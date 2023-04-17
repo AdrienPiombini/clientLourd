@@ -20,6 +20,7 @@ public class Bdd {
 	}
 
 
+	/* 
 	public Bdd(){
 		this.maConnexion= null;
 		this.serveur = "Localhost:3306";
@@ -27,8 +28,8 @@ public class Bdd {
 		this.user = "adrien";
 		this.mdp = "adrien";
 	}
+*/
 
-/* 
 
 	public Bdd(){
 		this.maConnexion= null;
@@ -38,7 +39,7 @@ public class Bdd {
 		this.mdp = "root";
 	}
 
-	*/
+
 	public void chargerPilote() {
 		try {
 

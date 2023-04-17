@@ -1,10 +1,8 @@
 package controleur;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import modele.ModeleTechnicien;
-import vue.old_vue.VueTechnicien;
 
 public class C_Technicien {
 	public static void insertTechnicien (Technicien unTechnicien) 

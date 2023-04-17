@@ -565,11 +565,11 @@ INSERT INTO technicien (email, mdp, roles, nom) VALUES ('George@gmail.com', 'pas
 INSERT INTO particulier (email, mdp, roles, nom) VALUES ('Isabelle@gmail.com', 'password4', 'client', 'Isabelle');
 INSERT INTO technicien (email, mdp, roles, nom) VALUES ('Jack@gmail.com', 'password5', 'technicien', 'Jack');
 
-INSERT INTO professionnel (email, mdp, roles, nom, adresse, ville, cp, telephone, numeroSiret) VALUES ('professionnel1@gmail.com', 'password1', 'admin', 'Nom1', 'Adresse1', 'Ville1', 'CP1', '0123456789', '123456789');
-INSERT INTO professionnel (email, mdp, roles, nom, adresse, ville, cp, telephone, numeroSiret) VALUES ('professionnel2@gmail.com', 'password2', 'technicien', 'Nom2', 'Adresse2', 'Ville2', 'CP2', '0123456780', '123456780');
+INSERT INTO professionnel (email, mdp, roles, nom, adresse, ville, cp, telephone, numeroSiret) VALUES ('professionnel1@gmail.com', 'password1', 'client', 'Nom1', 'Adresse1', 'Ville1', 'CP1', '0123456789', '123456789');
+INSERT INTO professionnel (email, mdp, roles, nom, adresse, ville, cp, telephone, numeroSiret) VALUES ('professionnel2@gmail.com', 'password2', 'client', 'Nom2', 'Adresse2', 'Ville2', 'CP2', '0123456780', '123456780');
 INSERT INTO professionnel (email, mdp, roles, nom, adresse, ville, cp, telephone, numeroSiret) VALUES ('professionnel3@gmail.com', 'password3', 'client', 'Nom3', 'Adresse3', 'Ville3', 'CP3', '0123456781', '123456781');
-INSERT INTO professionnel (email, mdp, roles, nom, adresse, ville, cp, telephone, numeroSiret) VALUES ('professionnel4@gmail.com', 'password4', 'admin', 'Nom4', 'Adresse4', 'Ville4', 'CP4', '0123456782', '123456782');
-INSERT INTO professionnel (email, mdp, roles, nom, adresse, ville, cp, telephone, numeroSiret) VALUES ('professionnel5@gmail.com', 'password5', 'technicien', 'Nom5', 'Adresse5', 'Ville5', 'CP5', '0123456783', '123456783');
+INSERT INTO professionnel (email, mdp, roles, nom, adresse, ville, cp, telephone, numeroSiret) VALUES ('professionnel4@gmail.com', 'password4', 'client', 'Nom4', 'Adresse4', 'Ville4', 'CP4', '0123456782', '123456782');
+INSERT INTO professionnel (email, mdp, roles, nom, adresse, ville, cp, telephone, numeroSiret) VALUES ('professionnel5@gmail.com', 'password5', 'client', 'Nom5', 'Adresse5', 'Ville5', 'CP5', '0123456783', '123456783');
 
 
 /*** COMMANDES ******/

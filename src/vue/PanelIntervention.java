@@ -93,7 +93,7 @@ public class PanelIntervention extends PanelPrincipal implements ActionListener
 				int numLigne = tableInterventions.getSelectedRow();
 				int idIntervention = Integer.parseInt(tableInterventions.getValueAt(numLigne, 0).toString());
 				if(e.getClickCount() >= 2){
-					int retour = JOptionPane.showConfirmDialog(null,"Voulez-vous supprimer cet user ?", "Suppression user", JOptionPane.YES_NO_OPTION);
+					int retour = JOptionPane.showConfirmDialog(null,"Voulez-vous supprimer cette intervention ?", "Suppression intervention", JOptionPane.YES_NO_OPTION);
 					if(retour == 0){
 						C_Intervention.deleteIntervention(idIntervention);
 						unTableau.deleteLigne(numLigne);
@@ -107,8 +107,8 @@ public class PanelIntervention extends PanelPrincipal implements ActionListener
 					cbxStatut.setSelectedItem((uneIntervention.getStatut()));
 					txtPrixHT.setText(String.valueOf(uneIntervention.getPrixHT()));
 					txtPrixTTC.setText(String.valueOf(uneIntervention.getPrixTTC()));
-					cbxIdClient.setSelectedIndex((uneIntervention.getIduser()));
-					cbxIdTechnicien.setSelectedIndex(uneIntervention.getIdtechnicien());
+					cbxIdClient.setSelectedIndex((uneIntervention.getIduser()-1));
+					cbxIdTechnicien.setSelectedIndex(uneIntervention.getIdtechnicien()-1);
 
 					btEnregistrer.setText("Modifier");
 				}

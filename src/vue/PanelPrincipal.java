@@ -14,7 +14,7 @@ public class PanelPrincipal extends JPanel {
 		this.setBounds(50, 50, 1400, 800);
 		this.setBackground(new Color(224, 224, 224));
 		this.setLayout(null);
-		this.titre.setBounds(300, 10, 300, 20);
+		this.titre.setBounds(350, 10, 600, 20);
 		this.add(this.titre);
 
 		this.setVisible(false);

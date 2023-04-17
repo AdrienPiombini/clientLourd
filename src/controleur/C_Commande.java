@@ -1,8 +1,6 @@
 package controleur;
 import java.util.ArrayList;
-import java.util.Scanner;
 import modele.ModeleCommande;
-import vue.old_vue.VueCommande;
 public class C_Commande {
 
 
