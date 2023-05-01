@@ -97,6 +97,8 @@ public class PanelIntervention extends PanelPrincipal implements ActionListener
 					if(retour == 0){
 						C_Intervention.deleteIntervention(idIntervention);
 						unTableau.deleteLigne(numLigne);
+						PanelStatistique.getDonneesIntervention();	
+						PanelStatistique.unTableauInvervention.updateLigne(0, PanelStatistique.ligneStatIntervention);
 						JOptionPane.showMessageDialog(null, "Suppression effectué avec succés");
 					}
 				}else if(e.getClickCount()== 1){
@@ -235,6 +237,10 @@ public class PanelIntervention extends PanelPrincipal implements ActionListener
 				uneIntervention.getStatut(), uneIntervention.getPrixHT(), uneIntervention.getPrixTTC(), uneIntervention.getIduser(),
 				uneIntervention.getIdtechnicien()};
 			this.unTableau.insertLigne(ligne);
+
+			//MAJ des statistiques
+			PanelStatistique.getDonneesIntervention();	
+			PanelStatistique.unTableauInvervention.updateLigne(0, PanelStatistique.ligneStatIntervention);
 			
 			JOptionPane.showMessageDialog(this, " Intervention insérée avec succès !");
 			this.viderChamps();
@@ -269,6 +275,10 @@ public class PanelIntervention extends PanelPrincipal implements ActionListener
 				uneIntervention.getStatut(), uneIntervention.getPrixHT(), uneIntervention.getPrixTTC(), uneIntervention.getIduser(),
 				uneIntervention.getIdtechnicien()};
 			this.unTableau.updateLigne(numLigne, ligne);
+
+			//MAJ des statistiques
+			PanelStatistique.getDonneesIntervention();	
+			PanelStatistique.unTableauInvervention.updateLigne(0, PanelStatistique.ligneStatIntervention);
 
 			JOptionPane.showMessageDialog(this, "Intervention modifié avec succés !");
 			this.viderChamps();

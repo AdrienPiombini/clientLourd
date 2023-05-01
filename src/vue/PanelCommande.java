@@ -111,6 +111,8 @@ public class PanelCommande extends PanelPrincipal implements ActionListener{
 					if(retour == 0){
 						C_Commande.deleteCommande(idCommande);
 						unTableau.deleteLigne(numLigne);
+						PanelStatistique.getDonneesCommande();
+						PanelStatistique.unTableauCommande.updateLigne(0, PanelStatistique.ligneStatCommande);
 						JOptionPane.showMessageDialog(null, "Suppression effectué avec succés");
 					}
 				}else if(e.getClickCount()== 1){
@@ -197,6 +199,8 @@ public class PanelCommande extends PanelPrincipal implements ActionListener{
 					uneCommande.getStatut(), uneCommande.getDateCommande(), uneCommande.getTvaCommande(),
 					uneCommande.getTotalHT(), uneCommande.getTotalTTC()};
 				this.unTableau.updateLigne(numLigne, ligne);
+				PanelStatistique.getDonneesCommande();
+				PanelStatistique.unTableauCommande.updateLigne(0, PanelStatistique.ligneStatCommande);
 				JOptionPane.showMessageDialog(this, "Commande modifié avec succés !");
 				this.viderChamps();	
 			}else{
@@ -223,6 +227,8 @@ public class PanelCommande extends PanelPrincipal implements ActionListener{
 				if(retour == 0){
 					C_Commande.deleteCommande(numeroCommande);
 					this.unTableau.deleteLigne(numLigne);
+					PanelStatistique.getDonneesCommande();
+					PanelStatistique.unTableauCommande.updateLigne(0, PanelStatistique.ligneStatCommande);
 					JOptionPane.showMessageDialog(null, "Suppression effectué avec succés");
 				}
 			}else{

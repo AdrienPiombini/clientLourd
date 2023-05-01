@@ -38,11 +38,7 @@ public class PanelProduit extends PanelPrincipal implements ActionListener{
 	private JTable tableProduits;
 	private Tableau unTableau;
 
-	private String[] typeTVA = {"20%","15%","5%"};
-	private JComboBox<String> cbxTVA = new JComboBox<String>(typeTVA); 
-	private JPanel panelTotalCA = new JPanel();
-	private JTextField txtTotalCA = new JTextField();
-	private Float totalCA = (float) 0;
+
 	
 	public PanelProduit (){
 		super (); 
@@ -59,8 +55,6 @@ public class PanelProduit extends PanelPrincipal implements ActionListener{
 		this.panelForm.add(this.txtDescription);
         this.panelForm.add(new JLabel("quantité de produit : ")); 
 		this.panelForm.add(this.txtQuantite);
-        this.panelForm.add(new JLabel("taux tva : ")); 
-		this.panelForm.add(this.cbxTVA);
 		this.panelForm.add(this.btAnnuler); 
 		this.panelForm.add(this.btEnregistrer);
 		//ajout du panelform à au panelUsers
@@ -88,7 +82,6 @@ public class PanelProduit extends PanelPrincipal implements ActionListener{
 						C_Produit.deleteProduit(idProduit);
 						unTableau.deleteLigne(numLigne);
 						JOptionPane.showMessageDialog(null, "Suppression effectué avec succés");
-						 calculCA("");
 					}
 				}else if(e.getClickCount()== 1){
 					//on remplie les champs de modification 
@@ -124,7 +117,6 @@ public class PanelProduit extends PanelPrincipal implements ActionListener{
 
 		});
 
-
 		//placement du panel Filtre
 		this.panelFiltre.setBounds(400, 40, 300, 20);
 		this.panelFiltre.setBackground(new Color (224, 224, 224));
@@ -134,22 +126,12 @@ public class PanelProduit extends PanelPrincipal implements ActionListener{
 		this.panelFiltre.add(this.btFiltrer);
 		this.add(this.panelFiltre);
 
-		//placement du panel Filtre
-		this.panelTotalCA.setBounds(400, 350, 300, 20);
-		this.panelTotalCA.setBackground(new Color (224, 224, 224));
-		this.panelTotalCA.setLayout(new GridLayout(1,3));
-		this.panelTotalCA.add(new JLabel("Total CA :"));
-		this.panelTotalCA.add(this.txtTotalCA);
-		this.add(this.panelTotalCA);
-
-		this.txtTotalCA.setText(totalCA.toString());
 	
 		//rendre le boutons ecoutables 
 		this.btAnnuler.addActionListener(this);
 		this.btEnregistrer.addActionListener(this );
 		this.btFiltrer.addActionListener(this);
 	}        
-
 
 	public Object[][] getDonnees(String filtre) {
 		ArrayList<Produit> lesProduits = C_Produit.selectAllProduits(filtre);
@@ -161,21 +143,10 @@ public class PanelProduit extends PanelPrincipal implements ActionListener{
 			matrice[i][2] = unProduit.getPrixProduit();
 			matrice[i][3] = unProduit.getQuantite();
 			i++;
-			totalCA = totalCA + unProduit.getQuantite() * unProduit.getPrixProduit();
-
 		}
 		return matrice;
 	}
 
-	public void calculCA(String filtre){
-		ArrayList<Produit> lesProduits = C_Produit.selectAllProduits(filtre);
-		totalCA = (float) 0;
-		for (Produit unProduit : lesProduits) {
-		totalCA = totalCA + unProduit.getQuantite() * unProduit.getPrixProduit();
-		}
-		this.txtTotalCA.setText(totalCA.toString());
-	}
-        
 	public void viderChamps ()
 	{
 		this.txtNomProduit.setText(""); 
@@ -208,7 +179,6 @@ public class PanelProduit extends PanelPrincipal implements ActionListener{
 
 			JOptionPane.showMessageDialog(this, " Produit insérée avec succès !");
 			this.viderChamps();
-			calculCA("");
 			
 		}else if (e.getSource() == this.btEnregistrer && this.btEnregistrer.getText().equals("Modifier")){
 			String nomProduit = this.txtNomProduit.getText();
@@ -231,7 +201,6 @@ public class PanelProduit extends PanelPrincipal implements ActionListener{
 
 			JOptionPane.showMessageDialog(this, "Produit modifié avec succés !");
 			this.viderChamps();
-			calculCA("");
 
 		}else if (e.getSource()==this.btFiltrer){
 			String filtre = this.txtFiltre.getText();
